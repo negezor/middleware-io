@@ -1,0 +1,52 @@
+{
+    "name": "middleware-io",
+    "version": "0.0.1",
+    "description": "Modern middleware with promises and status",
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint ./src",
+        "test": "mocha lib/tests",
+        "build": "npm run-script babel",
+        "babel": "babel src/ --out-dir lib/",
+        "watch": "npm run-script babel -- --watch",
+        "bench": "matcha lib/tests/bench/middleware.js",
+        "prepare": "npm run-script babel && npm run-script test"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/negezor/middleware-io.git"
+    },
+    "keywords": [
+        "middleware",
+        "ware",
+        "promise",
+        "async",
+        "await",
+        "modern",
+        "es6",
+        "es7",
+        "node",
+        "js"
+    ],
+    "author": "Vladlen <negezor@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/negezor/middleware-io/issues"
+    },
+    "homepage": "https://github.com/negezor/middleware-io#readme",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "chai": "^4.1.2",
+        "eslint": "^4.10.0",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-plugin-import": "^2.8.0",
+        "matcha": "^0.7.0",
+        "mocha": "^4.0.1"
+    }
+}

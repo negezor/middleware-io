@@ -54,7 +54,7 @@ middleware.use(async (context, next) => {
 
 middleware.run({})
 .then((status) => {
-	// status.finidhed => true
+	// status.finished => true
 	// status.contexts => [{now: <now>}]
 });
 ```

@@ -1,7 +1,7 @@
 <p align="center">
 <a href="https://travis-ci.org/negezor/middleware-io"><img src="https://img.shields.io/travis/negezor/middleware-io.svg?style=flat-square" alt="Build Status"></a>
-<a href="https://www.npmjs.com/negezor/middleware-io"><img src="https://img.shields.io/npm/v/negezor/middleware-io.svg?style=flat-square" alt="NPM version"></a>
-<a href="https://www.npmjs.com/negezor/middleware-io"><img src="https://img.shields.io/npm/dt/negezor/middleware-io.svg?style=flat-square" alt="NPM downloads"></a>
+<a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/v/middleware-io.svg?style=flat-square" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/dt/middleware-io.svg?style=flat-square" alt="NPM downloads"></a>
 </p>
 
 Modern middleware with promises and status

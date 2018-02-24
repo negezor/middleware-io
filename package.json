@@ -1,6 +1,6 @@
 {
 	"name": "middleware-io",
-	"version": "0.0.2",
+	"version": "0.0.4",
 	"description": "Modern middleware with promises and status",
 	"main": "index.js",
 	"scripts": {

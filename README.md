@@ -15,19 +15,19 @@ Modern middleware with promises and status
 **[Node.js](https://nodejs.org/) 8.0.0 or newer is required**
 
 ### Yarn
-Recommended, auto assembly
+Recommended
 ```shell
-yarn add negezor/middleware-io
+yarn add middleware-io
 ```
 
 ### NPM
 ```shell
-npm install negezor/middleware-io --save
+npm install middleware-io --save
 ```
 
 ## Usage
 ```js
-import Middleware from 'negezor/middleware-io';
+import Middleware from 'middleware-io';
 
 const middleware = new Middleware();
 

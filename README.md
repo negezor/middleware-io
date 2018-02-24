@@ -81,7 +81,7 @@ middleware.use(middleware); // => this
 
 | Param       | Type     | Description         |
 |-------------|----------|---------------------|
-| middleware  | function | Middleware function |
+| middleware  | Function | Middleware function |
 
 ```js
 middleware.use(middlewares); // => this
@@ -104,7 +104,7 @@ middleware.run(context); // => Promise<Object>
 
 | Param   | Type  | Description |
 |---------|-------|-------------|
-| context | Mixed | Context     |
+| context | mixed | Context     |
 
 ```js
 middleware.run(...contexts); // => Promise<Object>
@@ -112,11 +112,11 @@ middleware.run(...contexts); // => Promise<Object>
 
 | Param    | Type    | Description |
 |----------|---------|-------------|
-| contexts | Mixed[] | Contexts    |
+| contexts | mixed[] | Contexts    |
 
 Promise returns object
 
 | Options  | Type    | Description                   |
 |----------|---------|-------------------------------|
-| contexts | Mixed[] | All contexts pasted           |
-| finished | Boolean | Passed through all middleware |
+| contexts | mixed[] | All contexts pasted           |
+| finished | boolean | Passed through all middleware |

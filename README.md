@@ -1,3 +1,4 @@
+<p align="center"><img src="https://raw.githubusercontent.com/negezor/middleware-io/master/logo.svg?sanitize=true"></p>
 <p align="center">
 <a href="https://travis-ci.org/negezor/middleware-io"><img src="https://img.shields.io/travis/negezor/middleware-io.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/v/middleware-io.svg?style=flat-square" alt="NPM version"></a>

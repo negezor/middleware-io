@@ -1,6 +1,8 @@
-import { assert, expect } from 'chai';
+import chai from 'chai';
 
-import Middleware from '../middleware';
+import { Middleware } from '../';
+
+const { assert, expect } = chai;
 
 /**
  * Delay N-ms
@@ -13,7 +15,7 @@ const delay = delayed => (
 	new Promise(resolve => setTimeout(resolve, delayed))
 );
 
-describe('Caster Middleware', () => {
+describe('Middleware', () => {
 	it('should work', async () => {
 		const middleware = new Middleware();
 

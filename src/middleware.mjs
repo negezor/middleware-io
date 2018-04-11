@@ -1,4 +1,6 @@
-import { inspect } from 'util';
+import nodeUtil from 'util';
+
+const { inspect } = nodeUtil;
 
 /**
  * Middleware stack
@@ -65,13 +67,15 @@ export default class Middleware {
 
 			index = i;
 
-			if (!(i in stack)) {
+			const middleware = stack[i];
+
+			if (!middleware) {
 				status.finished = true;
 
 				return status;
 			}
 
-			await stack[i](...args, () => next(i + 1));
+			await middleware(...args, () => next(i + 1));
 
 			status.finished = stack.length <= index;
 

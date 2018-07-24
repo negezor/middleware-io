@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.0.7] - 2018.07.25
+### Updated
+- Updated dependencies
+- Migrating to jest
+- Optimization of the status
+
 ## [0.0.6] - 2018.04.11
 ### Added
 - Support `--experimental-modules`

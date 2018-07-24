@@ -1,8 +1,4 @@
-import chai from 'chai';
-
-import { Middleware } from '../';
-
-const { assert, expect } = chai;
+import { Middleware } from '..';
 
 /**
  * Delay N-ms
@@ -53,7 +49,7 @@ describe('Middleware', () => {
 
 		await middleware.run({});
 
-		expect(out).to.eql([1, 2, 3, 4, 5, 6]);
+		expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
 	});
 
 	it('should keep the context', async () => {
@@ -64,19 +60,19 @@ describe('Middleware', () => {
 		middleware.use(async (ctx, next) => {
 			await next();
 
-			expect(ctx).to.equal(context);
+			expect(ctx).toBe(context);
 		});
 
 		middleware.use(async (ctx, next) => {
 			await next();
 
-			expect(ctx).to.equal(context);
+			expect(ctx).toBe(context);
 		});
 
 		middleware.use(async (ctx, next) => {
 			await next();
 
-			expect(ctx).to.equal(context);
+			expect(ctx).toBe(context);
 		});
 
 		await middleware.run(context);
@@ -86,6 +82,30 @@ describe('Middleware', () => {
 		const middleware = new Middleware();
 
 		await middleware.run({});
+	});
+
+	it('should be false if middleware is not executed before the end', async () => {
+		const middleware = new Middleware();
+
+		middleware.use(async (ctx, next) => {});
+
+		const { finished } = await middleware.run({});
+
+		expect(finished).toEqual(false);
+	});
+
+	it('should be true if middleware is executed before the end', async () => {
+		const middleware = new Middleware();
+
+		middleware.use(async (ctx, next) => {
+			const { finished } = await next();
+
+			expect(finished).toEqual(true);
+		});
+
+		const { finished } = await middleware.run({});
+
+		expect(finished).toEqual(true);
 	});
 
 	it('should reject on errors in middleware', async () => {
@@ -104,7 +124,7 @@ describe('Middleware', () => {
 		try {
 			await middleware.run({});
 		} catch (error) {
-			expect(error).to.be.instanceof(Error);
+			expect(error).toBeInstanceOf(Error);
 
 			return;
 		}
@@ -120,7 +140,7 @@ describe('Middleware', () => {
 
 			throw new Error('Middleware must be composed of functions');
 		} catch (error) {
-			expect(error).to.be.instanceof(TypeError);
+			expect(error).toBeInstanceOf(TypeError);
 		}
 	});
 
@@ -143,7 +163,9 @@ describe('Middleware', () => {
 		try {
 			await middleware.run({});
 		} catch ({ message }) {
-			expect(message).to.include('multiple times');
+			expect(message).toEqual(
+				expect.stringMatching('multiple times')
+			);
 
 			return;
 		}

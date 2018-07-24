@@ -1,8 +1,10 @@
 import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
 
 import pkg from './package.json';
+
+const babelConfig = require('./babel.config');
 
 export default [
 	{
@@ -14,20 +16,24 @@ export default [
 				preferBuiltins: true,
 			}),
 			babel({
+				...babelConfig,
+
 				exclude: [
 					'node_modules/**'
 				],
+
+				babelrc: false
 			}),
 			commonjs()
 		],
 		output: [
 			{
-				file: pkg.main,
+				file: `${pkg.main}.js`,
 				format: 'cjs',
 				exports: 'named'
 			},
 			{
-				file: pkg.module,
+				file: `${pkg.main}.mjs`,
 				format: 'es'
 			}
 		]

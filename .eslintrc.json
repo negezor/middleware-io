@@ -42,5 +42,13 @@
 			"error",
 			"unix"
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["test/**/*.mjs"],
+			"env": {
+				"jest": true
+			}
+		}
+	]
 }

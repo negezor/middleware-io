@@ -1,12 +1,18 @@
 import Benchmark from 'benchmark';
 
-import Middleware from '../';
+import { Middleware } from '..';
 
 const { Suite } = Benchmark;
 
 describe('Benchmark', () => {
-	it('return promise or call async function', function threeAsyncMiddleware(done) {
-		this.timeout(180000);
+	// eslint-disable-next-line no-constant-condition
+	if (true) {
+		it('disabled', () => {});
+		return;
+	}
+
+	it('return promise or call async function', (done) => {
+		jest.setTimeout(15e3);
 
 		const awaitFunction = new Middleware([
 			async (ctx, next) => await next(),

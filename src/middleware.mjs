@@ -11,7 +11,7 @@ export default class Middleware {
 	/**
 	 * Constructor
 	 *
-	 * @param {Array} middlewares
+	 * @param {Function[]} middlewares
 	 */
 	constructor(...middlewares) {
 		this.stack = [];
@@ -22,7 +22,7 @@ export default class Middleware {
 	/**
 	 * Adds middlewares
 	 *
-	 * @param {Array} middlewares
+	 * @param {Function[]} middlewares
 	 *
 	 * @return {this}
 	 */
@@ -56,7 +56,7 @@ export default class Middleware {
 
 		let index = -1;
 		const status = {
-			finished: true,
+			finished: false,
 			contexts: args
 		};
 
@@ -76,8 +76,6 @@ export default class Middleware {
 			}
 
 			await middleware(...args, () => next(i + 1));
-
-			status.finished = stack.length <= index;
 
 			return status;
 		};

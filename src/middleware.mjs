@@ -20,6 +20,24 @@ export default class Middleware {
 	}
 
 	/**
+	 * Returns custom tag
+	 *
+	 * @return {string}
+	 */
+	get [Symbol.toStringTag]() {
+		return 'Middleware';
+	}
+
+	/**
+	 * Returns count middleware in chain
+	 *
+	 * @return {number}
+	 */
+	get length() {
+		return this.stack.length;
+	}
+
+	/**
 	 * Adds middlewares
 	 *
 	 * @param {Function[]} middlewares
@@ -94,6 +112,6 @@ export default class Middleware {
 	[inspect.custom](depth, options) {
 		const { name } = this.constructor;
 
-		return `${options.stylize(name, 'special')} { ${inspect(this.stack, options)} }`;
+		return `${options.stylize(name, 'special')} { length: ${options.stylize(this.length, 'number')} }`;
 	}
 }

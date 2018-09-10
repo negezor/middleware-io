@@ -1,6 +1,6 @@
 {
 	"name": "middleware-io",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "Modern middleware with promises and status",
 	"license": "MIT",
 	"author": {

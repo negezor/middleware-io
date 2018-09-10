@@ -49,7 +49,7 @@ export default class Middleware {
 	 *
 	 * @param {Array} args
 	 *
-	 * @return {Promise<boolean>}
+	 * @return {Promise<Object>}
 	 */
 	run(...args) {
 		const { stack } = this;
@@ -86,10 +86,10 @@ export default class Middleware {
 	/**
 	 * Custom inspect object
 	 *
-	 * @param {?Number} depth
+	 * @param {?number} depth
 	 * @param {Object}  options
 	 *
-	 * @return {String}
+	 * @return {string}
 	 */
 	[inspect.custom](depth, options) {
 		const { name } = this.constructor;

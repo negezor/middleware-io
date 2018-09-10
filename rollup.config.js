@@ -12,7 +12,6 @@ export default [
 		external: ['util'],
 		plugins: [
 			resolve({
-				extensions: ['.mjs', '.js'],
 				preferBuiltins: true,
 			}),
 			babel({
@@ -34,7 +33,7 @@ export default [
 			},
 			{
 				file: `${pkg.main}.mjs`,
-				format: 'es'
+				format: 'esm'
 			}
 		]
 	}

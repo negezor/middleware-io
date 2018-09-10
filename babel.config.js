@@ -13,6 +13,5 @@ module.exports = {
 				: false
 		}]
 	],
-	plugins: ['@babel/proposal-object-rest-spread'],
 	comments: false
 };

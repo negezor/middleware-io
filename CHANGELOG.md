@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.0.8] - 2018.09.11
+### Added
+- Added length
+- Added custom tag in toString()
+
+### Updated
+- Updated dependencies
+- Improved build
+
 ## [0.0.7] - 2018.07.25
 ### Updated
 - Updated dependencies

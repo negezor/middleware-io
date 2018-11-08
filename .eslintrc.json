@@ -45,9 +45,17 @@
 	},
 	"overrides": [
 		{
-			"files": ["test/**/*.mjs"],
+			"files": ["test/**/*.test.mjs"],
 			"env": {
 				"jest": true
+			}
+		},
+		{
+			"files": ["test/**/*.bench.js"],
+			"globals": {
+				"suite": true,
+				"bench": true,
+				"set": true
 			}
 		}
 	]

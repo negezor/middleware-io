@@ -11,6 +11,7 @@ Modern middleware with promises and status
 - Working with async/await
 - Native promise
 - Flexible
+- Typings
 
 ## Installation
 **[Node.js](https://nodejs.org/) 8.0.0 or newer is required**
@@ -56,7 +57,6 @@ middleware.use(async (context, next) => {
 middleware.run({})
 .then((status) => {
 	// status.finished => true
-	// status.contexts => [{now: <now>}]
 });
 ```
 
@@ -66,7 +66,7 @@ middleware.run({})
 Initialize new Middleware
 
 ```js
-new Middleware(...middlewares);
+new Middleware(middlewares);
 ```
 
 | Param        | Type       | Description          |
@@ -88,10 +88,6 @@ middleware.use(middleware); // => this
 middleware.use(middlewares); // => this
 ```
 
-```js
-middleware.use(...middlewares); // => this
-```
-
 | Param       | Type       | Description          |
 |-------------|------------|----------------------|
 | middlewares | Function[] | Middleware functions |
@@ -107,17 +103,8 @@ middleware.run(context); // => Promise<Object>
 |---------|-------|-------------|
 | context | mixed | Context     |
 
-```js
-middleware.run(...contexts); // => Promise<Object>
-```
-
-| Param    | Type    | Description |
-|----------|---------|-------------|
-| contexts | mixed[] | Contexts    |
-
 Promise returns object
 
 | Options  | Type    | Description                   |
 |----------|---------|-------------------------------|
-| contexts | mixed[] | All contexts pasted           |
 | finished | boolean | Passed through all middleware |

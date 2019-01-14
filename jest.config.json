@@ -1,10 +1,7 @@
 {
 	"name": "middleware-io",
 	"verbose": true,
+	"preset": "ts-jest",
 	"testEnvironment": "node",
-	"moduleFileExtensions": ["mjs", "js", "json"],
-	"testRegex": "./test/.+\\.test\\.mjs$",
-	"transform": {
-		"^.+\\.mjs$": "babel-jest"
-	}
+	"testMatch": ["<rootDir>/test/*.test.ts"]
 }

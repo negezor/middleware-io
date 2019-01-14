@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.0.0] - 2019.01.13
+### Added
+- Added compose functions
+- Added snippets middleware
+
+### Updated
+- Switch to TypeScript
+
+### Major
+- Delete multiple input contexts
+- Usage only array for added middleware
+
 ## [0.0.8] - 2018.09.11
 ### Added
 - Added length

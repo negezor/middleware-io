@@ -1,40 +1,52 @@
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript2';
+
+import { tmpdir } from 'os';
+import { builtinModules } from 'module';
+import { join as pathJoin } from 'path';
 
 import pkg from './package.json';
 
-const babelConfig = require('./babel.config');
+const cacheRoot = pathJoin(tmpdir(), '.rpt2_cache');
+
+const CORE_MODULE_RE = /(^_|\/)/g;
+const coreModules = builtinModules.filter(name => (
+	CORE_MODULE_RE.test(name)
+));
+
+const src = pathJoin(__dirname, 'src');
+const lib = pathJoin(__dirname, 'lib');
 
 export default [
-	{
-		input: 'src/index.mjs',
-		external: ['util'],
-		plugins: [
-			resolve({
-				preferBuiltins: true,
-			}),
-			babel({
-				...babelConfig,
+    {
+		input: pathJoin(src, 'index.ts'),
+        plugins: [
+            typescript({
+				cacheRoot,
 
-				exclude: [
-					'node_modules/**'
-				],
+				declarationDir: lib,
 
-				babelrc: false
-			}),
-			commonjs()
+				tsconfigOverride: {
+					outDir: lib,
+					rootDir: src,
+					include: [src]
+				}
+			})
 		],
-		output: [
-			{
-				file: `${pkg.main}.js`,
-				format: 'cjs',
-				exports: 'named'
-			},
-			{
-				file: `${pkg.main}.mjs`,
-				format: 'esm'
-			}
-		]
-	}
+		external: [
+			...Object.keys(pkg.dependencies || {}),
+			...Object.keys(pkg.peerDependencies || {}),
+			...coreModules
+		],
+        output: [
+            {
+                file: `${pkg.main}.js`,
+                format: 'cjs',
+                exports: 'named'
+            },
+            {
+                file: `${pkg.main}.mjs`,
+                format: 'esm'
+            }
+        ]
+    }
 ];

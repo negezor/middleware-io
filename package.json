@@ -14,6 +14,7 @@
 	"homepage": "https://github.com/negezor/middleware-io#readme",
 	"bugs": "https://github.com/negezor/middleware-io/issues",
 	"keywords": [
+		"typescript",
 		"middleware",
 		"ware",
 		"promise",
@@ -32,33 +33,29 @@
 	],
 	"main": "lib/index",
 	"module": "lib/index.mjs",
+	"types": "lib/index.d.ts",
 	"engines": {
 		"node": ">=8.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.1.5",
-		"@babel/preset-env": "^7.1.5",
-		"babel-core": "^7.0.0-0",
-		"babel-jest": "^23.6.0",
-		"benchmark": "^2.1.4",
-		"cross-env": "^5.2.0",
-		"eslint": "^5.8.0",
-		"eslint-config-airbnb-base": "^13.1.0",
-		"eslint-plugin-import": "^2.14.0",
+		"@types/jest": "^23.3.12",
+		"@types/node": "^10.12.18",
 		"jest": "^23.6.0",
 		"matcha": "^0.7.0",
-		"rollup": "^0.67.0",
-		"rollup-plugin-babel": "^4.0.3",
-		"rollup-plugin-commonjs": "^9.2.0",
-		"rollup-plugin-node-resolve": "^3.4.0"
+		"rollup": "^1.1.0",
+		"rollup-plugin-typescript2": "^0.18.1",
+		"ts-jest": "^23.10.5",
+		"tslint": "^5.12.1",
+		"tslint-config-airbnb": "^5.11.1",
+		"typescript": "^3.2.2"
 	},
 	"scripts": {
 		"prepare": "yarn run rollup:build && yarn run test",
-		"rollup:build": "cross-env NODE_ENV=production rollup -c",
-		"rollup:watch": "yarn run rollup:build -w",
-		"test": "yarn run test:jest && yarn run test:eslint",
+		"rollup:build": "rollup -c",
+		"rollup:watch": "yarn run rollup:build -- --watch",
+		"test": "yarn run test:jest && yarn run test:tslint",
 		"test:bench": "matcha test/benchmark.bench.js",
-		"test:jest": "cross-env BABEL_ENV=test jest --config jest.config.json --no-cache",
-		"test:eslint": "eslint ./src --ext .mjs,.js --ignore-path .gitignore ."
+		"test:jest": "jest --config jest.config.json --no-cache",
+		"test:tslint": "tslint -p ./"
 	}
 }

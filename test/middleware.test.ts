@@ -1,4 +1,4 @@
-import { Middleware } from '..';
+import { MiddlewareStatus } from '..';
 
 /**
  * Delay N-ms
@@ -7,15 +7,19 @@ import { Middleware } from '..';
  *
  * @return {Promise}
  */
-const delay = delayed => (
+const delay = (delayed: number) => (
 	new Promise(resolve => setTimeout(resolve, delayed))
 );
 
+type KeyValueContext = {
+	[key: string]: any;
+};
+
 describe('Middleware', () => {
 	it('should work', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
-		const out = [];
+		const out: number[] = [];
 
 		middleware.use(async (ctx, next) => {
 			out.push(1);
@@ -53,7 +57,7 @@ describe('Middleware', () => {
 	});
 
 	it('should keep the context', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		const context = {};
 
@@ -79,13 +83,13 @@ describe('Middleware', () => {
 	});
 
 	it('should work with 0 middleware', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		await middleware.run({});
 	});
 
 	it('should be false if middleware is not executed before the end', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		middleware.use(async (ctx, next) => {});
 
@@ -95,7 +99,7 @@ describe('Middleware', () => {
 	});
 
 	it('should be true if middleware is executed before the end', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		middleware.use(async (ctx, next) => {
 			const { finished } = await next();
@@ -109,7 +113,7 @@ describe('Middleware', () => {
 	});
 
 	it('should reject on errors in middleware', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus<KeyValueContext>();
 
 		middleware.use(async (ctx, next) => {
 			ctx.now = Date.now();
@@ -133,9 +137,10 @@ describe('Middleware', () => {
 	});
 
 	it('should only accept middleware as functions', () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		try {
+			// @ts-ignore
 			middleware.use(null);
 
 			throw new Error('Middleware must be composed of functions');
@@ -145,7 +150,7 @@ describe('Middleware', () => {
 	});
 
 	it('should throw if next() is called multiple times', async () => {
-		const middleware = new Middleware();
+		const middleware = new MiddlewareStatus();
 
 		middleware.use(async (ctx, next) => {
 			await next();

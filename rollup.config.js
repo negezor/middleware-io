@@ -8,7 +8,7 @@ import pkg from './package.json';
 
 const cacheRoot = pathJoin(tmpdir(), '.rpt2_cache');
 
-const CORE_MODULE_RE = /(^_|\/)/g;
+const CORE_MODULE_RE = /(^_|\/)/;
 const coreModules = builtinModules.filter(name => (
 	CORE_MODULE_RE.test(name)
 ));

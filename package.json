@@ -38,21 +38,21 @@
 		"node": ">=8.0.0"
 	},
 	"devDependencies": {
-		"@types/jest": "^23.3.12",
+		"@types/jest": "^23.3.13",
 		"@types/node": "^10.12.18",
 		"jest": "^23.6.0",
 		"matcha": "^0.7.0",
 		"rollup": "^1.1.0",
-		"rollup-plugin-typescript2": "^0.18.1",
+		"rollup-plugin-typescript2": "^0.19.2",
 		"ts-jest": "^23.10.5",
 		"tslint": "^5.12.1",
 		"tslint-config-airbnb": "^5.11.1",
-		"typescript": "^3.2.2"
+		"typescript": "^3.2.4"
 	},
 	"scripts": {
 		"prepare": "yarn run rollup:build && yarn run test",
 		"rollup:build": "rollup -c",
-		"rollup:watch": "yarn run rollup:build -- --watch",
+		"rollup:watch": "yarn run rollup:build --watch",
 		"test": "yarn run test:jest && yarn run test:tslint",
 		"test:bench": "matcha test/benchmark.bench.js",
 		"test:jest": "jest --config jest.config.json --no-cache",

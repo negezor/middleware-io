@@ -1,4 +1,4 @@
-const { MiddlewareStatus, compose } = require('..');
+const { MiddlewareStatus, compose, noopNext } = require('..');
 
 suite('MiddlewareStatus', () => {
 	set('type', 'adaptive');
@@ -44,10 +44,10 @@ suite('Compose', () => {
 
 		const middlewares = Array(count).fill(fn);
 
-		const middleware = compose(middlewares, () => {});
+		const middleware = compose(middlewares);
 
 		bench(`(fn * ${count})`, (done) => {
-			middleware({}).then(done, done);
+			middleware({}, noopNext).then(done, done);
 		});
 	}
 });

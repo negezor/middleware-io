@@ -1,14 +1,14 @@
-import { Middleware, MiddlewarePayload } from './types';
+import { Middleware, MiddlewarePayload, NextMiddleware } from './types';
 
-import { assertMiddlewares, noopNext } from './helpers';
+import { assertMiddlewares } from './helpers';
 
-export function composeChain<T>(middlewares: Middleware<T>[]) {
+export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 	assertMiddlewares(middlewares);
 
-	return (context: T) => {
+	return (context: T, next: NextMiddleware) => {
 		let lastIndex = -1;
 
-		const nextDispatch = async (index: number) => {
+		const nextDispatch = (index: number): Promise<any> => {
 			if (index <= lastIndex) {
 				throw new Error('next() called multiple times');
 			}
@@ -18,23 +18,20 @@ export function composeChain<T>(middlewares: Middleware<T>[]) {
 			const middleware = middlewares[index];
 
 			if (!middleware) {
-				return;
+				return next();
 			}
 
-			await middleware(context, () => (
-				nextDispatch(index + 1)
-			));
+			try {
+				return Promise.resolve(middleware(context, () => (
+					nextDispatch(index + 1)
+				)));
+			} catch (error) {
+				return Promise.reject(error);
+			}
 		};
 
 		return nextDispatch(0);
 	};
-}
-
-export function compose<T>(middlewares: Middleware<T>[], next: Middleware<T>) {
-	return composeChain([
-		...middlewares,
-		next
-	]);
 }
 
 export function composeWithPayload<T, P>(

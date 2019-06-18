@@ -1,7 +1,6 @@
-import MiddlewareStatus from './middleware-status';
+import compose from './compose';
 
 export * from './types';
-export * from './compose';
 export * from './snippets';
 
 export {
@@ -11,6 +10,6 @@ export {
 	noopNext
 } from './helpers';
 
-export { MiddlewareStatus };
+export { compose };
 
-export default MiddlewareStatus;
+export default compose;

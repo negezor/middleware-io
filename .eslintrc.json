@@ -40,6 +40,7 @@
 			"unix"
 		],
 		"semi": "off",
+		"arrow-parens": "off",
 		"no-unused-vars": "off",
 		"no-dupe-class-members": "off",
 		"no-useless-constructor": "off",
@@ -54,10 +55,7 @@
 		"@typescript-eslint/indent": [
 			"error",
 			"tab"
-		],
-		"arrow-parens": ["error", "as-needed", {
-			"requireForBlockBody": false
-		}]
+		]
 	},
 	"overrides": [
 		{

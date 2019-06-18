@@ -70,38 +70,8 @@ for (let exp = 0; exp <= 10; exp += 1) {
 	});
 }
 
-const middlewareStatusSuite = makeSuite({
-	name: 'MiddlewareStatus'
-});
-
-for (let exp = 0; exp <= 10; exp += 1) {
-	const logic = async () => true;
-
-	const fn = async (ctx, next) => {
-		await logic();
-		await next();
-		await logic();
-	};
-
-	const count = 2 ** exp;
-
-	const middlewares = Array(count).fill(fn);
-
-	const middleware = new MiddlewareStatus(middlewares);
-
-	middlewareStatusSuite.add(`(fn * ${count})`, {
-		defer: true,
-		fn: (deferred) => {
-			middleware.run({})
-				.then(() => {
-					deferred.resolve();
-				});
-		}
-	});
-}
-
 (async () => {
-	for (const benchmark of [composeSuite, middlewareStatusSuite]) {
+	for (const benchmark of [composeSuite]) {
 		await new Promise(resolve => (
 			benchmark
 				.run({

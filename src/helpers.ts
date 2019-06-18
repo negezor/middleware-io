@@ -1,18 +1,19 @@
-import { NextMiddleware } from './types';
-
-export const assertMiddleware = (middleware: Function) => {
+export const assertMiddleware = (middleware: Function): void => {
 	if (typeof middleware !== 'function') {
-		throw new TypeError('Middleware must be composed of functions!');
+		throw new TypeError('Middleware must be composed of function!');
 	}
 };
 
-export const assertMiddlewares = (middlewares: Function[]) => (
+export const assertMiddlewares = (middlewares: Function[]): void => (
 	middlewares.forEach(assertMiddleware)
 );
 
-export const noopNext: NextMiddleware = async () => {};
+export const wrapMiddlewareNextCall = async <T>(context: T, middleware: Function) => {
+	let called = false;
 
-export const skipMiddleware = <T>(context: T, next: NextMiddleware) => next();
+	await middleware(context, () => {
+		called = true;
+	});
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const stopMiddleware = async <T>(context: T, next: NextMiddleware) => {};
+	return called;
+};

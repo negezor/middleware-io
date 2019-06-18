@@ -1,4 +1,4 @@
-import { Middleware, NextMiddleware } from './types';
+import { NextMiddleware } from './types';
 
 export const assertMiddleware = (middleware: Function) => {
 	if (typeof middleware !== 'function') {
@@ -14,4 +14,5 @@ export const noopNext: NextMiddleware = async () => {};
 
 export const skipMiddleware = <T>(context: T, next: NextMiddleware) => next();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,arrow-parens
 export const stopMiddleware = async <T>(context: T, next: NextMiddleware) => {};

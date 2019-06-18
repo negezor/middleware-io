@@ -7,6 +7,7 @@ import { composeWithPayload } from './compose';
 
 export default class MiddlewareStatus<T> {
 	middlewares: MiddlewarePayload<T, MiddlewareStatusChain>[] = [];
+
 	stack: Function = async () => ({
 		finished: true
 	})

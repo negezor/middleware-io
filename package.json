@@ -40,22 +40,26 @@
 	"devDependencies": {
 		"@types/jest": "^24.0.15",
 		"@types/node": "^12.0.8",
+		"@typescript-eslint/eslint-plugin": "^1.10.2",
+		"@typescript-eslint/parser": "^1.10.2",
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-import-resolver-typescript": "^1.1.1",
+		"eslint-plugin-import": "^2.17.3",
 		"jest": "^24.8.0",
 		"matcha": "^0.7.0",
 		"rollup": "^1.15.6",
 		"rollup-plugin-typescript2": "^0.21.2",
 		"ts-jest": "^24.0.2",
-		"tslint": "^5.17.0",
-		"tslint-config-airbnb": "^5.11.1",
 		"typescript": "^3.5.2"
 	},
 	"scripts": {
 		"prepare": "yarn run rollup:build && yarn run test",
 		"rollup:build": "rollup -c",
 		"rollup:watch": "yarn run rollup:build --watch",
-		"test": "yarn run test:jest && yarn run test:tslint",
+		"test": "yarn run test:jest && yarn run test:eslint",
 		"test:bench": "matcha test/benchmark.bench.js",
 		"test:jest": "jest --config jest.config.json --no-cache",
-		"test:tslint": "tslint -p ./"
+		"test:eslint": "eslint --ext .ts --ignore-path .gitignore src/**/*.ts"
 	}
 }

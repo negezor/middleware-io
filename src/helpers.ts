@@ -14,5 +14,5 @@ export const noopNext: NextMiddleware = async () => {};
 
 export const skipMiddleware = <T>(context: T, next: NextMiddleware) => next();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars,arrow-parens
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const stopMiddleware = async <T>(context: T, next: NextMiddleware) => {};

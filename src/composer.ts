@@ -14,6 +14,8 @@ import {
 	getConcurrencyMiddleware
 } from './snippets';
 
+import { assertMiddleware } from './helpers';
+
 /**
  * A simple middleware compose builder
  */
@@ -24,6 +26,8 @@ export default class Composer<T = object> {
 	 * Adds middleware to the chain
 	 */
 	public use(middleware: Middleware<T>): this {
+		assertMiddleware(middleware);
+
 		this.middlewares.push(middleware);
 
 		return this;

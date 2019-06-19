@@ -5,7 +5,10 @@
 <a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/dt/middleware-io.svg?style=flat-square" alt="NPM downloads"></a>
 </p>
 
-Modern middleware with promises and status
+Modern middleware on Promise
+
+| 📖 [Documentation](docs/) |
+|---------------------------|
 
 ## Features
 - Working with async/await
@@ -30,82 +33,33 @@ npm install middleware-io --save
 
 ## Usage
 ```js
-import Middleware from 'middleware-io';
+import { compose } from 'middleware-io';
 
-const middleware = new Middleware();
+const middleware = compose([
+	async (context, next) => {
+		// Step 1
 
-middleware.use(async (context, next) => {
-	// Step 1
+		await next();
 
-	await next();
+		// Step 4
 
-	// Step 4
+		// Print the current date from the next middleware
+		console.log(context.now);
+	},
+	async (context, next) => {
+		// Step 2
 
-	// Print the current date from the next middleware
-	console.log(context.now);
-});
+		context.now = Date.now();
 
-middleware.use(async (context, next) => {
-	// Step 2
+		await next();
 
-	context.now = Date.now();
+		// Step 3
+	}
+]);
 
-	await next();
-
-	// Step 3
-});
-
-middleware.run({})
-.then((status) => {
-	// status.finished => true
-});
+middleware.run({}, context => { /* Last middleware */ })
+	.then(() => {
+		console.log('Middleware finished work');
+	})
+	.catch(console.error);
 ```
-
-## API Reference
-
-### Constructor
-Initialize new Middleware
-
-```js
-new Middleware(middlewares);
-```
-
-| Param        | Type       | Description          |
-|--------------|------------|----------------------|
-| middlewares  | Function[] | Middleware functions |
-
-### use
-Registers a middleware
-
-```js
-middleware.use(middleware); // => this
-```
-
-| Param       | Type     | Description         |
-|-------------|----------|---------------------|
-| middleware  | Function | Middleware function |
-
-```js
-middleware.use(middlewares); // => this
-```
-
-| Param       | Type       | Description          |
-|-------------|------------|----------------------|
-| middlewares | Function[] | Middleware functions |
-
-### run
-Run chain a middleware.
-
-```js
-middleware.run(context); // => Promise<Object>
-```
-
-| Param   | Type  | Description |
-|---------|-------|-------------|
-| context | mixed | Context     |
-
-Promise returns object
-
-| Options  | Type    | Description                   |
-|----------|---------|-------------------------------|
-| finished | boolean | Passed through all middleware |

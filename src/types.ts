@@ -1,12 +1,24 @@
 /**
+ * Returns the type of response middleware
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type NextMiddlewareReturn = any;
+
+/**
  * Call the next middleware from the chain
  */
-export type NextMiddleware = () => Promise<any>;
+export type NextMiddleware = () => Promise<NextMiddlewareReturn>;
+
+/**
+ * Returns the type of response middleware
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type MiddlewareReturn = any;
 
 /**
  * Basic middleware
  */
-export type Middleware<T> = (context: T, next: NextMiddleware) => any;
+export type Middleware<T> = (context: T, next: NextMiddleware) => MiddlewareReturn;
 
 /**
  * Asynchronous function for branch condition

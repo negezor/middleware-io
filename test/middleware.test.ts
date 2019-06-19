@@ -7,20 +7,23 @@ import { compose, noopNext } from '..';
  *
  * @return {Promise}
  */
-const delay = (delayed: number) => (
-	new Promise(resolve => setTimeout(resolve, delayed))
+const delay = (delayed: number): Promise<void> => (
+	new Promise((resolve): void => {
+		setTimeout(resolve, delayed);
+	})
 );
 
-type Partial = {
+interface IPartial {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[key: string]: any;
-};
+}
 
-describe('compose', () => {
-	it('should work', async () => {
+describe('compose', (): void => {
+	it('should work', async (): Promise<void> => {
 		const out: number[] = [];
 
 		const middleware = compose([
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				out.push(1);
 
 				await delay(1);
@@ -29,7 +32,7 @@ describe('compose', () => {
 
 				out.push(6);
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				out.push(2);
 
 				await delay(1);
@@ -38,7 +41,7 @@ describe('compose', () => {
 
 				out.push(5);
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				out.push(3);
 
 				await delay(1);
@@ -54,21 +57,21 @@ describe('compose', () => {
 		expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
 	});
 
-	it('should keep the context', async () => {
+	it('should keep the context', async (): Promise<void> => {
 		const context = {};
 
 		const middleware = compose([
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 
 				expect(ctx).toBe(context);
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 
 				expect(ctx).toBe(context);
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 
 				expect(ctx).toBe(context);
@@ -78,20 +81,20 @@ describe('compose', () => {
 		await middleware(context, noopNext);
 	});
 
-	it('should work with 0 middleware', async () => {
+	it('should work with 0 middleware', async (): Promise<void> => {
 		const middleware = compose([]);
 
 		await middleware({}, noopNext);
 	});
 
-	it('should reject on errors in middleware', async () => {
-		const middleware = compose<Partial>([
-			async (ctx, next) => {
+	it('should reject on errors in middleware', async (): Promise<void> => {
+		const middleware = compose<IPartial>([
+			async (ctx, next): Promise<void> => {
 				ctx.now = Date.now();
 
 				await next();
 			},
-			async () => {
+			async (): Promise<never> => {
 				throw new Error();
 			}
 		]);
@@ -107,7 +110,7 @@ describe('compose', () => {
 		throw new Error();
 	});
 
-	it('should only accept middleware as functions', () => {
+	it('should only accept middleware as functions', (): void => {
 		try {
 			// @ts-ignore
 			compose([null]);
@@ -118,16 +121,16 @@ describe('compose', () => {
 		}
 	});
 
-	it('should throw if next() is called multiple times', async () => {
+	it('should throw if next() is called multiple times', async (): Promise<void> => {
 		const middleware = compose([
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 				await next();
 			},
-			async (ctx, next) => {
+			async (ctx, next): Promise<void> => {
 				await next();
 			}
 		]);

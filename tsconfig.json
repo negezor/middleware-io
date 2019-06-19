@@ -4,11 +4,8 @@
 		"module": "esnext",
 		"lib": ["esnext"],
 		"moduleResolution": "node",
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
 		"declaration": true,
 		"sourceMap": false,
-
 		"strict": true
 	}
 }

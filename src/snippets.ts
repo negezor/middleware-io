@@ -1,34 +1,34 @@
 import {
 	Middleware,
 	NextMiddleware,
+	MiddlewareReturn,
+	NextMiddlewareReturn,
 
 	LazyMiddlewareFactory,
 	BranchMiddlewareCondition
 } from './types';
 
-import { wrapMiddlewareNextCall } from './helpers';
-
-/**
- * Noop for call `next()` in middleware
- */
-export const noopNext: NextMiddleware = async () => {};
+import { wrapMiddlewareNextCall, noopNext } from './helpers';
 
 /**
  * Call `next()` in middleware
  */
-export const skipMiddleware = <T>(context: T, next: NextMiddleware) => next();
+export const skipMiddleware = <T>(
+	context: T,
+	next: NextMiddleware
+): Promise<MiddlewareReturn> => next();
 
 /**
  * Does not call `next()` in middleware
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const stopMiddleware = <T>(context: T, next: NextMiddleware) => {};
+export const stopMiddleware = <T>(context: T, next: NextMiddleware): void => {};
 
 /**
  * Lazily asynchronously gets middleware
  */
-export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>) => (
-	async (context: T, next: NextMiddleware) => {
+export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>): Middleware<T> => (
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
 		const middleware = await factory(context);
 
 		return middleware(context, next);
@@ -38,8 +38,8 @@ export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>) => (
 /**
  * Runs the middleware and force call `next()`
  */
-export const getTapMiddleware = <T>(middleware: Middleware<T>) => (
-	async (context: T, next: NextMiddleware) => {
+export const getTapMiddleware = <T>(middleware: Middleware<T>): Middleware<T> => (
+	async (context: T, next: NextMiddleware): Promise<NextMiddlewareReturn> => {
 		await middleware(context, noopNext);
 
 		return next();
@@ -49,8 +49,8 @@ export const getTapMiddleware = <T>(middleware: Middleware<T>) => (
 /**
  * Runs the middleware at the next event loop and force call `next()`
  */
-export const getForkMiddleware = <T>(middleware: Middleware<T>) => (
-	async (context: T, next: NextMiddleware) => {
+export const getForkMiddleware = <T>(middleware: Middleware<T>): Middleware<T> => (
+	(context: T, next: NextMiddleware): Promise<NextMiddlewareReturn> => {
 		setImmediate(middleware, context, noopNext);
 
 		return next();
@@ -65,14 +65,14 @@ export const getBranchMiddleware = <T>(
 
 	trueMiddleware: Middleware<T>,
 	falseMiddleware: Middleware<T>
-) => {
+): Middleware<T> => {
 	if (typeof condition !== 'function') {
 		return condition
 			? trueMiddleware
 			: falseMiddleware;
 	}
 
-	return async (context: T, next: NextMiddleware) => (
+	return async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => (
 		await condition(context)
 			? trueMiddleware(context, next)
 			: falseMiddleware(context, next)
@@ -85,7 +85,7 @@ export const getBranchMiddleware = <T>(
 export const getOptionalMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,
 	optionalMiddleware: Middleware<T>
-) => (
+): Middleware<T> => (
 	getBranchMiddleware(
 		condition,
 		optionalMiddleware,
@@ -99,7 +99,7 @@ export const getOptionalMiddleware = <T>(
 export const getFilterMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,
 	filterMiddleware: Middleware<T>
-) => (
+): Middleware<T> => (
 	getBranchMiddleware(
 		condition,
 		filterMiddleware,
@@ -113,10 +113,10 @@ export const getFilterMiddleware = <T>(
 export const getBeforeMiddleware = <T>(
 	middleware: Middleware<T>,
 	beforeMiddleware: Middleware<T>
-) => (
+): Middleware<T> => (
 	// eslint-disable-next-line consistent-return
-	async (context: T, next: NextMiddleware) => {
-		const called = await wrapMiddlewareNextCall(context, beforeMiddleware)
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		const called = await wrapMiddlewareNextCall(context, beforeMiddleware);
 
 		if (called) {
 			return middleware(context, next);
@@ -130,10 +130,10 @@ export const getBeforeMiddleware = <T>(
 export const getAfterMiddleware = <T>(
 	middleware: Middleware<T>,
 	afterMiddleware: Middleware<T>
-) => (
+): Middleware<T> => (
 	// eslint-disable-next-line consistent-return
-	async (context: T, next: NextMiddleware) => {
-		const called = await wrapMiddlewareNextCall(context, middleware)
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		const called = await wrapMiddlewareNextCall(context, middleware);
 
 		if (called) {
 			return afterMiddleware(context, next);
@@ -145,10 +145,10 @@ export const getAfterMiddleware = <T>(
  * Concurrently launches middleware,
  * the chain will continue if `next()` is called in all middlewares
  */
-export const getConcurrencyMiddleware = <T>(...middlewares: Middleware<T>[]) => (
+export const getConcurrencyMiddleware = <T>(...middlewares: Middleware<T>[]): Middleware<T> => (
 	// eslint-disable-next-line consistent-return
-	async (context: T, next: NextMiddleware) => {
-		const concurrencies = await Promise.all(middlewares.map(middleware => (
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		const concurrencies = await Promise.all(middlewares.map((middleware): Promise<boolean> => (
 			wrapMiddlewareNextCall(context, middleware)
 		)));
 

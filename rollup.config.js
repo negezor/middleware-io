@@ -17,10 +17,10 @@ const src = pathJoin(__dirname, 'src');
 const lib = pathJoin(__dirname, 'lib');
 
 export default [
-    {
+	{
 		input: pathJoin(src, 'index.ts'),
-        plugins: [
-            typescript({
+		plugins: [
+			typescript({
 				cacheRoot,
 
 				declarationDir: lib,
@@ -37,16 +37,16 @@ export default [
 			...Object.keys(pkg.peerDependencies || {}),
 			...coreModules
 		],
-        output: [
-            {
-                file: `${pkg.main}.js`,
-                format: 'cjs',
-                exports: 'named'
-            },
-            {
-                file: `${pkg.main}.mjs`,
-                format: 'esm'
-            }
-        ]
-    }
+		output: [
+			{
+				file: `${pkg.main}.js`,
+				format: 'cjs',
+				exports: 'named'
+			},
+			{
+				file: `${pkg.main}.mjs`,
+				format: 'esm'
+			}
+		]
+	}
 ];

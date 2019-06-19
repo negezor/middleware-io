@@ -1,4 +1,9 @@
-import { Middleware, NextMiddleware } from './types';
+import {
+	Middleware,
+	NextMiddleware,
+	MiddlewareReturn,
+	NextMiddlewareReturn
+} from './types';
 
 import { assertMiddlewares } from './helpers';
 
@@ -13,21 +18,24 @@ export default function compose<T>(middlewares: Middleware<T>[]): Middleware<T> 
 	assertMiddlewares(middlewares);
 
 	if (middlewares.length === 0) {
-		return (context: T, next: NextMiddleware) => Promise.resolve(next());
+		return (
+			context: T,
+			next: NextMiddleware
+		): Promise<NextMiddlewareReturn> => Promise.resolve(next());
 	}
 
 	if (middlewares.length === 1) {
 		const [middleware] = middlewares;
 
-		return (context: T, next: NextMiddleware) => (
+		return (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => (
 			Promise.resolve(middleware(context, next))
 		);
 	}
 
-	return (context: T, next: NextMiddleware) => {
+	return (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
 		let lastIndex = -1;
 
-		const nextDispatch = (index: number): Promise<any> => {
+		const nextDispatch = (index: number): Promise<NextMiddlewareReturn> => {
 			if (index <= lastIndex) {
 				throw new Error('next() called multiple times');
 			}
@@ -41,7 +49,7 @@ export default function compose<T>(middlewares: Middleware<T>[]): Middleware<T> 
 			}
 
 			try {
-				return Promise.resolve(middleware(context, () => (
+				return Promise.resolve(middleware(context, (): Promise<NextMiddlewareReturn> => (
 					nextDispatch(index + 1)
 				)));
 			} catch (error) {

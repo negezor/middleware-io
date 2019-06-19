@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { Suite } = require('benchmark');
 
-const { MiddlewareStatus, compose, noopNext } = require('..');
+const { compose, noopNext } = require('..');
 
 const numberFormat = number => (
 	new Intl.NumberFormat('en-US').format(number)

@@ -41,7 +41,7 @@ A simple middleware compose builder
 
 ● **middlewares**: *[Middleware](../modules/_types_.md#middleware)‹*`T`*›[]* =  []
 
-*Defined in [composer.ts:21](url)*
+*Defined in [composer.ts:23](url)*
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 ▸ **after**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›, `afterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:132](url)*
+*Defined in [composer.ts:136](url)*
 
 Runs the second middleware after the main
 
@@ -70,7 +70,7 @@ ___
 
 ▸ **before**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›, `beforeMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:117](url)*
+*Defined in [composer.ts:121](url)*
 
 Runs the second middleware before the main
 
@@ -89,7 +89,7 @@ ___
 
 ▸ **branch**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹*`T`*›, `trueMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›, `falseMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:68](url)*
+*Defined in [composer.ts:72](url)*
 
 By condition splits the middleware
 
@@ -109,7 +109,7 @@ ___
 
 ▸ **compose**(): *[Middleware](../modules/_types_.md#middleware)‹*`T`*›*
 
-*Defined in [composer.ts:178](url)*
+*Defined in [composer.ts:182](url)*
 
 Compose middleware handlers into a single handler
 
@@ -121,7 +121,7 @@ ___
 
 ▸ **concurrency**(`middlewares`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›[]): *this*
 
-*Defined in [composer.ts:165](url)*
+*Defined in [composer.ts:169](url)*
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -140,7 +140,7 @@ ___
 
 ▸ **enforce**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›, `beforeMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›, `afterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:147](url)*
+*Defined in [composer.ts:151](url)*
 
 Runs middleware before and after the main
 
@@ -160,7 +160,7 @@ ___
 
 ▸ **filter**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹*`T`*›, `filterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:102](url)*
+*Defined in [composer.ts:106](url)*
 
 Conditionally runs middleware or stops the chain
 
@@ -179,7 +179,7 @@ ___
 
 ▸ **fork**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:57](url)*
+*Defined in [composer.ts:61](url)*
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -197,7 +197,7 @@ ___
 
 ▸ **lazy**(`factory`: [LazyMiddlewareFactory](../modules/_types_.md#lazymiddlewarefactory)‹*`T`*›): *this*
 
-*Defined in [composer.ts:35](url)*
+*Defined in [composer.ts:39](url)*
 
 Lazily asynchronously gets middleware
 
@@ -215,7 +215,7 @@ ___
 
 ▸ **optional**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹*`T`*›, `optionalMiddleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:87](url)*
+*Defined in [composer.ts:91](url)*
 
 Conditionally runs optional middleware or skips middleware
 
@@ -234,7 +234,7 @@ ___
 
 ▸ **tap**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:46](url)*
+*Defined in [composer.ts:50](url)*
 
 Runs the middleware and force call `next()`
 
@@ -252,7 +252,7 @@ ___
 
 ▸ **use**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›): *this*
 
-*Defined in [composer.ts:26](url)*
+*Defined in [composer.ts:28](url)*
 
 Adds middleware to the chain
 

@@ -6,9 +6,9 @@ export const assertMiddleware = (middleware: Function): void => {
 	}
 };
 
-export const assertMiddlewares = (middlewares: Function[]): void => (
-	middlewares.forEach(assertMiddleware)
-);
+export const assertMiddlewares = (middlewares: Function[]): void => {
+	middlewares.forEach(assertMiddleware);
+};
 
 export const wrapMiddlewareNextCall = async <T>(
 	context: T,

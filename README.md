@@ -9,8 +9,9 @@ Modern middleware with promises and status
 
 ## Features
 - Working with async/await
-- Native promise
+- Native Promise
 - Flexible
+- Snippets
 - Typings
 
 ## Installation

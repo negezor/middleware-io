@@ -61,7 +61,7 @@ ___
 
 ### `Const` wrapMiddlewareNextCall
 
-▸ **wrapMiddlewareNextCall**<**T**>(`context`: `T`, `middleware`: `Function`): *`Promise<boolean>`*
+▸ **wrapMiddlewareNextCall**<**T**>(`context`: `T`, `middleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *`Promise<boolean>`*
 
 *Defined in [helpers.ts:13](url)*
 
@@ -74,7 +74,7 @@ ___
 Name | Type |
 ------ | ------ |
 `context` | `T` |
-`middleware` | `Function` |
+`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
 
 **Returns:** *`Promise<boolean>`*
 

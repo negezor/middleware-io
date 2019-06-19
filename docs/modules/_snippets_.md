@@ -133,7 +133,7 @@ ___
 
 ### `Const` getConcurrencyMiddleware
 
-▸ **getConcurrencyMiddleware**<**T**>(...`middlewares`: [Middleware](_types_.md#middleware)‹*`T`*›[]): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getConcurrencyMiddleware**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹*`T`*›[]): *[Middleware](_types_.md#middleware)‹*`T`*›*
 
 *Defined in [snippets.ts:277](url)*
 
@@ -160,7 +160,7 @@ initializeDatabase
 
 Name | Type |
 ------ | ------ |
-`...middlewares` | [Middleware](_types_.md#middleware)‹*`T`*›[] |
+`middlewares` | [Middleware](_types_.md#middleware)‹*`T`*›[] |
 
 **Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
 

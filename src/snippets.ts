@@ -274,7 +274,7 @@ export const getEnforceMiddleware = <T>(
  * );
  * ```
  */
-export const getConcurrencyMiddleware = <T>(...middlewares: Middleware<T>[]): Middleware<T> => (
+export const getConcurrencyMiddleware = <T>(middlewares: Middleware<T>[]): Middleware<T> => (
 	// eslint-disable-next-line consistent-return
 	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
 		const concurrencies = await Promise.all(middlewares.map((middleware): Promise<boolean> => (

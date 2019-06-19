@@ -1,4 +1,4 @@
-import { NextMiddleware } from './types';
+import { NextMiddleware, Middleware } from './types';
 
 export const assertMiddleware = (middleware: Function): void => {
 	if (typeof middleware !== 'function') {
@@ -12,11 +12,11 @@ export const assertMiddlewares = (middlewares: Function[]): void => {
 
 export const wrapMiddlewareNextCall = async <T>(
 	context: T,
-	middleware: Function
+	middleware: Middleware<T>
 ): Promise<boolean> => {
 	let called = false;
 
-	await middleware(context, (): void => {
+	await middleware(context, async (): Promise<void> => {
 		called = true;
 	});
 

@@ -119,7 +119,7 @@ ___
 
 ###  concurrency
 
-▸ **concurrency**(...`middlewares`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›[]): *this*
+▸ **concurrency**(`middlewares`: [Middleware](../modules/_types_.md#middleware)‹*`T`*›[]): *this*
 
 *Defined in [composer.ts:165](url)*
 
@@ -130,7 +130,7 @@ the chain will continue if `next()` is called in all middlewares
 
 Name | Type |
 ------ | ------ |
-`...middlewares` | [Middleware](../modules/_types_.md#middleware)‹*`T`*›[] |
+`middlewares` | [Middleware](../modules/_types_.md#middleware)‹*`T`*›[] |
 
 **Returns:** *this*
 

@@ -163,11 +163,11 @@ export default class Composer<T = object> {
 	 * the chain will continue if `next()` is called in all middlewares
 	 */
 	public concurrency(
-		...middlewares: Middleware<T>[]
+		middlewares: Middleware<T>[]
 	): this {
 		return this.use(
 			getConcurrencyMiddleware<T>(
-				...middlewares
+				middlewares
 			)
 		);
 	}

@@ -10,6 +10,7 @@ import {
 	getFilterMiddleware,
 	getBeforeMiddleware,
 	getAfterMiddleware,
+	getEnforceMiddleware,
 	getConcurrencyMiddleware
 } from './snippets';
 
@@ -135,6 +136,23 @@ export default class Composer<T = object> {
 		return this.use(
 			getAfterMiddleware<T>(
 				middleware,
+				afterMiddleware
+			)
+		);
+	}
+
+	/**
+	 * Runs middleware before and after the main
+	 */
+	public enforce(
+		middleware: Middleware<T>,
+		beforeMiddleware: Middleware<T>,
+		afterMiddleware: Middleware<T>
+	): this {
+		return this.use(
+			getEnforceMiddleware<T>(
+				middleware,
+				beforeMiddleware,
 				afterMiddleware
 			)
 		);

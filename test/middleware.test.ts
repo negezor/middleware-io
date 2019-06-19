@@ -13,11 +13,6 @@ const delay = (delayed: number): Promise<void> => (
 	})
 );
 
-interface IPartial {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[key: string]: any;
-}
-
 describe('compose', (): void => {
 	it('should work', async (): Promise<void> => {
 		const out: number[] = [];
@@ -88,7 +83,10 @@ describe('compose', (): void => {
 	});
 
 	it('should reject on errors in middleware', async (): Promise<void> => {
-		const middleware = compose<IPartial>([
+		const middleware = compose<{
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			[key: string]: any;
+		}>([
 			async (ctx, next): Promise<void> => {
 				ctx.now = Date.now();
 

@@ -26,6 +26,16 @@ export const stopMiddleware = <T>(context: T, next: NextMiddleware): void => {};
 
 /**
  * Lazily asynchronously gets middleware
+ *
+ * Example:
+ *
+ * ```ts
+ * getLazyMiddleware(async (context) => {
+ *   const route = await getSomeRoute(context.path) // Promise<Function>;
+ *
+ *   return route;
+ * });
+ * ```
  */
 export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>): Middleware<T> => (
 	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
@@ -37,6 +47,14 @@ export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>): Middlew
 
 /**
  * Runs the middleware and force call `next()`
+ *
+ * Example:
+ *
+ * ```ts
+ * getTapMiddleware((context) => {
+ *   console.log('Context', context);
+ * });
+ * ```
  */
 export const getTapMiddleware = <T>(middleware: Middleware<T>): Middleware<T> => (
 	async (context: T, next: NextMiddleware): Promise<NextMiddlewareReturn> => {
@@ -48,6 +66,14 @@ export const getTapMiddleware = <T>(middleware: Middleware<T>): Middleware<T> =>
 
 /**
  * Runs the middleware at the next event loop and force call `next()`
+ *
+ * Example:
+ *
+ * ```ts
+ * getForkMiddleware((context) => {
+ *   statisticsMiddlewares(context).catch(console.error);
+ * });
+ * ```
  */
 export const getForkMiddleware = <T>(middleware: Middleware<T>): Middleware<T> => (
 	(context: T, next: NextMiddleware): Promise<NextMiddlewareReturn> => {
@@ -59,6 +85,26 @@ export const getForkMiddleware = <T>(middleware: Middleware<T>): Middleware<T> =
 
 /**
  * By condition splits the middleware
+ *
+ * Example:
+ *
+ * ```ts
+ * getBranchMiddleware(
+ *   async context => context.is('Content-Type', 'json'),
+ *   myBodyParser.json(),
+ *   myBodyParser.urlencoded()
+ * );
+ * ```
+ *
+ * Static condition
+ *
+ * ```ts
+ * getBranchMiddleware(
+	*   process.env.NODE_ENV === 'production',
+	*   logger.loggedContextToFile(),
+	*   logger.loggedContextToConsole()
+	* );
+	* ```
  */
 export const getBranchMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,
@@ -81,6 +127,15 @@ export const getBranchMiddleware = <T>(
 
 /**
  * Conditionally runs optional middleware or skips middleware
+ *
+ * Example:
+ *
+ * ```ts
+ * getOptionalMiddleware(
+ *   context => context.user.isAdmin,
+ *   addFieldsForAdmin
+ * );
+ * ```
  */
 export const getOptionalMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,
@@ -95,6 +150,15 @@ export const getOptionalMiddleware = <T>(
 
 /**
  * Conditionally runs middleware or stops the chain
+ *
+ * Example:
+ *
+ * ```ts
+ * getFilterMiddleware(
+ *   context => context.authorized,
+ *   middlewareForAuthorized
+ * );
+ * ```
  */
 export const getFilterMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,
@@ -109,6 +173,15 @@ export const getFilterMiddleware = <T>(
 
 /**
  * Runs the second middleware before the main
+ *
+ * Example:
+ *
+ * ```ts
+ * getBeforeMiddleware(
+ *   ouputUserData,
+ *   myMockMiddleware
+ * );
+ * ```
  */
 export const getBeforeMiddleware = <T>(
 	middleware: Middleware<T>,
@@ -126,6 +199,15 @@ export const getBeforeMiddleware = <T>(
 
 /**
  * Runs the second middleware after the main
+ *
+ * Example:
+ *
+ * ```ts
+ * getAfterMiddleware(
+ *   sendSecureData,
+ *   clearSecurityData
+ * );
+ * ```
  */
 export const getAfterMiddleware = <T>(
 	middleware: Middleware<T>,
@@ -179,6 +261,18 @@ export const getEnforceMiddleware = <T>(
 /**
  * Concurrently launches middleware,
  * the chain will continue if `next()` is called in all middlewares
+ *
+ * **Warning: Error interrupts all others**
+ *
+ * Example:
+ *
+ * ```ts
+ * getConcurrencyMiddleware(
+ *   initializeUser,
+ *   initializeSession,
+ *   initializeDatabase
+ * );
+ * ```
  */
 export const getConcurrencyMiddleware = <T>(...middlewares: Middleware<T>[]): Middleware<T> => (
 	// eslint-disable-next-line consistent-return

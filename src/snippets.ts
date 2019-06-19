@@ -142,6 +142,41 @@ export const getAfterMiddleware = <T>(
 );
 
 /**
+ * Runs middleware before and after the main
+ *
+ * Example:
+ *
+ * ```ts
+ * getEnforceMiddleware(
+ *   prepareData,
+ *   sendData,
+ *   clearData
+ * );
+ */
+export const getEnforceMiddleware = <T>(
+	middleware: Middleware<T>,
+	beforeMiddleware: Middleware<T>,
+	afterMiddleware: Middleware<T>
+): Middleware<T> => (
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		const beforeCalled = await wrapMiddlewareNextCall(context, beforeMiddleware);
+
+		if (!beforeCalled) {
+			return;
+		}
+
+		const middlewareCalled = await wrapMiddlewareNextCall(context, middleware);
+
+		if (!middlewareCalled) {
+			return;
+		}
+
+		// eslint-disable-next-line consistent-return
+		return afterMiddleware(context, next);
+	}
+);
+
+/**
  * Concurrently launches middleware,
  * the chain will continue if `next()` is called in all middlewares
  */

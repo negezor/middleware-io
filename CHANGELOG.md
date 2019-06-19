@@ -1,5 +1,22 @@
 # Change Log
 
+## [2.0.0] - 2019.06.19
+### Added
+- Added `Composer`, a simple middleware compose builder
+- Added `getLazyMiddleware`, `getTapMiddleware`, `getForkMiddleware`, `getEnforceMiddleware`, `getConcurrencyMiddleware` snippets 
+- Added mini-optimization for `compose`
+- Added tests for snippets
+- Added tests for `Composer`
+
+### Updated
+- Rewrited code with full types
+- Now using eslint instead of tslint
+- Rewritten benchmark with matcha on benchmark.js
+
+### Major
+- Export compose by default
+- Deleted `MiddlewareStatus`, use compose
+
 ## [1.0.0] - 2019.01.13
 ### Added
 - Added compose functions

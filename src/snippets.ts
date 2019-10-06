@@ -37,13 +37,17 @@ export const stopMiddleware = <T>(context: T, next: NextMiddleware): void => {};
  * });
  * ```
  */
-export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>): Middleware<T> => (
-	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
-		const middleware = await factory(context);
+export const getLazyMiddleware = <T>(factory: LazyMiddlewareFactory<T>): Middleware<T> => {
+	let middleware: Middleware<T> | undefined;
+
+	return async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		if (middleware === undefined) {
+			middleware = await factory(context);
+		}
 
 		return middleware(context, next);
-	}
-);
+	};
+};
 
 /**
  * Runs the middleware and force call `next()`

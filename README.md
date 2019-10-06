@@ -36,7 +36,7 @@ npm install middleware-io --save
 ```js
 import { compose } from 'middleware-io';
 
-const middleware = compose([
+const composedMiddleware = compose([
 	async (context, next) => {
 		// Step 1
 
@@ -58,7 +58,7 @@ const middleware = compose([
 	}
 ]);
 
-middleware.run({}, context => { /* Last middleware */ })
+composedMiddleware({}, context => { /* Last middleware */ })
 	.then(() => {
 		console.log('Middleware finished work');
 	})

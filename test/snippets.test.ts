@@ -12,10 +12,11 @@ import {
 	getAfterMiddleware,
 	getEnforceMiddleware,
 	getConcurrencyMiddleware,
-	getFilterMiddleware
+	getFilterMiddleware,
+	getCaughtMiddleware
 } from '..';
 
-const makeContext = (): { shouldTrue: boolean, shouldFalse: boolean } => ({
+const makeContext = (): { shouldTrue: boolean; shouldFalse: boolean } => ({
 	shouldTrue: true,
 	shouldFalse: false
 });
@@ -431,6 +432,45 @@ describe('Snippets', (): void => {
 			await enforceMiddleware(enforceContext, nextMock);
 
 			expect(middlewareMock).toHaveBeenCalledTimes(1);
+			expect(nextMock).toHaveBeenCalledTimes(1);
+		});
+	});
+
+	describe('getCaughtMiddleware', (): void => {
+		it('should work with error', async (): Promise<void> => {
+			const caughtContext = makeContext();
+
+			const caughtError = new Error('Test error');
+			const nextMock = jest.fn(() => {
+				throw caughtError;
+			});
+
+			const handlerMock = jest.fn(
+				(context: ContextType, error: Error): void => {
+					expect(context).toBe(caughtContext);
+					expect(error).toBe(caughtError);
+				}
+			);
+
+			const caughtMiddleware = getCaughtMiddleware(handlerMock);
+
+			await caughtMiddleware(caughtContext, nextMock);
+
+			expect(handlerMock).toHaveBeenCalledTimes(1);
+			expect(nextMock).toHaveBeenCalledTimes(1);
+		});
+
+		it('should work without error', async (): Promise<void> => {
+			const caughtContext = makeContext();
+
+			const nextMock = jest.fn(noopNext);
+			const handlerMock = jest.fn((): void => {});
+
+			const caughtMiddleware = getCaughtMiddleware(handlerMock);
+
+			await caughtMiddleware(caughtContext, nextMock);
+
+			expect(handlerMock).toHaveBeenCalledTimes(0);
 			expect(nextMock).toHaveBeenCalledTimes(1);
 		});
 	});

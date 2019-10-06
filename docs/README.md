@@ -1,8 +1,10 @@
-> ## [middleware-io](README.md)
+[middleware-io](README.md)
 
-### Index
+# middleware-io
 
-#### External modules
+## Index
+
+### External modules
 
 * ["compose"](modules/_compose_.md)
 * ["composer"](modules/_composer_.md)

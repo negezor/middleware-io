@@ -1,12 +1,10 @@
-> ## [middleware-io](../README.md)
-
-["compose"](_compose_.md) /
+[middleware-io](../README.md) › ["compose"](_compose_.md)
 
 # External module: "compose"
 
-### Index
+## Index
 
-#### Functions
+### Functions
 
 * [compose](_compose_.md#compose)
 
@@ -14,24 +12,22 @@
 
 ###  compose
 
-▸ **compose**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹*`T`*›[]): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **compose**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹T›[]): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [compose.ts:17](url)*
+*Defined in [compose.ts:17](https://github.com/negezor/middleware-io/blob/c808840/src/compose.ts#L17)*
 
 Compose an array of middleware handlers into a single handler
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`middlewares` | [Middleware](_types_.md#middleware)‹*`T`*›[] | The array of middleware  |
+`middlewares` | [Middleware](_types_.md#middleware)‹T›[] | The array of middleware  |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 Composed middleware
-
-___

@@ -1,12 +1,10 @@
-> ## [middleware-io](../README.md)
-
-["helpers"](_helpers_.md) /
+[middleware-io](../README.md) › ["helpers"](_helpers_.md)
 
 # External module: "helpers"
 
-### Index
+## Index
 
-#### Functions
+### Functions
 
 * [assertMiddleware](_helpers_.md#const-assertmiddleware)
 * [assertMiddlewares](_helpers_.md#const-assertmiddlewares)
@@ -17,15 +15,15 @@
 
 ### `Const` assertMiddleware
 
-▸ **assertMiddleware**(`middleware`: `Function`): *void*
+▸ **assertMiddleware**(`middleware`: Function): *void*
 
-*Defined in [helpers.ts:3](url)*
+*Defined in [helpers.ts:3](https://github.com/negezor/middleware-io/blob/c808840/src/helpers.ts#L3)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | `Function` |
+`middleware` | Function |
 
 **Returns:** *void*
 
@@ -33,15 +31,15 @@ ___
 
 ### `Const` assertMiddlewares
 
-▸ **assertMiddlewares**(`middlewares`: `Function`[]): *void*
+▸ **assertMiddlewares**(`middlewares`: Function[]): *void*
 
-*Defined in [helpers.ts:9](url)*
+*Defined in [helpers.ts:9](https://github.com/negezor/middleware-io/blob/c808840/src/helpers.ts#L9)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middlewares` | `Function`[] |
+`middlewares` | Function[] |
 
 **Returns:** *void*
 
@@ -49,33 +47,31 @@ ___
 
 ### `Const` noopNext
 
-▸ **noopNext**(): *`Promise<void>`*
+▸ **noopNext**(): *Promise‹void›*
 
-*Defined in [helpers.ts:29](url)*
+*Defined in [helpers.ts:29](https://github.com/negezor/middleware-io/blob/c808840/src/helpers.ts#L29)*
 
 Noop for call `next()` in middleware
 
-**Returns:** *`Promise<void>`*
+**Returns:** *Promise‹void›*
 
 ___
 
 ### `Const` wrapMiddlewareNextCall
 
-▸ **wrapMiddlewareNextCall**<**T**>(`context`: `T`, `middleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *`Promise<boolean>`*
+▸ **wrapMiddlewareNextCall**<**T**>(`context`: T, `middleware`: [Middleware](_types_.md#middleware)‹T›): *Promise‹boolean›*
 
-*Defined in [helpers.ts:13](url)*
+*Defined in [helpers.ts:13](https://github.com/negezor/middleware-io/blob/c808840/src/helpers.ts#L13)*
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`context` | `T` |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`context` | T |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *`Promise<boolean>`*
-
-___
+**Returns:** *Promise‹boolean›*

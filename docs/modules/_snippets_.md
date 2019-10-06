@@ -1,16 +1,15 @@
-> ## [middleware-io](../README.md)
-
-["snippets"](_snippets_.md) /
+[middleware-io](../README.md) › ["snippets"](_snippets_.md)
 
 # External module: "snippets"
 
-### Index
+## Index
 
-#### Functions
+### Functions
 
 * [getAfterMiddleware](_snippets_.md#const-getaftermiddleware)
 * [getBeforeMiddleware](_snippets_.md#const-getbeforemiddleware)
 * [getBranchMiddleware](_snippets_.md#const-getbranchmiddleware)
+* [getCaughtMiddleware](_snippets_.md#const-getcaughtmiddleware)
 * [getConcurrencyMiddleware](_snippets_.md#const-getconcurrencymiddleware)
 * [getEnforceMiddleware](_snippets_.md#const-getenforcemiddleware)
 * [getFilterMiddleware](_snippets_.md#const-getfiltermiddleware)
@@ -25,9 +24,9 @@
 
 ### `Const` getAfterMiddleware
 
-▸ **getAfterMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹*`T`*›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getAfterMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:212](url)*
+*Defined in [snippets.ts:217](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L217)*
 
 Runs the second middleware after the main
 
@@ -35,31 +34,31 @@ Example:
 
 ```ts
 getAfterMiddleware(
-sendSecureData,
-clearSecurityData
+  sendSecureData,
+  clearSecurityData
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
-`afterMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
+`afterMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getBeforeMiddleware
 
-▸ **getBeforeMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹*`T`*›, `beforeMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getBeforeMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›, `beforeMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:186](url)*
+*Defined in [snippets.ts:191](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L191)*
 
 Runs the second middleware before the main
 
@@ -67,31 +66,31 @@ Example:
 
 ```ts
 getBeforeMiddleware(
-ouputUserData,
-myMockMiddleware
+  ouputUserData,
+  myMockMiddleware
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
-`beforeMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
+`beforeMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getBranchMiddleware
 
-▸ **getBranchMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*›, `trueMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›, `falseMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getBranchMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `trueMiddleware`: [Middleware](_types_.md#middleware)‹T›, `falseMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:109](url)*
+*Defined in [snippets.ts:114](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L114)*
 
 By condition splits the middleware
 
@@ -99,9 +98,9 @@ Example:
 
 ```ts
 getBranchMiddleware(
-async context => context.is('Content-Type', 'json'),
-myBodyParser.json(),
-myBodyParser.urlencoded()
+  async context => context.is('Content-Type', 'json'),
+  myBodyParser.json(),
+  myBodyParser.urlencoded()
 );
 ```
 
@@ -109,33 +108,82 @@ Static condition
 
 ```ts
 getBranchMiddleware(
-process.env.NODE_ENV === 'production',
-logger.loggedContextToFile(),
-logger.loggedContextToConsole()
+  process.env.NODE_ENV === 'production',
+  logger.loggedContextToFile(),
+  logger.loggedContextToConsole()
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*› |
-`trueMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
-`falseMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T› |
+`trueMiddleware` | [Middleware](_types_.md#middleware)‹T› |
+`falseMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
+
+___
+
+### `Const` getCaughtMiddleware
+
+▸ **getCaughtMiddleware**<**T**>(`errorHandler`: [CaughtMiddlewareHandler](_types_.md#caughtmiddlewarehandler)‹T›): *[Middleware](_types_.md#middleware)‹T›*
+
+*Defined in [snippets.ts:296](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L296)*
+
+Catches errors in the middleware chain
+
+Example:
+```js
+getCaughtMiddleware((context, error) => {
+  if (error instanceof NetworkError) {
+    return context.send('Sorry, network issues 😔');
+  }
+
+  throw error;
+})
+```
+
+Without a snippet, it would look like this:
+
+```js
+async (context, next) => {
+  try {
+    await next();
+  } catch (error) {
+    if (error instanceof NetworkError) {
+      return context.send('Sorry, network issues 😔');
+    }
+
+    throw error;
+  }
+};
+```
+
+**Type parameters:**
+
+▪ **T**
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`errorHandler` | [CaughtMiddlewareHandler](_types_.md#caughtmiddlewarehandler)‹T› |
+
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getConcurrencyMiddleware
 
-▸ **getConcurrencyMiddleware**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹*`T`*›[]): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getConcurrencyMiddleware**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹T›[]): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:277](url)*
+*Defined in [snippets.ts:325](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L325)*
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -146,31 +194,31 @@ Example:
 
 ```ts
 getConcurrencyMiddleware(
-initializeUser,
-initializeSession,
-initializeDatabase
+  initializeUser,
+  initializeSession,
+  initializeDatabase
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middlewares` | [Middleware](_types_.md#middleware)‹*`T`*›[] |
+`middlewares` | [Middleware](_types_.md#middleware)‹T›[] |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getEnforceMiddleware
 
-▸ **getEnforceMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹*`T`*›, `beforeMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getEnforceMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›, `beforeMiddleware`: [Middleware](_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:238](url)*
+*Defined in [snippets.ts:243](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L243)*
 
 Runs middleware before and after the main
 
@@ -178,32 +226,32 @@ Example:
 
 ```ts
 getEnforceMiddleware(
-prepareData,
-sendData,
-clearData
+  prepareData,
+  sendData,
+  clearData
 );
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
-`beforeMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
-`afterMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
+`beforeMiddleware` | [Middleware](_types_.md#middleware)‹T› |
+`afterMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getFilterMiddleware
 
-▸ **getFilterMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*›, `filterMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getFilterMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `filterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:163](url)*
+*Defined in [snippets.ts:168](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L168)*
 
 Conditionally runs middleware or stops the chain
 
@@ -211,31 +259,31 @@ Example:
 
 ```ts
 getFilterMiddleware(
-context => context.authorized,
-middlewareForAuthorized
+  context => context.authorized,
+  middlewareForAuthorized
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*› |
-`filterMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T› |
+`filterMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getForkMiddleware
 
-▸ **getForkMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getForkMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:78](url)*
+*Defined in [snippets.ts:83](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L83)*
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -243,29 +291,29 @@ Example:
 
 ```ts
 getForkMiddleware((context) => {
-statisticsMiddlewares(context).catch(console.error);
+  statisticsMiddlewares(context).catch(console.error);
 });
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getLazyMiddleware
 
-▸ **getLazyMiddleware**<**T**>(`factory`: [LazyMiddlewareFactory](_types_.md#lazymiddlewarefactory)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getLazyMiddleware**<**T**>(`factory`: [LazyMiddlewareFactory](_types_.md#lazymiddlewarefactory)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:40](url)*
+*Defined in [snippets.ts:41](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L41)*
 
 Lazily asynchronously gets middleware
 
@@ -273,31 +321,31 @@ Example:
 
 ```ts
 getLazyMiddleware(async (context) => {
-const route = await getSomeRoute(context.path) // Promise<Function>;
+  const route = await getSomeRoute(context.path) // Promise<Function>;
 
-return route;
+  return route;
 });
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`factory` | [LazyMiddlewareFactory](_types_.md#lazymiddlewarefactory)‹*`T`*› |
+`factory` | [LazyMiddlewareFactory](_types_.md#lazymiddlewarefactory)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getOptionalMiddleware
 
-▸ **getOptionalMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*›, `optionalMiddleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getOptionalMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `optionalMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:140](url)*
+*Defined in [snippets.ts:145](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L145)*
 
 Conditionally runs optional middleware or skips middleware
 
@@ -305,31 +353,31 @@ Example:
 
 ```ts
 getOptionalMiddleware(
-context => context.user.isAdmin,
-addFieldsForAdmin
+  context => context.user.isAdmin,
+  addFieldsForAdmin
 );
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹*`T`*› |
-`optionalMiddleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`condition` | [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T› |
+`optionalMiddleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` getTapMiddleware
 
-▸ **getTapMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹*`T`*›): *[Middleware](_types_.md#middleware)‹*`T`*›*
+▸ **getTapMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:59](url)*
+*Defined in [snippets.ts:64](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L64)*
 
 Runs the middleware and force call `next()`
 
@@ -337,66 +385,64 @@ Example:
 
 ```ts
 getTapMiddleware((context) => {
-console.log('Context', context);
+  console.log('Context', context);
 });
 ```
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | [Middleware](_types_.md#middleware)‹*`T`*› |
+`middleware` | [Middleware](_types_.md#middleware)‹T› |
 
-**Returns:** *[Middleware](_types_.md#middleware)‹*`T`*›*
+**Returns:** *[Middleware](_types_.md#middleware)‹T›*
 
 ___
 
 ### `Const` skipMiddleware
 
-▸ **skipMiddleware**<**T**>(`context`: `T`, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *`Promise<MiddlewareReturn>`*
+▸ **skipMiddleware**<**T**>(`context`: T, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *Promise‹[MiddlewareReturn](_types_.md#middlewarereturn)›*
 
-*Defined in [snippets.ts:16](url)*
+*Defined in [snippets.ts:17](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L17)*
 
 Call `next()` in middleware
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`context` | `T` |
+`context` | T |
 `next` | [NextMiddleware](_types_.md#nextmiddleware) |
 
-**Returns:** *`Promise<MiddlewareReturn>`*
+**Returns:** *Promise‹[MiddlewareReturn](_types_.md#middlewarereturn)›*
 
 ___
 
 ### `Const` stopMiddleware
 
-▸ **stopMiddleware**<**T**>(`context`: `T`, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *void*
+▸ **stopMiddleware**<**T**>(`context`: T, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *void*
 
-*Defined in [snippets.ts:25](url)*
+*Defined in [snippets.ts:26](https://github.com/negezor/middleware-io/blob/c808840/src/snippets.ts#L26)*
 
 Does not call `next()` in middleware
 
 **Type parameters:**
 
-■` T`
+▪ **T**
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`context` | `T` |
+`context` | T |
 `next` | [NextMiddleware](_types_.md#nextmiddleware) |
 
 **Returns:** *void*
-
-___

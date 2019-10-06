@@ -1,5 +1,5 @@
-> ## [middleware-io](../README.md)
-
-["index"](_index_.md) /
+[middleware-io](../README.md) › ["index"](_index_.md)
 
 # External module: "index"
+
+

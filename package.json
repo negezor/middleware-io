@@ -56,6 +56,8 @@
 		"typescript": "^3.6.3"
 	},
 	"scripts": {
+		"build": "yarn run rollup:build",
+		"watch": "yarn run rollup:watch",
 		"prepare": "yarn run rollup:build && yarn run test",
 		"rollup:build": "rollup -c",
 		"rollup:watch": "yarn run rollup:build --watch",

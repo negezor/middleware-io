@@ -1,5 +1,18 @@
 # Change Log
 
+## [2.1.0] - 2019.10.06
+### Added
+- Added `getCaughtMiddleware` snippet
+- Added tests for `getCaughtMiddleware` and `getLazyMiddleware`
+
+### Fixed
+- Fixed missing cache in `getLazyMiddleware`
+- Fixed example in README.md
+
+### Updated
+- Updated dev dependencies
+- Updated generated docs
+
 ## [2.0.0] - 2019.06.19
 ### Added
 - Added `Composer`, a simple middleware compose builder

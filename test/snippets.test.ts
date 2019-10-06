@@ -48,6 +48,33 @@ describe('Snippets', (): void => {
 			expect(middlewareMock).toHaveBeenCalledTimes(1);
 			expect(nextMock).toHaveBeenCalledTimes(1);
 		});
+
+		it('should factory be called once', async (): Promise<void> => {
+			const lazyContext = makeContext();
+
+			const nextMock = jest.fn(noopNext);
+			const middlewareMock = jest.fn(
+				(factoryContext: ContextType): Middleware<ContextType> => {
+					expect(factoryContext).toBe(lazyContext);
+
+					return async (context: ContextType, next: NextMiddleware): Promise<void> => {
+						expect(context).toBe(lazyContext);
+
+						await next();
+					};
+				}
+			);
+
+			const lazyMiddleware = getLazyMiddleware(middlewareMock);
+
+			const CALLED_TIMES = 10;
+			for (let i = 0; i < CALLED_TIMES; i += 1) {
+				await lazyMiddleware(lazyContext, nextMock);
+			}
+
+			expect(middlewareMock).toHaveBeenCalledTimes(1);
+			expect(nextMock).toHaveBeenCalledTimes(CALLED_TIMES);
+		});
 	});
 
 	describe('getTapMiddleware', (): void => {

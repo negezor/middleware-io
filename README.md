@@ -12,6 +12,7 @@ Modern middleware on Promise
 
 ## Features
 - Working with async/await
+- Zero dependencies
 - Native Promise
 - Flexible
 - Snippets

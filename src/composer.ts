@@ -1,4 +1,10 @@
-import { Middleware, LazyMiddlewareFactory, BranchMiddlewareCondition, CaughtMiddlewareHandler } from './types';
+import {
+	Middleware,
+
+	LazyMiddlewareFactory,
+	BranchMiddlewareCondition,
+	CaughtMiddlewareHandler
+} from './types';
 
 import compose from './compose';
 import {

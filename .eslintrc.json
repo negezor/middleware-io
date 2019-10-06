@@ -29,7 +29,8 @@
 		"arrow-parens": "off",
 		"no-tabs": ["error", {
 			"allowIndentationTabs": true
-		}]
+		}],
+		"indent": "off"
 	},
 	"overrides": [
 		{

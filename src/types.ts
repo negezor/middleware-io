@@ -34,3 +34,8 @@ export type BranchMiddlewareCondition<T> = BranchMiddlewareConditionFunction<T> 
  * Asynchronous factory to create middleware
  */
 export type LazyMiddlewareFactory<T> = (context: T) => Promise<Middleware<T>> | Middleware<T>;
+
+/**
+ * Handler for catching errors in middleware chains
+ */
+export type CaughtMiddlewareHandler<T> = (context: T, error: Error) => MiddlewareReturn;

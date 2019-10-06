@@ -5,7 +5,8 @@ import {
 	NextMiddlewareReturn,
 
 	LazyMiddlewareFactory,
-	BranchMiddlewareCondition
+	BranchMiddlewareCondition,
+	CaughtMiddlewareHandler
 } from './types';
 
 import { wrapMiddlewareNextCall, noopNext } from './helpers';
@@ -259,6 +260,49 @@ export const getEnforceMiddleware = <T>(
 
 		// eslint-disable-next-line consistent-return
 		return afterMiddleware(context, next);
+	}
+);
+
+/**
+ * Catches errors in the middleware chain
+ *
+ * Example:
+ * ```js
+ * getCaughtMiddleware((context, error) => {
+ *   if (error instanceof NetworkError) {
+ *     return context.send('Sorry, network issues 😔');
+ *   }
+ *
+ *   throw error;
+ * })
+ * ```
+ *
+ * Without a snippet, it would look like this:
+ *
+ * ```js
+ * async (context, next) => {
+ *   try {
+ *     await next();
+ *   } catch (error) {
+ *     if (error instanceof NetworkError) {
+ *       return context.send('Sorry, network issues 😔');
+ *     }
+ *
+ *     throw error;
+ *   }
+ * };
+ * ```
+ */
+export const getCaughtMiddleware = <T>(
+	errorHandler: CaughtMiddlewareHandler<T>
+): Middleware<T> => (
+	// eslint-disable-next-line consistent-return
+	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+		try {
+			await next();
+		} catch (error) {
+			return errorHandler(context, error);
+		}
 	}
 );
 

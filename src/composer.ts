@@ -1,4 +1,4 @@
-import { Middleware, LazyMiddlewareFactory, BranchMiddlewareCondition } from './types';
+import { Middleware, LazyMiddlewareFactory, BranchMiddlewareCondition, CaughtMiddlewareHandler } from './types';
 
 import compose from './compose';
 import {
@@ -11,6 +11,7 @@ import {
 	getBeforeMiddleware,
 	getAfterMiddleware,
 	getEnforceMiddleware,
+	getCaughtMiddleware,
 	getConcurrencyMiddleware
 } from './snippets';
 
@@ -158,6 +159,17 @@ export default class Composer<T = object> {
 				middleware,
 				beforeMiddleware,
 				afterMiddleware
+			)
+		);
+	}
+
+	/**
+	 * Catches errors in the middleware chain
+	 */
+	public caught(errorHandler: CaughtMiddlewareHandler<T>): this {
+		return this.use(
+			getCaughtMiddleware<T>(
+				errorHandler
 			)
 		);
 	}

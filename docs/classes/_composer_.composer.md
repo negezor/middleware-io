@@ -18,6 +18,10 @@ A simple middleware compose builder
 
 * [middlewares](_composer_.composer.md#protected-middlewares)
 
+### Accessors
+
+* [length](_composer_.composer.md#length)
+
 ### Methods
 
 * [after](_composer_.composer.md#after)
@@ -34,6 +38,7 @@ A simple middleware compose builder
 * [optional](_composer_.composer.md#optional)
 * [tap](_composer_.composer.md#tap)
 * [use](_composer_.composer.md#use)
+* [builder](_composer_.composer.md#static-builder)
 
 ## Properties
 
@@ -41,7 +46,19 @@ A simple middleware compose builder
 
 • **middlewares**: *[Middleware](../modules/_types_.md#middleware)‹T›[]* =  []
 
-*Defined in [composer.ts:30](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L30)*
+*Defined in [composer.ts:30](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L30)*
+
+## Accessors
+
+###  length
+
+• **get length**(): *number*
+
+*Defined in [composer.ts:42](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L42)*
+
+The number of middleware installed in Composer
+
+**Returns:** *number*
 
 ## Methods
 
@@ -49,7 +66,7 @@ A simple middleware compose builder
 
 ▸ **after**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:154](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L154)*
+*Defined in [composer.ts:168](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L168)*
 
 Runs the second middleware after the main
 
@@ -68,7 +85,7 @@ ___
 
 ▸ **before**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›, `beforeMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:139](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L139)*
+*Defined in [composer.ts:153](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L153)*
 
 Runs the second middleware before the main
 
@@ -87,7 +104,7 @@ ___
 
 ▸ **branch**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹T›, `trueMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›, `falseMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:90](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L90)*
+*Defined in [composer.ts:104](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L104)*
 
 By condition splits the middleware
 
@@ -107,7 +124,7 @@ ___
 
 ▸ **caught**(`errorHandler`: [CaughtMiddlewareHandler](../modules/_types_.md#caughtmiddlewarehandler)‹T›): *this*
 
-*Defined in [composer.ts:186](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L186)*
+*Defined in [composer.ts:200](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L200)*
 
 Catches errors in the middleware chain
 
@@ -125,7 +142,7 @@ ___
 
 ▸ **clone**(): *[Composer](_composer_.composer.md)‹T›*
 
-*Defined in [composer.ts:35](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L35)*
+*Defined in [composer.ts:49](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L49)*
 
 Clones a composer object
 
@@ -137,7 +154,7 @@ ___
 
 ▸ **compose**(): *[Middleware](../modules/_types_.md#middleware)‹T›*
 
-*Defined in [composer.ts:211](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L211)*
+*Defined in [composer.ts:225](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L225)*
 
 Compose middleware handlers into a single handler
 
@@ -149,7 +166,7 @@ ___
 
 ▸ **concurrency**(`middlewares`: [Middleware](../modules/_types_.md#middleware)‹T›[]): *this*
 
-*Defined in [composer.ts:198](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L198)*
+*Defined in [composer.ts:212](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L212)*
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -168,7 +185,7 @@ ___
 
 ▸ **enforce**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›, `beforeMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:169](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L169)*
+*Defined in [composer.ts:183](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L183)*
 
 Runs middleware before and after the main
 
@@ -188,7 +205,7 @@ ___
 
 ▸ **filter**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹T›, `filterMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:124](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L124)*
+*Defined in [composer.ts:138](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L138)*
 
 Conditionally runs middleware or stops the chain
 
@@ -207,7 +224,7 @@ ___
 
 ▸ **fork**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:79](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L79)*
+*Defined in [composer.ts:93](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L93)*
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -225,7 +242,7 @@ ___
 
 ▸ **lazy**(`factory`: [LazyMiddlewareFactory](../modules/_types_.md#lazymiddlewarefactory)‹T›): *this*
 
-*Defined in [composer.ts:57](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L57)*
+*Defined in [composer.ts:71](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L71)*
 
 Lazily asynchronously gets middleware
 
@@ -243,7 +260,7 @@ ___
 
 ▸ **optional**(`condition`: [BranchMiddlewareCondition](../modules/_types_.md#branchmiddlewarecondition)‹T›, `optionalMiddleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:109](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L109)*
+*Defined in [composer.ts:123](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L123)*
 
 Conditionally runs optional middleware or skips middleware
 
@@ -262,7 +279,7 @@ ___
 
 ▸ **tap**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:68](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L68)*
+*Defined in [composer.ts:82](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L82)*
 
 Runs the middleware and force call `next()`
 
@@ -280,7 +297,7 @@ ___
 
 ▸ **use**(`middleware`: [Middleware](../modules/_types_.md#middleware)‹T›): *this*
 
-*Defined in [composer.ts:46](https://github.com/negezor/middleware-io/blob/32e2b26/src/composer.ts#L46)*
+*Defined in [composer.ts:60](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L60)*
 
 Adds middleware to the chain
 
@@ -291,3 +308,19 @@ Name | Type |
 `middleware` | [Middleware](../modules/_types_.md#middleware)‹T› |
 
 **Returns:** *this*
+
+___
+
+### `Static` builder
+
+▸ **builder**<**Context**>(): *[Composer](_composer_.composer.md)‹Context›*
+
+*Defined in [composer.ts:35](https://github.com/negezor/middleware-io/blob/33c0846/src/composer.ts#L35)*
+
+Invokes a new instance of the Composer class
+
+**Type parameters:**
+
+▪ **Context**
+
+**Returns:** *[Composer](_composer_.composer.md)‹Context›*

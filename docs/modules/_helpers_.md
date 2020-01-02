@@ -17,7 +17,7 @@
 
 ▸ **assertMiddleware**(`middleware`: Function): *void*
 
-*Defined in [helpers.ts:3](https://github.com/negezor/middleware-io/blob/32e2b26/src/helpers.ts#L3)*
+*Defined in [helpers.ts:3](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L3)*
 
 **Parameters:**
 
@@ -33,7 +33,7 @@ ___
 
 ▸ **assertMiddlewares**(`middlewares`: Function[]): *void*
 
-*Defined in [helpers.ts:9](https://github.com/negezor/middleware-io/blob/32e2b26/src/helpers.ts#L9)*
+*Defined in [helpers.ts:9](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L9)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ ___
 
 ▸ **noopNext**(): *Promise‹void›*
 
-*Defined in [helpers.ts:30](https://github.com/negezor/middleware-io/blob/32e2b26/src/helpers.ts#L30)*
+*Defined in [helpers.ts:30](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L30)*
 
 Noop for call `next()` in middleware
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **wrapMiddlewareNextCall**<**T**>(`context`: T, `middleware`: [Middleware](_types_.md#middleware)‹T›): *Promise‹boolean›*
 
-*Defined in [helpers.ts:13](https://github.com/negezor/middleware-io/blob/32e2b26/src/helpers.ts#L13)*
+*Defined in [helpers.ts:13](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L13)*
 
 **Type parameters:**
 

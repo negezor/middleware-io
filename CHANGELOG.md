@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.3.0] - 2020.01.03
+### Added
+- Added `builder` static method for `Composer`
+- Added `length` getter for `Composer`
+
+### Updated
+- Updated generated docs
+
 ## [2.2.0] - 2020.01.03
 ### BREAKING CHNAGE
 - Drop support `Node.js 8`

@@ -22,8 +22,10 @@ export const skipMiddleware = <T>(
 /**
  * Does not call `next()` in middleware
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-export const stopMiddleware = <T>(context: T, next: NextMiddleware): void => {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const stopMiddleware = <T>(context: T, next: NextMiddleware): Promise<void> => (
+	Promise.resolve()
+);
 
 /**
  * Lazily asynchronously gets middleware

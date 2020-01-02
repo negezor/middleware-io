@@ -198,6 +198,19 @@ describe('Composer', (): void => {
 		expect(composer.length).toEqual(2);
 	});
 
+	it('should create new instance of the Composer class', (): void => {
+		const composer = Composer.builder<{ test: 'test' }>();
+
+		composer.use((context) => {
+			if (context.test === 'test') {
+				// ...
+			}
+		});
+
+		expect(composer.length).toEqual(1);
+		expect(composer).toBeInstanceOf(Composer);
+	});
+
 	it('should throw if next() is called multiple times', async (): Promise<void> => {
 		const composer = new Composer();
 

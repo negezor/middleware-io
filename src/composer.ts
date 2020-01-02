@@ -30,6 +30,13 @@ export class Composer<T = object> {
 	protected middlewares: Middleware<T>[] = [];
 
 	/**
+	 * Invokes a new instance of the Composer class
+	 */
+	public static builder<Context = object>(): Composer<Context> {
+		return new Composer<Context>();
+	}
+
+	/**
 	 * The number of middleware installed in Composer
 	 */
 	public get length(): number {

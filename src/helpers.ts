@@ -26,4 +26,5 @@ export const wrapMiddlewareNextCall = async <T>(
 /**
  * Noop for call `next()` in middleware
  */
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noopNext: NextMiddleware = async (): Promise<void> => {};

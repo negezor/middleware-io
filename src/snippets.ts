@@ -22,7 +22,7 @@ export const skipMiddleware = <T>(
 /**
  * Does not call `next()` in middleware
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
 export const stopMiddleware = <T>(context: T, next: NextMiddleware): void => {};
 
 /**

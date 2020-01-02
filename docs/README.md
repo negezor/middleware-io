@@ -1,6 +1,6 @@
-[middleware-io](README.md)
+[middleware-io - v2.2.0](README.md)
 
-# middleware-io
+# middleware-io - v2.2.0
 
 ## Index
 

@@ -1,4 +1,4 @@
-[middleware-io](../README.md) › ["types"](_types_.md)
+[middleware-io - v2.2.0](../README.md) › ["types"](_types_.md)
 
 # External module: "types"
 
@@ -21,7 +21,7 @@
 
 Ƭ **BranchMiddlewareCondition**: *[BranchMiddlewareConditionFunction](_types_.md#branchmiddlewareconditionfunction)‹T› | boolean*
 
-*Defined in [types.ts:31](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L31)*
+*Defined in [types.ts:31](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L31)*
 
 Possible types for branch condition
 
@@ -31,7 +31,7 @@ ___
 
 Ƭ **BranchMiddlewareConditionFunction**: *function*
 
-*Defined in [types.ts:26](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L26)*
+*Defined in [types.ts:26](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L26)*
 
 Asynchronous function for branch condition
 
@@ -51,7 +51,7 @@ ___
 
 Ƭ **CaughtMiddlewareHandler**: *function*
 
-*Defined in [types.ts:41](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L41)*
+*Defined in [types.ts:41](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L41)*
 
 Handler for catching errors in middleware chains
 
@@ -72,7 +72,7 @@ ___
 
 Ƭ **LazyMiddlewareFactory**: *function*
 
-*Defined in [types.ts:36](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L36)*
+*Defined in [types.ts:36](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L36)*
 
 Asynchronous factory to create middleware
 
@@ -92,7 +92,7 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [types.ts:21](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L21)*
+*Defined in [types.ts:21](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L21)*
 
 Basic middleware
 
@@ -113,7 +113,7 @@ ___
 
 Ƭ **MiddlewareReturn**: *any*
 
-*Defined in [types.ts:16](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L16)*
+*Defined in [types.ts:16](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L16)*
 
 Returns the type of response middleware
 
@@ -123,7 +123,7 @@ ___
 
 Ƭ **NextMiddleware**: *function*
 
-*Defined in [types.ts:10](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L10)*
+*Defined in [types.ts:10](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L10)*
 
 Call the next middleware from the chain
 
@@ -137,6 +137,6 @@ ___
 
 Ƭ **NextMiddlewareReturn**: *any*
 
-*Defined in [types.ts:5](https://github.com/negezor/middleware-io/blob/c808840/src/types.ts#L5)*
+*Defined in [types.ts:5](https://github.com/negezor/middleware-io/blob/32e2b26/src/types.ts#L5)*
 
 Returns the type of response middleware

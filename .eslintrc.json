@@ -20,6 +20,10 @@
 	"rules": {
 		"@typescript-eslint/interface-name-prefix": ["error", "always"],
 		"@typescript-eslint/indent": ["error", "tab"],
+		"import/extensions": ["error", "ignorePackages", {
+			"js": "never",
+			"ts": "never"
+		}],
 		"no-restricted-syntax": ["error", "WithStatement"],
 		"comma-dangle": ["error", "never"],
 		"no-param-reassign": ["error", {

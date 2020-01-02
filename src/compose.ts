@@ -14,7 +14,7 @@ import { assertMiddlewares } from './helpers';
  *
  * @returns Composed middleware
  */
-export default function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
+export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 	assertMiddlewares(middlewares);
 
 	if (middlewares.length === 0) {

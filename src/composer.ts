@@ -6,7 +6,7 @@ import {
 	CaughtMiddlewareHandler
 } from './types';
 
-import compose from './compose';
+import { compose } from './compose';
 import {
 	getLazyMiddleware,
 	getTapMiddleware,
@@ -26,7 +26,7 @@ import { assertMiddleware } from './helpers';
 /**
  * A simple middleware compose builder
  */
-export default class Composer<T = object> {
+export class Composer<T = object> {
 	protected middlewares: Middleware<T>[] = [];
 
 	/**

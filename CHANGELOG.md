@@ -1,5 +1,20 @@
 # Change Log
 
+## [2.2.0] - 2020.01.03
+### BREAKING CHNAGE
+- Drop support `Node.js 8`
+
+### Added
+- Added `clone` method for `Composer`
+
+### Fixed
+- Snippet `stopMiddleware` now return `Promise`
+
+### Updated
+- Updated dev dependencies
+- Updated generated docs
+- Updated TypeScript config
+
 ## [2.1.0] - 2019.10.06
 ### Added
 - Added `getCaughtMiddleware` snippet

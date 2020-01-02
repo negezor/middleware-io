@@ -24,6 +24,8 @@
 			"js": "never",
 			"ts": "never"
 		}],
+		"import/prefer-default-export": "off",
+		"import/no-default-export": ["error"],
 		"no-restricted-syntax": ["error", "WithStatement"],
 		"comma-dangle": ["error", "never"],
 		"no-param-reassign": ["error", {

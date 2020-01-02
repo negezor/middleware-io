@@ -30,6 +30,17 @@ export default class Composer<T = object> {
 	protected middlewares: Middleware<T>[] = [];
 
 	/**
+	 * Clones a composer object
+	 */
+	public clone(): Composer<T> {
+		const composer = new Composer<T>();
+
+		composer.middlewares = [...this.middlewares];
+
+		return composer;
+	}
+
+	/**
 	 * Adds middleware to the chain
 	 */
 	public use(middleware: Middleware<T>): this {

@@ -130,6 +130,58 @@ describe('Composer', (): void => {
 		}
 	});
 
+	it('composer should be cloned', async (): Promise<void> => {
+		type CloneContext = {
+			baseValue?: boolean;
+			value: 'first' | 'second' | 'default';
+		};
+
+		const baseComposer = new Composer<CloneContext>();
+
+		baseComposer.use((context, next) => {
+			context.baseValue = true;
+
+			return next();
+		});
+
+		const firstComposer = baseComposer.clone()
+			.use((context, next) => {
+				context.value = 'first';
+
+				return next();
+			});
+
+		const secondComposer = baseComposer.clone()
+			.use((context, next) => {
+				context.value = 'second';
+
+				return next();
+			});
+
+		const baseContext = { value: 'default' } as CloneContext;
+		const firstContext = { value: 'default' } as CloneContext;
+		const secondContext = { value: 'default' } as CloneContext;
+
+		await baseComposer.compose()(baseContext, noopNext);
+		await firstComposer.compose()(firstContext, noopNext);
+		await secondComposer.compose()(secondContext, noopNext);
+
+		expect(baseContext).toMatchObject({
+			baseValue: true,
+			value: 'default'
+		});
+
+		expect(firstContext).toMatchObject({
+			baseValue: true,
+			value: 'first'
+		});
+
+		expect(secondContext).toMatchObject({
+			baseValue: true,
+			value: 'second'
+		});
+	});
+
 	it('should throw if next() is called multiple times', async (): Promise<void> => {
 		const composer = new Composer();
 

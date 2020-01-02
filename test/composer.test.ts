@@ -182,6 +182,22 @@ describe('Composer', (): void => {
 		});
 	});
 
+	it('should correctly display the number of middleware', (): void => {
+		const composer = new Composer();
+
+		expect(composer.length).toEqual(0);
+
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		composer.tap(() => {});
+
+		expect(composer.length).toEqual(1);
+
+		// eslint-disable-next-line @typescript-eslint/no-empty-function
+		composer.tap(() => {});
+
+		expect(composer.length).toEqual(2);
+	});
+
 	it('should throw if next() is called multiple times', async (): Promise<void> => {
 		const composer = new Composer();
 

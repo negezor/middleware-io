@@ -30,6 +30,13 @@ export class Composer<T = object> {
 	protected middlewares: Middleware<T>[] = [];
 
 	/**
+	 * The number of middleware installed in Composer
+	 */
+	public get length(): number {
+		return this.middlewares.length;
+	}
+
+	/**
 	 * Clones a composer object
 	 */
 	public clone(): Composer<T> {

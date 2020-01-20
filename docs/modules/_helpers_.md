@@ -1,4 +1,4 @@
-[middleware-io - v2.2.0](../README.md) › ["helpers"](_helpers_.md)
+[middleware-io](../README.md) › ["helpers"](_helpers_.md)
 
 # External module: "helpers"
 
@@ -6,42 +6,50 @@
 
 ### Functions
 
-* [assertMiddleware](_helpers_.md#const-assertmiddleware)
-* [assertMiddlewares](_helpers_.md#const-assertmiddlewares)
+* [assertMiddleware](_helpers_.md#assertmiddleware)
+* [assertMiddlewares](_helpers_.md#assertmiddlewares)
 * [noopNext](_helpers_.md#const-noopnext)
 * [wrapMiddlewareNextCall](_helpers_.md#const-wrapmiddlewarenextcall)
 
 ## Functions
 
-### `Const` assertMiddleware
+###  assertMiddleware
 
-▸ **assertMiddleware**(`middleware`: Function): *void*
+▸ **assertMiddleware**<**T**>(`middleware`: unknown): *asserts middleware is Middleware<T>*
 
-*Defined in [helpers.ts:3](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L3)*
+*Defined in [helpers.ts:3](https://github.com/negezor/middleware-io/blob/15ea09c/src/helpers.ts#L3)*
+
+**Type parameters:**
+
+▪ **T**: *unknown*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middleware` | Function |
+`middleware` | unknown |
 
-**Returns:** *void*
+**Returns:** *asserts middleware is Middleware<T>*
 
 ___
 
-### `Const` assertMiddlewares
+###  assertMiddlewares
 
-▸ **assertMiddlewares**(`middlewares`: Function[]): *void*
+▸ **assertMiddlewares**<**T**>(`middlewares`: unknown[]): *asserts middlewares is Middleware<T>[]*
 
-*Defined in [helpers.ts:9](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L9)*
+*Defined in [helpers.ts:11](https://github.com/negezor/middleware-io/blob/15ea09c/src/helpers.ts#L11)*
+
+**Type parameters:**
+
+▪ **T**: *unknown*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`middlewares` | Function[] |
+`middlewares` | unknown[] |
 
-**Returns:** *void*
+**Returns:** *asserts middlewares is Middleware<T>[]*
 
 ___
 
@@ -49,7 +57,7 @@ ___
 
 ▸ **noopNext**(): *Promise‹void›*
 
-*Defined in [helpers.ts:30](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L30)*
+*Defined in [helpers.ts:38](https://github.com/negezor/middleware-io/blob/15ea09c/src/helpers.ts#L38)*
 
 Noop for call `next()` in middleware
 
@@ -61,7 +69,7 @@ ___
 
 ▸ **wrapMiddlewareNextCall**<**T**>(`context`: T, `middleware`: [Middleware](_types_.md#middleware)‹T›): *Promise‹boolean›*
 
-*Defined in [helpers.ts:13](https://github.com/negezor/middleware-io/blob/33c0846/src/helpers.ts#L13)*
+*Defined in [helpers.ts:17](https://github.com/negezor/middleware-io/blob/15ea09c/src/helpers.ts#L17)*
 
 **Type parameters:**
 

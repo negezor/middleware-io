@@ -83,10 +83,8 @@ describe('compose', (): void => {
 	});
 
 	it('should reject on errors in middleware', async (): Promise<void> => {
-		const middleware = compose<{
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			[key: string]: any;
-		}>([
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const middleware = compose<Record<string, any>>([
 			async (ctx, next): Promise<void> => {
 				ctx.now = Date.now();
 

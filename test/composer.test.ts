@@ -91,10 +91,8 @@ describe('Composer', (): void => {
 	});
 
 	it('should reject on errors in middleware', async (): Promise<void> => {
-		const composer = new Composer<{
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			[key: string]: any;
-		}>();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const composer = new Composer<Record<string, any>>();
 
 		composer.use(async (ctx, next): Promise<void> => {
 			ctx.now = Date.now();

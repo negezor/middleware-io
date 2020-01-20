@@ -1,5 +1,21 @@
 # Change Log
 
+
+## [2.4.0] - 2020.01.20
+### BREAKING CHNAGE
+- In snippets `getBeforeMiddleware` and `getEnforceMiddleware` the order of the arguments has changed
+- Composer now requires generic with object restriction
+
+### Fixed
+- Multiple next calls in compose now throw an asynchronous error
+- In snippets `getBeforeMiddleware`, `getAfterMiddleware`, `getEnforceMiddleware` and `getConcurrencyMiddleware` an error will be thrown for several calls next
+- Comments typos fixed
+
+### Updated
+- Types `NextMiddlewareReturn` and `MiddlewareReturn` now unknown instead of any
+- Updated dev dependencies
+- Updated generated docs
+
 ## [2.3.0] - 2020.01.03
 ### Added
 - Added `builder` static method for `Composer`

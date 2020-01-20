@@ -26,13 +26,13 @@ import { assertMiddleware } from './helpers';
 /**
  * A simple middleware compose builder
  */
-export class Composer<T = object> {
+export class Composer<T extends object> {
 	protected middlewares: Middleware<T>[] = [];
 
 	/**
 	 * Invokes a new instance of the Composer class
 	 */
-	public static builder<Context = object>(): Composer<Context> {
+	public static builder<Context extends object>(): Composer<Context> {
 		return new Composer<Context>();
 	}
 

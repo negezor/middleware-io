@@ -1,8 +1,7 @@
 /**
  * Returns the type of response middleware
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type NextMiddlewareReturn = any;
+export type NextMiddlewareReturn = unknown;
 
 /**
  * Call the next middleware from the chain
@@ -12,8 +11,7 @@ export type NextMiddleware = () => Promise<NextMiddlewareReturn>;
 /**
  * Returns the type of response middleware
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MiddlewareReturn = any;
+export type MiddlewareReturn = unknown;
 
 /**
  * Basic middleware

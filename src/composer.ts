@@ -58,7 +58,7 @@ export class Composer<T extends object> {
 	 * Adds middleware to the chain
 	 */
 	public use(middleware: Middleware<T>): this {
-		assertMiddleware(middleware);
+		assertMiddleware<T>(middleware);
 
 		this.middlewares.push(middleware);
 

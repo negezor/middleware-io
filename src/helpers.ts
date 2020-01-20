@@ -1,14 +1,18 @@
 import { NextMiddleware, Middleware } from './types';
 
-export const assertMiddleware = (middleware: Function): void => {
+export function assertMiddleware<T extends unknown>(
+	middleware: unknown
+): asserts middleware is Middleware<T> {
 	if (typeof middleware !== 'function') {
 		throw new TypeError('Middleware must be composed of function!');
 	}
-};
+}
 
-export const assertMiddlewares = (middlewares: Function[]): void => {
+export function assertMiddlewares<T extends unknown>(
+	middlewares: unknown[]
+): asserts middlewares is Middleware<T>[] {
 	middlewares.forEach(assertMiddleware);
-};
+}
 
 export const wrapMiddlewareNextCall = async <T>(
 	context: T,

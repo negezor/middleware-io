@@ -58,7 +58,7 @@ const composedMiddleware = compose([
 	}
 ]);
 
-composedMiddleware({}, context => { /* Last middleware */ })
+composedMiddleware({}, () => { /* Last handler (next) */ })
 	.then(() => {
 		console.log('Middleware finished work');
 	})

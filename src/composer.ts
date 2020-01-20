@@ -151,8 +151,8 @@ export class Composer<T = object> {
 	 * Runs the second middleware before the main
 	 */
 	public before(
-		middleware: Middleware<T>,
-		beforeMiddleware: Middleware<T>
+		beforeMiddleware: Middleware<T>,
+		middleware: Middleware<T>
 	): this {
 		return this.use(
 			getBeforeMiddleware<T>(
@@ -181,8 +181,8 @@ export class Composer<T = object> {
 	 * Runs middleware before and after the main
 	 */
 	public enforce(
-		middleware: Middleware<T>,
 		beforeMiddleware: Middleware<T>,
+		middleware: Middleware<T>,
 		afterMiddleware: Middleware<T>
 	): this {
 		return this.use(

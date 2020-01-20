@@ -185,14 +185,14 @@ export const getFilterMiddleware = <T>(
  *
  * ```ts
  * getBeforeMiddleware(
- *   ouputUserData,
- *   myMockMiddleware
+ *   myMockMiddleware,
+ *   ouputUserData
  * );
  * ```
  */
 export const getBeforeMiddleware = <T>(
-	middleware: Middleware<T>,
-	beforeMiddleware: Middleware<T>
+	beforeMiddleware: Middleware<T>,
+	middleware: Middleware<T>
 ): Middleware<T> => (
 	// eslint-disable-next-line consistent-return
 	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
@@ -243,8 +243,8 @@ export const getAfterMiddleware = <T>(
  * );
  */
 export const getEnforceMiddleware = <T>(
-	middleware: Middleware<T>,
 	beforeMiddleware: Middleware<T>,
+	middleware: Middleware<T>,
 	afterMiddleware: Middleware<T>
 ): Middleware<T> => (
 	async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {

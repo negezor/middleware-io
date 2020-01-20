@@ -107,11 +107,11 @@ export const getForkMiddleware = <T>(middleware: Middleware<T>): Middleware<T> =
  *
  * ```ts
  * getBranchMiddleware(
-	*   process.env.NODE_ENV === 'production',
-	*   logger.loggedContextToFile(),
-	*   logger.loggedContextToConsole()
-	* );
-	* ```
+ *   process.env.NODE_ENV === 'production',
+ *   logger.loggedContextToFile(),
+ *   logger.loggedContextToConsole()
+ * );
+ * ```
  */
 export const getBranchMiddleware = <T>(
 	condition: BranchMiddlewareCondition<T>,

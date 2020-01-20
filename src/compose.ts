@@ -37,7 +37,7 @@ export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 
 		const nextDispatch = (index: number): Promise<NextMiddlewareReturn> => {
 			if (index <= lastIndex) {
-				throw new Error('next() called multiple times');
+				return Promise.reject(new Error('next() called multiple times'));
 			}
 
 			lastIndex = index;

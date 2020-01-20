@@ -341,28 +341,30 @@ describe('Snippets', (): void => {
 
 			const nextMock = jest.fn(noopNext);
 
-			const middlewareMock = jest.fn(
-				async (context: ContextType, next: NextMiddleware): Promise<void> => {
-					expect(context).toBe(beforeContext);
-					// eslint-disable-next-line @typescript-eslint/no-use-before-define
-					expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
-
-					await next();
-				}
-			);
-
 			const beforeMiddlewareMock = jest.fn(
 				async (context: ContextType, next: NextMiddleware): Promise<void> => {
 					expect(context).toBe(beforeContext);
+
+					// eslint-disable-next-line @typescript-eslint/no-use-before-define
 					expect(middlewareMock).toHaveBeenCalledTimes(0);
 
 					await next();
 				}
 			);
 
+			const middlewareMock = jest.fn(
+				async (context: ContextType, next: NextMiddleware): Promise<void> => {
+					expect(context).toBe(beforeContext);
+
+					expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
+
+					await next();
+				}
+			);
+
 			const beforeMiddleware = getBeforeMiddleware(
-				middlewareMock,
-				beforeMiddlewareMock
+				beforeMiddlewareMock,
+				middlewareMock
 			);
 
 			await beforeMiddleware(beforeContext, nextMock);
@@ -415,11 +417,12 @@ describe('Snippets', (): void => {
 
 			const nextMock = jest.fn(noopNext);
 
-			const middlewareMock = jest.fn(
+			const beforeMiddlewareMock = jest.fn(
 				async (context: ContextType, next: NextMiddleware): Promise<void> => {
 					expect(context).toBe(enforceContext);
+
 					// eslint-disable-next-line @typescript-eslint/no-use-before-define
-					expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
+					expect(middlewareMock).toHaveBeenCalledTimes(0);
 					// eslint-disable-next-line @typescript-eslint/no-use-before-define
 					expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
 
@@ -427,11 +430,11 @@ describe('Snippets', (): void => {
 				}
 			);
 
-			const beforeMiddlewareMock = jest.fn(
+			const middlewareMock = jest.fn(
 				async (context: ContextType, next: NextMiddleware): Promise<void> => {
 					expect(context).toBe(enforceContext);
 
-					expect(middlewareMock).toHaveBeenCalledTimes(0);
+					expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
 					// eslint-disable-next-line @typescript-eslint/no-use-before-define
 					expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
 
@@ -451,8 +454,8 @@ describe('Snippets', (): void => {
 			);
 
 			const enforceMiddleware = getEnforceMiddleware(
-				middlewareMock,
 				beforeMiddlewareMock,
+				middlewareMock,
 				afterMiddlewareMock
 			);
 

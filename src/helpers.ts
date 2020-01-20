@@ -17,6 +17,10 @@ export const wrapMiddlewareNextCall = async <T>(
 	let called = false;
 
 	await middleware(context, async (): Promise<void> => {
+		if (called) {
+			throw new Error('next() called multiple times');
+		}
+
 		called = true;
 	});
 

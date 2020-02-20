@@ -27,10 +27,12 @@ export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 
 			lastIndex = index;
 
-			const middleware = middlewares[index];
+			const middleware = middlewares.length !== index
+				? middlewares[index]
+				: next;
 
 			if (!middleware) {
-				return next();
+				return Promise.resolve();
 			}
 
 			try {

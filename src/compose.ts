@@ -17,7 +17,7 @@ import { assertMiddlewares } from './helpers';
 export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 	assertMiddlewares<T>(middlewares);
 
-	return (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
+	return (context: T, next?: NextMiddleware): Promise<MiddlewareReturn> => {
 		let lastIndex = -1;
 
 		const nextDispatch = (index: number): Promise<NextMiddlewareReturn> => {

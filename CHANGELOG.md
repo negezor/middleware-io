@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.5.0] - 2020.02.21
+### Added
+- Composer now has an inherited generic
+
+### Updated
+- Compose correspond koa-compose
+- Updated dev dependencies
+- Updated generated docs
 
 ## [2.4.0] - 2020.01.20
 ### BREAKING CHNAGE

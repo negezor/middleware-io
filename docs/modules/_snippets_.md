@@ -26,7 +26,7 @@
 
 ▸ **getAfterMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:219](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L219)*
+*Defined in [snippets.ts:219](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L219)*
 
 Runs the second middleware after the main
 
@@ -58,7 +58,7 @@ ___
 
 ▸ **getBeforeMiddleware**<**T**>(`beforeMiddleware`: [Middleware](_types_.md#middleware)‹T›, `middleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:193](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L193)*
+*Defined in [snippets.ts:193](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L193)*
 
 Runs the second middleware before the main
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **getBranchMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `trueMiddleware`: [Middleware](_types_.md#middleware)‹T›, `falseMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:116](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L116)*
+*Defined in [snippets.ts:116](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L116)*
 
 By condition splits the middleware
 
@@ -134,7 +134,7 @@ ___
 
 ▸ **getCaughtMiddleware**<**T**>(`errorHandler`: [CaughtMiddlewareHandler](_types_.md#caughtmiddlewarehandler)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:298](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L298)*
+*Defined in [snippets.ts:298](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L298)*
 
 Catches errors in the middleware chain
 
@@ -183,7 +183,7 @@ ___
 
 ▸ **getConcurrencyMiddleware**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹T›[]): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:327](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L327)*
+*Defined in [snippets.ts:327](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L327)*
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -218,7 +218,7 @@ ___
 
 ▸ **getEnforceMiddleware**<**T**>(`beforeMiddleware`: [Middleware](_types_.md#middleware)‹T›, `middleware`: [Middleware](_types_.md#middleware)‹T›, `afterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:245](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L245)*
+*Defined in [snippets.ts:245](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L245)*
 
 Runs middleware before and after the main
 
@@ -251,7 +251,7 @@ ___
 
 ▸ **getFilterMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `filterMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:170](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L170)*
+*Defined in [snippets.ts:170](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L170)*
 
 Conditionally runs middleware or stops the chain
 
@@ -283,7 +283,7 @@ ___
 
 ▸ **getForkMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:85](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L85)*
+*Defined in [snippets.ts:85](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L85)*
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -313,7 +313,7 @@ ___
 
 ▸ **getLazyMiddleware**<**T**>(`factory`: [LazyMiddlewareFactory](_types_.md#lazymiddlewarefactory)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:43](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L43)*
+*Defined in [snippets.ts:43](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L43)*
 
 Lazily asynchronously gets middleware
 
@@ -345,7 +345,7 @@ ___
 
 ▸ **getOptionalMiddleware**<**T**>(`condition`: [BranchMiddlewareCondition](_types_.md#branchmiddlewarecondition)‹T›, `optionalMiddleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:147](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L147)*
+*Defined in [snippets.ts:147](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L147)*
 
 Conditionally runs optional middleware or skips middleware
 
@@ -377,7 +377,7 @@ ___
 
 ▸ **getTapMiddleware**<**T**>(`middleware`: [Middleware](_types_.md#middleware)‹T›): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [snippets.ts:66](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L66)*
+*Defined in [snippets.ts:66](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L66)*
 
 Runs the middleware and force call `next()`
 
@@ -407,7 +407,7 @@ ___
 
 ▸ **skipMiddleware**<**T**>(`context`: T, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *Promise‹[MiddlewareReturn](_types_.md#middlewarereturn)›*
 
-*Defined in [snippets.ts:17](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L17)*
+*Defined in [snippets.ts:17](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L17)*
 
 Call `next()` in middleware
 
@@ -430,7 +430,7 @@ ___
 
 ▸ **stopMiddleware**<**T**>(`context`: T, `next`: [NextMiddleware](_types_.md#nextmiddleware)): *Promise‹void›*
 
-*Defined in [snippets.ts:26](https://github.com/negezor/middleware-io/blob/15ea09c/src/snippets.ts#L26)*
+*Defined in [snippets.ts:26](https://github.com/negezor/middleware-io/blob/40848e4/src/snippets.ts#L26)*
 
 Does not call `next()` in middleware
 

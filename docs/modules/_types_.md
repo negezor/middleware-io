@@ -21,7 +21,7 @@
 
 Ƭ **BranchMiddlewareCondition**: *[BranchMiddlewareConditionFunction](_types_.md#branchmiddlewareconditionfunction)‹T› | boolean*
 
-*Defined in [types.ts:29](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L29)*
+*Defined in [types.ts:29](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L29)*
 
 Possible types for branch condition
 
@@ -31,7 +31,7 @@ ___
 
 Ƭ **BranchMiddlewareConditionFunction**: *function*
 
-*Defined in [types.ts:24](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L24)*
 
 Asynchronous function for branch condition
 
@@ -51,7 +51,7 @@ ___
 
 Ƭ **CaughtMiddlewareHandler**: *function*
 
-*Defined in [types.ts:39](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L39)*
+*Defined in [types.ts:39](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L39)*
 
 Handler for catching errors in middleware chains
 
@@ -72,7 +72,7 @@ ___
 
 Ƭ **LazyMiddlewareFactory**: *function*
 
-*Defined in [types.ts:34](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L34)*
+*Defined in [types.ts:34](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L34)*
 
 Asynchronous factory to create middleware
 
@@ -92,7 +92,7 @@ ___
 
 Ƭ **Middleware**: *function*
 
-*Defined in [types.ts:19](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L19)*
+*Defined in [types.ts:19](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L19)*
 
 Basic middleware
 
@@ -113,7 +113,7 @@ ___
 
 Ƭ **MiddlewareReturn**: *unknown*
 
-*Defined in [types.ts:14](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L14)*
+*Defined in [types.ts:14](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L14)*
 
 Returns the type of response middleware
 
@@ -123,7 +123,7 @@ ___
 
 Ƭ **NextMiddleware**: *function*
 
-*Defined in [types.ts:9](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L9)*
+*Defined in [types.ts:9](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L9)*
 
 Call the next middleware from the chain
 
@@ -137,6 +137,6 @@ ___
 
 Ƭ **NextMiddlewareReturn**: *unknown*
 
-*Defined in [types.ts:4](https://github.com/negezor/middleware-io/blob/15ea09c/src/types.ts#L4)*
+*Defined in [types.ts:4](https://github.com/negezor/middleware-io/blob/40848e4/src/types.ts#L4)*
 
 Returns the type of response middleware

@@ -14,7 +14,7 @@
 
 ▸ **compose**<**T**>(`middlewares`: [Middleware](_types_.md#middleware)‹T›[]): *[Middleware](_types_.md#middleware)‹T›*
 
-*Defined in [compose.ts:17](https://github.com/negezor/middleware-io/blob/15ea09c/src/compose.ts#L17)*
+*Defined in [compose.ts:17](https://github.com/negezor/middleware-io/blob/40848e4/src/compose.ts#L17)*
 
 Compose an array of middleware handlers into a single handler
 

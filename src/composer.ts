@@ -46,8 +46,8 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Clones a composer object
 	 */
-	public clone<V = {}>(): Composer<T & V, R> {
-		const composer = new Composer<T & V, R>();
+	public clone(): Composer<T, R> {
+		const composer = new Composer<T, R>();
 
 		composer.middlewares = [...this.middlewares];
 

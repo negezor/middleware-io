@@ -18,7 +18,18 @@
 		"@typescript-eslint"
 	],
 	"rules": {
-		"@typescript-eslint/interface-name-prefix": ["error", "always"],
+		"@typescript-eslint/naming-convention": [
+			"error",
+			{
+				"selector": "interface",
+				"format": ["PascalCase"],
+				"prefix": ["I"]
+			},
+			{
+				"selector": "property",
+				"format": ["camelCase", "snake_case", "UPPER_CASE", "PascalCase"]
+			}
+		],
 		"@typescript-eslint/indent": ["error", "tab"],
 		"import/extensions": ["error", "ignorePackages", {
 			"js": "never",

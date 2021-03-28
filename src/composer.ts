@@ -1,4 +1,5 @@
 import {
+	UnknownObject,
 	Middleware,
 
 	LazyMiddlewareFactory,
@@ -26,13 +27,13 @@ import { assertMiddleware } from './helpers';
 /**
  * A simple middleware compose builder
  */
-export class Composer<T extends object, R = T> {
+export class Composer<T extends UnknownObject, R = T> {
 	protected middlewares: Middleware<R>[] = [];
 
 	/**
 	 * Invokes a new instance of the Composer class
 	 */
-	public static builder<Context extends object>(): Composer<Context> {
+	public static builder<Context extends UnknownObject>(): Composer<Context> {
 		return new Composer<Context>();
 	}
 
@@ -57,7 +58,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Adds middleware to the chain
 	 */
-	public use<V = {}>(middleware: Middleware<T & V>): Composer<T & V, R> {
+	public use<V = UnknownObject>(middleware: Middleware<T & V>): Composer<T & V, R> {
 		assertMiddleware<R>(middleware);
 
 		this.middlewares.push(middleware);
@@ -68,7 +69,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Lazily asynchronously gets middleware
 	 */
-	public lazy<V = {}>(factory: LazyMiddlewareFactory<T & V>): Composer<T & V, R> {
+	public lazy<V = UnknownObject>(factory: LazyMiddlewareFactory<T & V>): Composer<T & V, R> {
 		return this.use(
 			getLazyMiddleware<T & V>(
 				factory
@@ -79,7 +80,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Runs the middleware and force call `next()`
 	 */
-	public tap<V = {}>(middleware: Middleware<T & V>): Composer<T & V, R> {
+	public tap<V = UnknownObject>(middleware: Middleware<T & V>): Composer<T & V, R> {
 		return this.use(
 			getTapMiddleware<T & V>(
 				middleware
@@ -90,7 +91,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Runs the middleware at the next event loop and force call `next()`
 	 */
-	public fork<V = {}>(middleware: Middleware<T & V>): Composer<T & V, R> {
+	public fork<V = UnknownObject>(middleware: Middleware<T & V>): Composer<T & V, R> {
 		return this.use(
 			getForkMiddleware<T & V>(
 				middleware
@@ -101,7 +102,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * By condition splits the middleware
 	 */
-	public branch<V = {}>(
+	public branch<V = UnknownObject>(
 		condition: BranchMiddlewareCondition<T & V>,
 
 		trueMiddleware: Middleware<T & V>,
@@ -120,7 +121,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Conditionally runs optional middleware or skips middleware
 	 */
-	public optional<V = {}>(
+	public optional<V = UnknownObject>(
 		condition: BranchMiddlewareCondition<T & V>,
 		optionalMiddleware: Middleware<T & V>
 	): Composer<T & V, R> {
@@ -135,7 +136,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Conditionally runs middleware or stops the chain
 	 */
-	public filter<V = {}>(
+	public filter<V = UnknownObject>(
 		condition: BranchMiddlewareCondition<T & V>,
 		filterMiddleware: Middleware<T & V>
 	): Composer<T & V, R> {
@@ -150,7 +151,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Runs the second middleware before the main
 	 */
-	public before<V = {}>(
+	public before<V = UnknownObject>(
 		beforeMiddleware: Middleware<T & V>,
 		middleware: Middleware<T & V>
 	): Composer<T & V, R> {
@@ -165,7 +166,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Runs the second middleware after the main
 	 */
-	public after<V = {}>(
+	public after<V = UnknownObject>(
 		middleware: Middleware<T & V>,
 		afterMiddleware: Middleware<T & V>
 	): Composer<T & V, R> {
@@ -180,7 +181,7 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Runs middleware before and after the main
 	 */
-	public enforce<V = {}>(
+	public enforce<V = UnknownObject>(
 		beforeMiddleware: Middleware<T & V>,
 		middleware: Middleware<T & V>,
 		afterMiddleware: Middleware<T & V>
@@ -197,7 +198,9 @@ export class Composer<T extends object, R = T> {
 	/**
 	 * Catches errors in the middleware chain
 	 */
-	public caught<V = {}>(errorHandler: CaughtMiddlewareHandler<T & V>): Composer<T & V, R> {
+	public caught<V = UnknownObject>(
+		errorHandler: CaughtMiddlewareHandler<T & V>
+	): Composer<T & V, R> {
 		return this.use(
 			getCaughtMiddleware<T & V>(
 				errorHandler
@@ -209,7 +212,7 @@ export class Composer<T extends object, R = T> {
 	 * Concurrently launches middleware,
 	 * the chain will continue if `next()` is called in all middlewares
 	 */
-	public concurrency<V = {}>(
+	public concurrency<V = UnknownObject>(
 		middlewares: Middleware<T & V>[]
 	): Composer<T & V, R> {
 		return this.use(

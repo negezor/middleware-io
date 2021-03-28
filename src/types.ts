@@ -14,6 +14,11 @@ export type NextMiddleware = () => Promise<NextMiddlewareReturn>;
 export type MiddlewareReturn = unknown;
 
 /**
+ * Instead of object
+ */
+export type UnknownObject = Record<string, unknown>;
+
+/**
  * Basic middleware
  */
 export type Middleware<T> = (context: T, next: NextMiddleware) => MiddlewareReturn;

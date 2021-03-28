@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.6.0] - 2021.03.28
+### Updated
+- Now uses `UnknownObject` instead of `object` type
+- Updated dev dependencies
+- Updated generated docs
+
 ## [2.5.0] - 2020.02.21
 ### Added
 - Composer now has an inherited generic

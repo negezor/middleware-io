@@ -51,7 +51,7 @@ describe('Composer', (): void => {
 
 		const middleware = composer.compose();
 
-		await middleware(out, noopNext);
+		await middleware({}, noopNext);
 
 		expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
 	});

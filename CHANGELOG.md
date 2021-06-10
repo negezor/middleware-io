@@ -1,4 +1,7 @@
 # Change Log
+## [2.8.0] - 2021.06.10
+### Breaking Change
+- Drop support Node.JS 10
 
 ## [2.7.0] - 2021.06.10
 ### Feature

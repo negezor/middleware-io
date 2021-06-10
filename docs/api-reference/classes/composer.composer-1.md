@@ -66,7 +66,7 @@ A simple middleware compose builder
 
 #### Defined in
 
-[composer.ts:31](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L31)
+[composer.ts:31](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L31)
 
 ## Accessors
 
@@ -82,7 +82,7 @@ The number of middleware installed in Composer
 
 #### Defined in
 
-[composer.ts:43](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L43)
+[composer.ts:43](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L43)
 
 ## Methods
 
@@ -111,7 +111,7 @@ Runs the second middleware after the main
 
 #### Defined in
 
-[composer.ts:169](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L169)
+[composer.ts:169](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L169)
 
 ___
 
@@ -140,7 +140,7 @@ Runs the second middleware before the main
 
 #### Defined in
 
-[composer.ts:154](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L154)
+[composer.ts:154](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L154)
 
 ___
 
@@ -170,7 +170,7 @@ By condition splits the middleware
 
 #### Defined in
 
-[composer.ts:105](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L105)
+[composer.ts:105](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L105)
 
 ___
 
@@ -198,7 +198,7 @@ Catches errors in the middleware chain
 
 #### Defined in
 
-[composer.ts:201](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L201)
+[composer.ts:201](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L201)
 
 ___
 
@@ -214,7 +214,7 @@ Clones a composer object
 
 #### Defined in
 
-[composer.ts:50](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L50)
+[composer.ts:50](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L50)
 
 ___
 
@@ -230,7 +230,7 @@ Compose middleware handlers into a single handler
 
 #### Defined in
 
-[composer.ts:228](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L228)
+[composer.ts:228](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L228)
 
 ___
 
@@ -259,7 +259,7 @@ the chain will continue if `next()` is called in all middlewares
 
 #### Defined in
 
-[composer.ts:215](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L215)
+[composer.ts:215](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L215)
 
 ___
 
@@ -289,7 +289,7 @@ Runs middleware before and after the main
 
 #### Defined in
 
-[composer.ts:184](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L184)
+[composer.ts:184](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L184)
 
 ___
 
@@ -318,7 +318,7 @@ Conditionally runs middleware or stops the chain
 
 #### Defined in
 
-[composer.ts:139](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L139)
+[composer.ts:139](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L139)
 
 ___
 
@@ -346,7 +346,7 @@ Runs the middleware at the next event loop and force call `next()`
 
 #### Defined in
 
-[composer.ts:94](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L94)
+[composer.ts:94](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L94)
 
 ___
 
@@ -374,7 +374,7 @@ Lazily asynchronously gets middleware
 
 #### Defined in
 
-[composer.ts:72](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L72)
+[composer.ts:72](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L72)
 
 ___
 
@@ -403,7 +403,7 @@ Conditionally runs optional middleware or skips middleware
 
 #### Defined in
 
-[composer.ts:124](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L124)
+[composer.ts:124](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L124)
 
 ___
 
@@ -431,7 +431,7 @@ Runs the middleware and force call `next()`
 
 #### Defined in
 
-[composer.ts:83](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L83)
+[composer.ts:83](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L83)
 
 ___
 
@@ -459,7 +459,7 @@ Adds middleware to the chain
 
 #### Defined in
 
-[composer.ts:61](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L61)
+[composer.ts:61](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L61)
 
 ___
 
@@ -481,4 +481,4 @@ Invokes a new instance of the Composer class
 
 #### Defined in
 
-[composer.ts:36](https://github.com/negezor/middleware-io/blob/6ee55b5/src/composer.ts#L36)
+[composer.ts:36](https://github.com/negezor/middleware-io/blob/f841c99/src/composer.ts#L36)

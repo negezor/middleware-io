@@ -36,4 +36,4 @@ Composed middleware
 
 #### Defined in
 
-[compose.ts:17](https://github.com/negezor/middleware-io/blob/6ee55b5/src/compose.ts#L17)
+[compose.ts:17](https://github.com/negezor/middleware-io/blob/f841c99/src/compose.ts#L17)

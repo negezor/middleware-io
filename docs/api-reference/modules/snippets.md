@@ -56,7 +56,7 @@ getAfterMiddleware(
 
 #### Defined in
 
-[snippets.ts:219](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L219)
+[snippets.ts:219](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L219)
 
 ___
 
@@ -94,7 +94,7 @@ getBeforeMiddleware(
 
 #### Defined in
 
-[snippets.ts:193](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L193)
+[snippets.ts:193](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L193)
 
 ___
 
@@ -144,7 +144,7 @@ getBranchMiddleware(
 
 #### Defined in
 
-[snippets.ts:116](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L116)
+[snippets.ts:116](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L116)
 
 ___
 
@@ -199,7 +199,7 @@ async (context, next) => {
 
 #### Defined in
 
-[snippets.ts:298](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L298)
+[snippets.ts:298](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L298)
 
 ___
 
@@ -240,7 +240,7 @@ getConcurrencyMiddleware(
 
 #### Defined in
 
-[snippets.ts:327](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L327)
+[snippets.ts:327](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L327)
 
 ___
 
@@ -279,7 +279,7 @@ getEnforceMiddleware(
 
 #### Defined in
 
-[snippets.ts:245](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L245)
+[snippets.ts:245](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L245)
 
 ___
 
@@ -317,7 +317,7 @@ getFilterMiddleware(
 
 #### Defined in
 
-[snippets.ts:170](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L170)
+[snippets.ts:170](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L170)
 
 ___
 
@@ -353,7 +353,7 @@ getForkMiddleware((context) => {
 
 #### Defined in
 
-[snippets.ts:85](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L85)
+[snippets.ts:85](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L85)
 
 ___
 
@@ -391,7 +391,7 @@ getLazyMiddleware(async (context) => {
 
 #### Defined in
 
-[snippets.ts:43](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L43)
+[snippets.ts:43](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L43)
 
 ___
 
@@ -429,7 +429,7 @@ getOptionalMiddleware(
 
 #### Defined in
 
-[snippets.ts:147](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L147)
+[snippets.ts:147](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L147)
 
 ___
 
@@ -465,7 +465,7 @@ getTapMiddleware((context) => {
 
 #### Defined in
 
-[snippets.ts:66](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L66)
+[snippets.ts:66](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L66)
 
 ___
 
@@ -494,7 +494,7 @@ Call `next()` in middleware
 
 #### Defined in
 
-[snippets.ts:17](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L17)
+[snippets.ts:17](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L17)
 
 ___
 
@@ -523,4 +523,4 @@ Does not call `next()` in middleware
 
 #### Defined in
 
-[snippets.ts:26](https://github.com/negezor/middleware-io/blob/6ee55b5/src/snippets.ts#L26)
+[snippets.ts:26](https://github.com/negezor/middleware-io/blob/f841c99/src/snippets.ts#L26)

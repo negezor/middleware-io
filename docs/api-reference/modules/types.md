@@ -32,7 +32,7 @@ Possible types for branch condition
 
 #### Defined in
 
-[types.ts:34](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L34)
+[types.ts:34](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L34)
 
 ___
 
@@ -64,7 +64,7 @@ Asynchronous function for branch condition
 
 #### Defined in
 
-[types.ts:29](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L29)
+[types.ts:29](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L29)
 
 ___
 
@@ -97,7 +97,7 @@ Handler for catching errors in middleware chains
 
 #### Defined in
 
-[types.ts:44](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L44)
+[types.ts:44](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L44)
 
 ___
 
@@ -129,7 +129,7 @@ Asynchronous factory to create middleware
 
 #### Defined in
 
-[types.ts:39](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L39)
+[types.ts:39](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L39)
 
 ___
 
@@ -162,7 +162,7 @@ Basic middleware
 
 #### Defined in
 
-[types.ts:24](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L24)
+[types.ts:24](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L24)
 
 ___
 
@@ -174,7 +174,7 @@ Returns the type of response middleware
 
 #### Defined in
 
-[types.ts:14](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L14)
+[types.ts:14](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L14)
 
 ___
 
@@ -194,7 +194,7 @@ Call the next middleware from the chain
 
 #### Defined in
 
-[types.ts:9](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L9)
+[types.ts:9](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L9)
 
 ___
 
@@ -206,7 +206,7 @@ Returns the type of response middleware
 
 #### Defined in
 
-[types.ts:4](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L4)
+[types.ts:4](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L4)
 
 ___
 
@@ -218,4 +218,4 @@ Instead of object
 
 #### Defined in
 
-[types.ts:19](https://github.com/negezor/middleware-io/blob/6ee55b5/src/types.ts#L19)
+[types.ts:19](https://github.com/negezor/middleware-io/blob/f841c99/src/types.ts#L19)

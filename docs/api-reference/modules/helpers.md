@@ -35,7 +35,7 @@ asserts middleware is Middleware<T\>
 
 #### Defined in
 
-[helpers.ts:3](https://github.com/negezor/middleware-io/blob/6ee55b5/src/helpers.ts#L3)
+[helpers.ts:3](https://github.com/negezor/middleware-io/blob/f841c99/src/helpers.ts#L3)
 
 ___
 
@@ -61,7 +61,7 @@ asserts middlewares is Middleware<T\>[]
 
 #### Defined in
 
-[helpers.ts:11](https://github.com/negezor/middleware-io/blob/6ee55b5/src/helpers.ts#L11)
+[helpers.ts:11](https://github.com/negezor/middleware-io/blob/f841c99/src/helpers.ts#L11)
 
 ___
 
@@ -77,7 +77,7 @@ Noop for call `next()` in middleware
 
 #### Defined in
 
-[helpers.ts:38](https://github.com/negezor/middleware-io/blob/6ee55b5/src/helpers.ts#L38)
+[helpers.ts:38](https://github.com/negezor/middleware-io/blob/f841c99/src/helpers.ts#L38)
 
 ___
 
@@ -104,4 +104,4 @@ ___
 
 #### Defined in
 
-[helpers.ts:17](https://github.com/negezor/middleware-io/blob/6ee55b5/src/helpers.ts#L17)
+[helpers.ts:17](https://github.com/negezor/middleware-io/blob/f841c99/src/helpers.ts#L17)

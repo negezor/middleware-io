@@ -71,6 +71,6 @@
 		"test:bench": "node test/benchmark.bench.js",
 		"test:jest": "jest --config jest.config.json --no-cache",
 		"test:eslint": "eslint --ext .ts --ignore-path .gitignore src/**/*.ts",
-		"docs:generate": "typedoc --theme markdown --out docs --excludeExternals --readme none src"
+		"docs:generate": "typedoc --theme markdown --out docs/api-reference --excludeExternals --readme none src"
 	}
 }

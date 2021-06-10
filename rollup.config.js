@@ -39,12 +39,12 @@ export default [
 		],
 		output: [
 			{
-				file: `${pkg.main}.js`,
+				file: pathJoin(lib, 'index.js'),
 				format: 'cjs',
 				exports: 'named'
 			},
 			{
-				file: `${pkg.main}.mjs`,
+				file: pathJoin(lib, 'index.mjs'),
 				format: 'esm'
 			}
 		]

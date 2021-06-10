@@ -32,9 +32,14 @@
 	"files": [
 		"lib"
 	],
-	"main": "lib/index",
-	"module": "lib/index.mjs",
-	"types": "lib/index.d.ts",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./lib/index.mjs",
+			"require": "./lib/index.js"
+		}
+	},
 	"engines": {
 		"node": ">=10.0.0"
 	},

@@ -40,6 +40,7 @@
 			"require": "./lib/index.js"
 		}
 	},
+	"sideEffects": false,
 	"engines": {
 		"node": ">=10.0.0"
 	},

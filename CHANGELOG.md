@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.7.0] - 2021.06.10
+### Feature
+- Using [exports](https://nodejs.org/api/packages.html#packages_package_entry_points) in `package.json`
+
+### Updated
+- Updated dev dependencies
+- Updated generated docs
+
 ## [2.6.0] - 2021.03.28
 ### Updated
 - Now uses `UnknownObject` instead of `object` type

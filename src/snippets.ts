@@ -303,7 +303,7 @@ export const getCaughtMiddleware = <T>(
 		try {
 			await next();
 		} catch (error) {
-			return errorHandler(context, error);
+			return errorHandler(context, error as Error);
 		}
 	}
 );

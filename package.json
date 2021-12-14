@@ -62,9 +62,10 @@
 		"typescript": "^4.5.4"
 	},
 	"scripts": {
+		"prepare": "yarn run rollup:build && yarn run test",
 		"build": "yarn run rollup:build",
 		"watch": "yarn run rollup:watch",
-		"prepare": "yarn run rollup:build && yarn run test",
+		"clean": "rm -rf lib",
 		"rollup:build": "rollup -c",
 		"rollup:watch": "yarn run rollup:build --watch",
 		"test": "yarn run test:jest && yarn run lint",

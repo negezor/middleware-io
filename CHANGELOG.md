@@ -1,4 +1,6 @@
 # Change Log
+Please refer to the changelog in [GitHub Releases](https://github.com/negezor/middleware-io/releases)
+
 ## [2.8.0] - 2021.06.10
 ### Breaking Change
 - Drop support Node.JS 10

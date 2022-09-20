@@ -1,6 +1,6 @@
 import { NextMiddleware, Middleware } from './types';
 
-export function assertMiddleware<T extends unknown>(
+export function assertMiddleware<T>(
 	middleware: unknown
 ): asserts middleware is Middleware<T> {
 	if (typeof middleware !== 'function') {
@@ -8,7 +8,7 @@ export function assertMiddleware<T extends unknown>(
 	}
 }
 
-export function assertMiddlewares<T extends unknown>(
+export function assertMiddlewares<T>(
 	middlewares: unknown[]
 ): asserts middlewares is Middleware<T>[] {
 	middlewares.forEach(assertMiddleware);

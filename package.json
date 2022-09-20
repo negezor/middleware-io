@@ -62,16 +62,16 @@
 		"typescript": "^4.5.4"
 	},
 	"scripts": {
-		"prepare": "yarn run rollup:build && yarn run test",
-		"build": "yarn run rollup:build",
-		"watch": "yarn run rollup:watch",
+		"prepare": "npm run rollup:build && npm run test",
+		"build": "npm run rollup:build",
+		"watch": "npm run rollup:watch",
 		"clean": "rm -rf lib",
 		"rollup:build": "rollup -c",
-		"rollup:watch": "yarn run rollup:build --watch",
-		"test": "yarn run test:jest && yarn run lint",
+		"rollup:watch": "npm run rollup:build -- --watch",
+		"test": "npm run test:jest && npm run lint",
 		"test:bench": "node test/benchmark.bench.js",
 		"test:jest": "jest --config jest.config.json --no-cache",
-		"lint": "yarn run lint:eslint",
+		"lint": "npm run lint:eslint",
 		"lint:eslint": "eslint --ext .ts --ignore-path .gitignore src/**/*.ts",
 		"docs:generate": "typedoc --theme markdown --out docs/api-reference --excludeExternals --readme none src"
 	}

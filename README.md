@@ -21,15 +21,15 @@ Modern middleware on Promise
 ## Installation
 **[Node.js](https://nodejs.org/) 12.0.0 or newer is required**
 
-### Yarn
+### NPM
 Recommended
 ```shell
-yarn add middleware-io
+npm i middleware-io
 ```
 
-### NPM
+### Yarn
 ```shell
-npm install middleware-io --save
+yarn add middleware-io
 ```
 
 ## Usage

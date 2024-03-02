@@ -1,79 +1,79 @@
 {
-	"name": "middleware-io",
-	"version": "2.8.1",
-	"description": "Modern middleware with promises and status",
-	"license": "MIT",
-	"author": {
-		"name": "Vladlen (Negezor)",
-		"email": "negezor@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/negezor/middleware-io.git"
-	},
-	"homepage": "https://github.com/negezor/middleware-io#readme",
-	"bugs": "https://github.com/negezor/middleware-io/issues",
-	"keywords": [
-		"typescript",
-		"middleware",
-		"compose",
-		"ware",
-		"promise",
-		"async",
-		"await",
-		"modern",
-		"es2015",
-		"es6",
-		"es7",
-		"cjs",
-		"esm",
-		"js"
-	],
-	"files": [
-		"lib"
-	],
-	"main": "./lib/index.js",
-	"types": "./lib/index.d.ts",
-	"exports": {
-		".": {
-			"types": "./lib/index.d.ts",
-			"import": "./lib/index.mjs",
-			"require": "./lib/index.js"
-		}
-	},
-	"sideEffects": false,
-	"engines": {
-		"node": ">=12.0.0"
-	},
-	"devDependencies": {
-		"@types/jest": "^29.5.12",
-		"@types/node": "^20.11.24",
-		"@typescript-eslint/eslint-plugin": "^7.1.0",
-		"@typescript-eslint/parser": "^7.1.0",
-		"benchmark": "^2.1.4",
-		"eslint": "^8.57.0",
-		"eslint-config-airbnb-base": "^15.0.0",
-		"eslint-plugin-import": "^2.29.1",
-		"jest": "^29.7.0",
-		"rollup": "^4.12.0",
-		"rollup-plugin-typescript2": "^0.36.0",
-		"ts-jest": "^29.1.2",
-		"typedoc": "^0.25.9",
-		"typedoc-plugin-markdown": "^3.17.1",
-		"typescript": "^5.3.3"
-	},
-	"scripts": {
-		"prepare": "npm run rollup:build && npm run test",
-		"build": "npm run rollup:build",
-		"watch": "npm run rollup:watch",
-		"clean": "rm -rf lib",
-		"rollup:build": "NODE_ENV=production rollup --bundleConfigAsCjs -c rollup.config.js",
-		"rollup:watch": "npm run rollup:build -- --watch",
-		"test": "npm run test:jest && npm run lint",
-		"test:bench": "node test/benchmark.bench.js",
-		"test:jest": "jest --config jest.config.json --no-cache",
-		"lint": "npm run lint:eslint",
-		"lint:eslint": "eslint --ext .ts --ignore-path .gitignore src/**/*.ts",
-		"docs:generate": "typedoc --theme markdown --out docs/api-reference --excludeExternals --readme none src"
-	}
+    "name": "middleware-io",
+    "version": "2.8.1",
+    "description": "Modern middleware with promises and status",
+    "license": "MIT",
+    "author": {
+        "name": "Vladlen (Negezor)",
+        "email": "negezor@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/negezor/middleware-io.git"
+    },
+    "homepage": "https://github.com/negezor/middleware-io#readme",
+    "bugs": "https://github.com/negezor/middleware-io/issues",
+    "keywords": [
+        "typescript",
+        "middleware",
+        "compose",
+        "ware",
+        "promise",
+        "async",
+        "await",
+        "modern",
+        "es2015",
+        "es6",
+        "es7",
+        "cjs",
+        "esm",
+        "js"
+    ],
+    "files": [
+        "lib"
+    ],
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./lib/index.d.ts",
+            "import": "./lib/index.mjs",
+            "require": "./lib/index.js"
+        }
+    },
+    "sideEffects": false,
+    "engines": {
+        "node": ">=12.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.11.24",
+        "@typescript-eslint/eslint-plugin": "^7.1.0",
+        "@typescript-eslint/parser": "^7.1.0",
+        "benchmark": "^2.1.4",
+        "eslint": "^8.57.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.29.1",
+        "jest": "^29.7.0",
+        "rollup": "^4.12.0",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "ts-jest": "^29.1.2",
+        "typedoc": "^0.25.9",
+        "typedoc-plugin-markdown": "^3.17.1",
+        "typescript": "^5.3.3"
+    },
+    "scripts": {
+        "prepare": "npm run rollup:build && npm run test",
+        "build": "npm run rollup:build",
+        "watch": "npm run rollup:watch",
+        "clean": "rm -rf lib",
+        "rollup:build": "NODE_ENV=production rollup --bundleConfigAsCjs -c rollup.config.js",
+        "rollup:watch": "npm run rollup:build -- --watch",
+        "test": "npm run test:jest && npm run lint",
+        "test:bench": "node test/benchmark.bench.js",
+        "test:jest": "jest --config jest.config.json --no-cache",
+        "lint": "npm run lint:eslint",
+        "lint:eslint": "eslint --ext .ts --ignore-path .gitignore src/**/*.ts",
+        "docs:generate": "typedoc --theme markdown --out docs/api-reference --excludeExternals --readme none src"
+    }
 }

@@ -1,10 +1,10 @@
 {
-	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"declaration": true,
-		"sourceMap": false,
-		"strict": true
-	}
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": false,
+        "strict": true
+    }
 }

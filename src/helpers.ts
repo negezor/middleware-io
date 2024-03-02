@@ -1,34 +1,34 @@
 import { NextMiddleware, Middleware } from './types';
 
 export function assertMiddleware<T>(
-	middleware: unknown
+    middleware: unknown
 ): asserts middleware is Middleware<T> {
-	if (typeof middleware !== 'function') {
-		throw new TypeError('Middleware must be composed of function!');
-	}
+    if (typeof middleware !== 'function') {
+        throw new TypeError('Middleware must be composed of function!');
+    }
 }
 
 export function assertMiddlewares<T>(
-	middlewares: unknown[]
+    middlewares: unknown[]
 ): asserts middlewares is Middleware<T>[] {
-	middlewares.forEach(assertMiddleware);
+    middlewares.forEach(assertMiddleware);
 }
 
 export const wrapMiddlewareNextCall = async <T>(
-	context: T,
-	middleware: Middleware<T>
+    context: T,
+    middleware: Middleware<T>
 ): Promise<boolean> => {
-	let called = false;
+    let called = false;
 
-	await middleware(context, async (): Promise<void> => {
-		if (called) {
-			throw new Error('next() called multiple times');
-		}
+    await middleware(context, async (): Promise<void> => {
+        if (called) {
+            throw new Error('next() called multiple times');
+        }
 
-		called = true;
-	});
+        called = true;
+    });
 
-	return called;
+    return called;
 };
 
 /**

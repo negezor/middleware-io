@@ -8,139 +8,139 @@ import { compose, noopNext } from '..';
  * @return {Promise}
  */
 const delay = (delayed: number): Promise<void> => (
-	new Promise((resolve): void => {
-		setTimeout(resolve, delayed);
-	})
+    new Promise((resolve): void => {
+        setTimeout(resolve, delayed);
+    })
 );
 
 describe('compose', (): void => {
-	it('should work', async (): Promise<void> => {
-		const out: number[] = [];
+    it('should work', async (): Promise<void> => {
+        const out: number[] = [];
 
-		const middleware = compose([
-			async (ctx, next): Promise<void> => {
-				out.push(1);
+        const middleware = compose([
+            async (ctx, next): Promise<void> => {
+                out.push(1);
 
-				await delay(1);
-				await next();
-				await delay(1);
+                await delay(1);
+                await next();
+                await delay(1);
 
-				out.push(6);
-			},
-			async (ctx, next): Promise<void> => {
-				out.push(2);
+                out.push(6);
+            },
+            async (ctx, next): Promise<void> => {
+                out.push(2);
 
-				await delay(1);
-				await next();
-				await delay(1);
+                await delay(1);
+                await next();
+                await delay(1);
 
-				out.push(5);
-			},
-			async (ctx, next): Promise<void> => {
-				out.push(3);
+                out.push(5);
+            },
+            async (ctx, next): Promise<void> => {
+                out.push(3);
 
-				await delay(1);
-				await next();
-				await delay(1);
+                await delay(1);
+                await next();
+                await delay(1);
 
-				out.push(4);
-			}
-		]);
+                out.push(4);
+            }
+        ]);
 
-		await middleware(out, noopNext);
+        await middleware(out, noopNext);
 
-		expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
-	});
+        expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
+    });
 
-	it('should keep the context', async (): Promise<void> => {
-		const context = {};
+    it('should keep the context', async (): Promise<void> => {
+        const context = {};
 
-		const middleware = compose([
-			async (ctx, next): Promise<void> => {
-				await next();
+        const middleware = compose([
+            async (ctx, next): Promise<void> => {
+                await next();
 
-				expect(ctx).toBe(context);
-			},
-			async (ctx, next): Promise<void> => {
-				await next();
+                expect(ctx).toBe(context);
+            },
+            async (ctx, next): Promise<void> => {
+                await next();
 
-				expect(ctx).toBe(context);
-			},
-			async (ctx, next): Promise<void> => {
-				await next();
+                expect(ctx).toBe(context);
+            },
+            async (ctx, next): Promise<void> => {
+                await next();
 
-				expect(ctx).toBe(context);
-			}
-		]);
+                expect(ctx).toBe(context);
+            }
+        ]);
 
-		await middleware(context, noopNext);
-	});
+        await middleware(context, noopNext);
+    });
 
-	it('should work with 0 middleware', async (): Promise<void> => {
-		const middleware = compose([]);
+    it('should work with 0 middleware', async (): Promise<void> => {
+        const middleware = compose([]);
 
-		await middleware({}, noopNext);
-	});
+        await middleware({}, noopNext);
+    });
 
-	it('should reject on errors in middleware', async (): Promise<void> => {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const middleware = compose<Record<string, any>>([
-			async (ctx, next): Promise<void> => {
-				ctx.now = Date.now();
+    it('should reject on errors in middleware', async (): Promise<void> => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const middleware = compose<Record<string, any>>([
+            async (ctx, next): Promise<void> => {
+                ctx.now = Date.now();
 
-				await next();
-			},
-			async (): Promise<never> => {
-				throw new Error();
-			}
-		]);
+                await next();
+            },
+            async (): Promise<never> => {
+                throw new Error();
+            }
+        ]);
 
-		try {
-			await middleware({}, noopNext);
-		} catch (error) {
-			expect(error).toBeInstanceOf(Error);
+        try {
+            await middleware({}, noopNext);
+        } catch (error) {
+            expect(error).toBeInstanceOf(Error);
 
-			return;
-		}
+            return;
+        }
 
-		throw new Error();
-	});
+        throw new Error();
+    });
 
-	it('should only accept middleware as functions', (): void => {
-		try {
-			// @ts-ignore
-			compose([null]);
+    it('should only accept middleware as functions', (): void => {
+        try {
+            // @ts-ignore
+            compose([null]);
 
-			throw new Error('Middleware must be composed of functions');
-		} catch (error) {
-			expect(error).toBeInstanceOf(TypeError);
-		}
-	});
+            throw new Error('Middleware must be composed of functions');
+        } catch (error) {
+            expect(error).toBeInstanceOf(TypeError);
+        }
+    });
 
-	it('should throw if next() is called multiple times', async (): Promise<void> => {
-		const middleware = compose([
-			async (ctx, next): Promise<void> => {
-				await next();
-			},
-			async (ctx, next): Promise<void> => {
-				await next();
-				await next();
-			},
-			async (ctx, next): Promise<void> => {
-				await next();
-			}
-		]);
+    it('should throw if next() is called multiple times', async (): Promise<void> => {
+        const middleware = compose([
+            async (ctx, next): Promise<void> => {
+                await next();
+            },
+            async (ctx, next): Promise<void> => {
+                await next();
+                await next();
+            },
+            async (ctx, next): Promise<void> => {
+                await next();
+            }
+        ]);
 
-		try {
-			await middleware({}, noopNext);
-		} catch ({ message }) {
-			expect(message).toEqual(
-				expect.stringMatching('multiple times')
-			);
+        try {
+            await middleware({}, noopNext);
+        } catch ({ message }) {
+            expect(message).toEqual(
+                expect.stringMatching('multiple times')
+            );
 
-			return;
-		}
+            return;
+        }
 
-		throw new Error('next() called multiple times');
-	});
+        throw new Error('next() called multiple times');
+    });
 });

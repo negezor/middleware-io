@@ -13,12 +13,12 @@ import {
     getEnforceMiddleware,
     getConcurrencyMiddleware,
     getFilterMiddleware,
-    getCaughtMiddleware
+    getCaughtMiddleware,
 } from '..';
 
 const makeContext = (): { shouldTrue: boolean; shouldFalse: boolean } => ({
     shouldTrue: true,
-    shouldFalse: false
+    shouldFalse: false,
 });
 
 type ContextType = ReturnType<typeof makeContext>;
@@ -38,7 +38,7 @@ describe('Snippets', (): void => {
 
                         await next();
                     };
-                }
+                },
             );
 
             const lazyMiddleware = getLazyMiddleware(middlewareMock);
@@ -62,7 +62,7 @@ describe('Snippets', (): void => {
 
                         await next();
                     };
-                }
+                },
             );
 
             const lazyMiddleware = getLazyMiddleware(middlewareMock);
@@ -85,7 +85,7 @@ describe('Snippets', (): void => {
             const middlewareMock = jest.fn(
                 async (context: ContextType): Promise<void> => {
                     expect(context).toBe(tapContext);
-                }
+                },
             );
 
             const tapMiddleware = getTapMiddleware(middlewareMock);
@@ -107,7 +107,7 @@ describe('Snippets', (): void => {
                     expect(context).toBe(forkContext);
 
                     await next();
-                }
+                },
             );
 
             const forkMiddleware = getForkMiddleware(middlewareMock);
@@ -138,7 +138,7 @@ describe('Snippets', (): void => {
                     expect(context).toBe(branchContext);
 
                     await next();
-                }
+                },
             );
 
             const falseMiddlewareMock = jest.fn(
@@ -146,19 +146,19 @@ describe('Snippets', (): void => {
                     expect(context).toBe(branchContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getBranchMiddleware(
                 true,
                 trueMiddlewareMock,
-                falseMiddlewareMock
+                falseMiddlewareMock,
             );
 
             const falseMiddleware = getBranchMiddleware(
                 false,
                 trueMiddlewareMock,
-                falseMiddlewareMock
+                falseMiddlewareMock,
             );
 
             await trueMiddleware(branchContext, nextMock);
@@ -179,7 +179,7 @@ describe('Snippets', (): void => {
                     expect(context).toBe(branchContext);
 
                     await next();
-                }
+                },
             );
 
             const falseMiddlewareMock = jest.fn(
@@ -187,19 +187,19 @@ describe('Snippets', (): void => {
                     expect(context).toBe(branchContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getBranchMiddleware(
                 jest.fn().mockReturnValue(true),
                 trueMiddlewareMock,
-                falseMiddlewareMock
+                falseMiddlewareMock,
             );
 
             const falseMiddleware = getBranchMiddleware(
                 jest.fn().mockReturnValue(false),
                 trueMiddlewareMock,
-                falseMiddlewareMock
+                falseMiddlewareMock,
             );
 
             await trueMiddleware(branchContext, nextMock);
@@ -222,17 +222,17 @@ describe('Snippets', (): void => {
                     expect(context).toBe(optionalContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getOptionalMiddleware(
                 true,
-                middlewareMock
+                middlewareMock,
             );
 
             const falseMiddleware = getOptionalMiddleware(
                 false,
-                middlewareMock
+                middlewareMock,
             );
 
             await trueMiddleware(optionalContext, nextMock);
@@ -252,17 +252,17 @@ describe('Snippets', (): void => {
                     expect(context).toBe(optionalContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getOptionalMiddleware(
                 jest.fn().mockReturnValue(true),
-                middlewareMock
+                middlewareMock,
             );
 
             const falseMiddleware = getOptionalMiddleware(
                 jest.fn().mockReturnValue(false),
-                middlewareMock
+                middlewareMock,
             );
 
             await trueMiddleware(optionalContext, nextMock);
@@ -284,17 +284,17 @@ describe('Snippets', (): void => {
                     expect(context).toBe(filterContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getFilterMiddleware(
                 true,
-                middlewareMock
+                middlewareMock,
             );
 
             const falseMiddleware = getFilterMiddleware(
                 false,
-                middlewareMock
+                middlewareMock,
             );
 
             await trueMiddleware(filterContext, nextMock);
@@ -314,17 +314,17 @@ describe('Snippets', (): void => {
                     expect(context).toBe(filterContext);
 
                     await next();
-                }
+                },
             );
 
             const trueMiddleware = getFilterMiddleware(
                 jest.fn().mockReturnValue(true),
-                middlewareMock
+                middlewareMock,
             );
 
             const falseMiddleware = getFilterMiddleware(
                 jest.fn().mockReturnValue(false),
-                middlewareMock
+                middlewareMock,
             );
 
             await trueMiddleware(filterContext, nextMock);
@@ -349,7 +349,7 @@ describe('Snippets', (): void => {
                     expect(middlewareMock).toHaveBeenCalledTimes(0);
 
                     await next();
-                }
+                },
             );
 
             const middlewareMock = jest.fn(
@@ -359,12 +359,12 @@ describe('Snippets', (): void => {
                     expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
 
                     await next();
-                }
+                },
             );
 
             const beforeMiddleware = getBeforeMiddleware(
                 beforeMiddlewareMock,
-                middlewareMock
+                middlewareMock,
             );
 
             await beforeMiddleware(beforeContext, nextMock);
@@ -387,7 +387,7 @@ describe('Snippets', (): void => {
                     expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
 
                     await next();
-                }
+                },
             );
 
             const afterMiddlewareMock = jest.fn(
@@ -396,12 +396,12 @@ describe('Snippets', (): void => {
                     expect(middlewareMock).toHaveBeenCalledTimes(1);
 
                     await next();
-                }
+                },
             );
 
             const afterMiddleware = getAfterMiddleware(
                 middlewareMock,
-                afterMiddlewareMock
+                afterMiddlewareMock,
             );
 
             await afterMiddleware(afterContext, nextMock);
@@ -427,7 +427,7 @@ describe('Snippets', (): void => {
                     expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
 
                     await next();
-                }
+                },
             );
 
             const middlewareMock = jest.fn(
@@ -439,7 +439,7 @@ describe('Snippets', (): void => {
                     expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
 
                     await next();
-                }
+                },
             );
 
             const afterMiddlewareMock = jest.fn(
@@ -450,13 +450,13 @@ describe('Snippets', (): void => {
                     expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
 
                     await next();
-                }
+                },
             );
 
             const enforceMiddleware = getEnforceMiddleware(
                 beforeMiddlewareMock,
                 middlewareMock,
-                afterMiddlewareMock
+                afterMiddlewareMock,
             );
 
             await enforceMiddleware(enforceContext, nextMock);
@@ -479,7 +479,7 @@ describe('Snippets', (): void => {
                 (context: ContextType, error: Error): void => {
                     expect(context).toBe(caughtContext);
                     expect(error).toBe(caughtError);
-                }
+                },
             );
 
             const caughtMiddleware = getCaughtMiddleware(handlerMock);
@@ -514,7 +514,7 @@ describe('Snippets', (): void => {
 
             expect(concurrencyContext).toMatchObject({
                 shouldTrue: false,
-                shouldFalse: true
+                shouldFalse: true,
             });
 
             const nextMock = jest.fn(noopNext);
@@ -526,7 +526,7 @@ describe('Snippets', (): void => {
                     concurrencyContext.shouldTrue = true;
 
                     await next();
-                }
+                },
             ) as Middleware<ContextType>;
 
             const secondMiddlewareMock = jest.fn(
@@ -536,19 +536,19 @@ describe('Snippets', (): void => {
                     concurrencyContext.shouldFalse = false;
 
                     await next();
-                }
+                },
             ) as Middleware<ContextType>;
 
             const enforceMiddleware = getConcurrencyMiddleware<ContextType>([
                 firstMiddlewareMock,
-                secondMiddlewareMock
+                secondMiddlewareMock,
             ]);
 
             await enforceMiddleware(concurrencyContext, nextMock);
 
             expect(concurrencyContext).toMatchObject({
                 shouldTrue: true,
-                shouldFalse: false
+                shouldFalse: false,
             });
 
             expect(firstMiddlewareMock).toHaveBeenCalledTimes(1);

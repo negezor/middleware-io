@@ -44,7 +44,7 @@ describe('compose', (): void => {
                 await delay(1);
 
                 out.push(4);
-            }
+            },
         ]);
 
         await middleware(out, noopNext);
@@ -70,7 +70,7 @@ describe('compose', (): void => {
                 await next();
 
                 expect(ctx).toBe(context);
-            }
+            },
         ]);
 
         await middleware(context, noopNext);
@@ -92,7 +92,7 @@ describe('compose', (): void => {
             },
             async (): Promise<never> => {
                 throw new Error();
-            }
+            },
         ]);
 
         try {
@@ -108,7 +108,7 @@ describe('compose', (): void => {
 
     it('should only accept middleware as functions', (): void => {
         try {
-            // @ts-ignore
+            // @ts-expect-error cause test
             compose([null]);
 
             throw new Error('Middleware must be composed of functions');
@@ -128,14 +128,15 @@ describe('compose', (): void => {
             },
             async (ctx, next): Promise<void> => {
                 await next();
-            }
+            },
         ]);
 
         try {
             await middleware({}, noopNext);
+            // @ts-expect-error cause error
         } catch ({ message }) {
             expect(message).toEqual(
-                expect.stringMatching('multiple times')
+                expect.stringMatching('multiple times'),
             );
 
             return;

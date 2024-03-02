@@ -100,6 +100,7 @@ describe('Composer', (): void => {
             await next();
         });
 
+        // eslint-disable-next-line @typescript-eslint/require-await
         composer.use(async (): Promise<never> => {
             throw new Error();
         });
@@ -119,7 +120,7 @@ describe('Composer', (): void => {
 
     it('should only accept middleware as functions', (): void => {
         try {
-            // @ts-ignore
+            // @ts-expect-error cause test
             (new Composer()).use(null);
 
             throw new Error('Middleware must be composed of functions');
@@ -129,10 +130,11 @@ describe('Composer', (): void => {
     });
 
     it('composer should be cloned', async (): Promise<void> => {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         type CloneContext = {
             baseValue?: boolean;
             value: 'first' | 'second' | 'default';
-        };
+        }
 
         const baseComposer = new Composer<CloneContext>();
 
@@ -166,17 +168,17 @@ describe('Composer', (): void => {
 
         expect(baseContext).toMatchObject({
             baseValue: true,
-            value: 'default'
+            value: 'default',
         });
 
         expect(firstContext).toMatchObject({
             baseValue: true,
-            value: 'first'
+            value: 'first',
         });
 
         expect(secondContext).toMatchObject({
             baseValue: true,
-            value: 'second'
+            value: 'second',
         });
     });
 
@@ -229,9 +231,10 @@ describe('Composer', (): void => {
 
         try {
             await middleware({}, noopNext);
+            // @ts-expect-error cause test
         } catch ({ message }) {
             expect(message).toEqual(
-                expect.stringMatching('multiple times')
+                expect.stringMatching('multiple times'),
             );
 
             return;

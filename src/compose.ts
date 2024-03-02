@@ -2,7 +2,7 @@ import {
     Middleware,
     NextMiddleware,
     MiddlewareReturn,
-    NextMiddlewareReturn
+    NextMiddlewareReturn,
 } from './types';
 
 import { assertMiddlewares } from './helpers';

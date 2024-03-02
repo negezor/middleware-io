@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { Suite } = require('benchmark');
+const { Bench } = require('tinybench');
 
 const { compose, noopNext } = require('..');
 
@@ -8,43 +8,46 @@ const numberFormat = number => (
 );
 
 const makeSuite = ({ name }) => {
-    const suite = new Suite();
+    const suite = new Bench({
+        iterations: 30,
+    });
 
-    suite.on('start', () => {
+    suite.addEventListener('start', () => {
         process.stdout.write(`${name}\n\n`.padStart(name.length + 8));
     });
 
-    suite.on('cycle', ({ target }) => {
-        const { hz } = target;
-        const text = `${target.name} » ${numberFormat(hz.toFixed(hz < 100 ? 2 : 0))} op/s ±${target.stats.rme.toFixed(2)}%\n`;
+    suite.addEventListener('cycle', ({ task }) => {
+        const { hz, rme } = task.result;
+        const text = `${task.name} » ${numberFormat(hz.toFixed(hz < 100 ? 2 : 0))} op/s ±${rme.toFixed(2)}%\n`;
 
         process.stdout.clearLine();
         process.stdout.cursorTo(0);
         process.stdout.write(text.padStart(text.length + 8));
-    });
+    })
 
-    suite.on('complete', () => {
+
+    suite.addEventListener('complete', () => {
         process.stdout.write('\n');
     });
 
     return {
         add: (testName, options = {}) => {
-            suite.add(testName, {
+            suite.add(testName, options.fn, {
                 ...options,
 
-                onStart({ target }) {
-                    const text = `wait » ${target.name}`;
+                beforeAll() {
+                    const text = `wait » ${testName}`;
 
-                    process.stdout.write(text.padStart(target.name.length + 17));
-                }
+                    process.stdout.write(text.padStart(testName.length + 17));
+                },
             });
         },
-        run: suite.run.bind(suite)
+        run: suite.run.bind(suite),
     };
 };
 
 const composeSuite = makeSuite({
-    name: 'Compose'
+    name: 'Compose',
 });
 
 for (let exp = 0; exp <= 10; exp += 1) {
@@ -63,22 +66,14 @@ for (let exp = 0; exp <= 10; exp += 1) {
     const middleware = compose(middlewares);
 
     composeSuite.add(`(fn * ${count})`, {
-        defer: true,
-        fn: (deferred) => {
+        fn: () => (
             middleware({}, noopNext)
-                .then(() => deferred.resolve());
-        }
+        ),
     });
 }
 
 (async () => {
     for (const benchmark of [composeSuite]) {
-        await new Promise(resolve => (
-            benchmark
-                .run({
-                    async: false
-                })
-                .on('complete', resolve)
-        ));
+        await benchmark.run();
     }
 })();

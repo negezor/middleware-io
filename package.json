@@ -68,8 +68,8 @@
         "test": "npm run test:jest && npm run lint",
         "test:bench": "node test/benchmark.bench.js",
         "test:jest": "jest --config jest.config.json --no-cache",
-        "lint": "npm run lint:eslint",
-        "lint:eslint": "eslint --ext .ts --fix --ignore-path .gitignore src/**/*.ts",
+        "lint": "npm run lint:biome",
+        "lint:biome": "biome lint --apply ./src",
         "docs:generate": "typedoc --theme markdown --out docs/api-reference --excludeExternals --readme none src"
     }
 }

@@ -1,12 +1,12 @@
-const { Bench } = require('tinybench');
+import { Bench, type Fn } from 'tinybench';
 
-const { compose, noopNext } = require('..');
+import { type Middleware, compose, noopNext } from '..';
 
-const numberFormat = number => (
+const numberFormat = (number: number) => (
     new Intl.NumberFormat('en-US').format(number)
 );
 
-const makeSuite = ({ name }) => {
+const makeSuite = ({ name }: { name: string }) => {
     const suite = new Bench({
         iterations: 30,
     });
@@ -16,10 +16,11 @@ const makeSuite = ({ name }) => {
     });
 
     suite.addEventListener('cycle', ({ task }) => {
-        const { hz, rme } = task.result;
-        const text = `${task.name} » ${numberFormat(hz.toFixed(hz < 100 ? 2 : 0))} op/s ±${rme.toFixed(2)}%\n`;
+        // biome-ignore lint/style/noNonNullAssertion: after cycle task.result always exist
+        const { hz, rme } = task.result!;
+        const text = `${task.name} » ${numberFormat(Number(hz.toFixed(hz < 100 ? 2 : 0)))} op/s ±${rme.toFixed(2)}%\n`;
 
-        process.stdout.clearLine();
+        process.stdout.clearLine(0);
         process.stdout.cursorTo(0);
         process.stdout.write(text.padStart(text.length + 8));
     })
@@ -30,7 +31,7 @@ const makeSuite = ({ name }) => {
     });
 
     return {
-        add: (testName, options = {}) => {
+        add: (testName: string, options: { fn: Fn }) => {
             suite.add(testName, options.fn, {
                 ...options,
 
@@ -54,7 +55,7 @@ for (let exp = 0; exp <= 10; exp += 1) {
 
     const logic = async () => true;
 
-    const fn = async (ctx, next) => {
+    const fn: Middleware<unknown> = async (ctx, next) => {
         await logic();
         await next();
         await logic();

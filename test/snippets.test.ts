@@ -1,3 +1,6 @@
+import { describe, it, mock } from 'node:test';
+import { deepStrictEqual, ok, strictEqual } from 'node:assert';
+
 import {
     Middleware,
     NextMiddleware,
@@ -28,13 +31,13 @@ describe('Snippets', (): void => {
         it('should work with function', async (): Promise<void> => {
             const lazyContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
-            const middlewareMock = jest.fn(
+            const nextMock = mock.fn(noopNext);
+            const middlewareMock = mock.fn(
                 (factoryContext: ContextType): Middleware<ContextType> => {
-                    expect(factoryContext).toBe(lazyContext);
+                    strictEqual(factoryContext, lazyContext);
 
                     return async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                        expect(context).toBe(lazyContext);
+                        strictEqual(context, lazyContext);
 
                         await next();
                     };
@@ -45,20 +48,20 @@ describe('Snippets', (): void => {
 
             await lazyMiddleware(lazyContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
 
         it('should factory be called once', async (): Promise<void> => {
             const lazyContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
-            const middlewareMock = jest.fn(
+            const nextMock = mock.fn(noopNext);
+            const middlewareMock = mock.fn(
                 (factoryContext: ContextType): Middleware<ContextType> => {
-                    expect(factoryContext).toBe(lazyContext);
+                    ok(factoryContext === lazyContext);
 
                     return async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                        expect(context).toBe(lazyContext);
+                        ok(context === lazyContext);
 
                         await next();
                     };
@@ -72,8 +75,8 @@ describe('Snippets', (): void => {
                 await lazyMiddleware(lazyContext, nextMock);
             }
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(CALLED_TIMES);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), CALLED_TIMES);
         });
     });
 
@@ -81,10 +84,10 @@ describe('Snippets', (): void => {
         it('should runs with force next()', async (): Promise<void> => {
             const tapContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
-            const middlewareMock = jest.fn(
+            const nextMock = mock.fn(noopNext);
+            const middlewareMock = mock.fn(
                 async (context: ContextType): Promise<void> => {
-                    expect(context).toBe(tapContext);
+                    ok(context === tapContext);
                 },
             );
 
@@ -92,8 +95,8 @@ describe('Snippets', (): void => {
 
             await tapMiddleware(tapContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -101,10 +104,10 @@ describe('Snippets', (): void => {
         it('should runs with force next()', async (): Promise<void> => {
             const forkContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
-            const middlewareMock = jest.fn(
+            const nextMock = mock.fn(noopNext);
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(forkContext);
+                    ok(context === forkContext);
 
                     await next();
                 },
@@ -114,12 +117,12 @@ describe('Snippets', (): void => {
 
             await forkMiddleware(forkContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(0);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 0);
+            strictEqual(nextMock.mock.callCount(), 1);
 
             await new Promise((resolve: Function): void => {
                 setImmediate((): void => {
-                    expect(middlewareMock).toHaveBeenCalledTimes(1);
+                    strictEqual(middlewareMock.mock.callCount(), 1);
 
                     resolve();
                 });
@@ -131,19 +134,19 @@ describe('Snippets', (): void => {
         it('should runs with static condition', async (): Promise<void> => {
             const branchContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const trueMiddlewareMock = jest.fn(
+            const trueMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(branchContext);
+                    ok(context === branchContext);
 
                     await next();
                 },
             );
 
-            const falseMiddlewareMock = jest.fn(
+            const falseMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(branchContext);
+                    ok(context === branchContext);
 
                     await next();
                 },
@@ -164,40 +167,40 @@ describe('Snippets', (): void => {
             await trueMiddleware(branchContext, nextMock);
             await falseMiddleware(branchContext, nextMock);
 
-            expect(trueMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(falseMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(2);
+            strictEqual(trueMiddlewareMock.mock.callCount(), 1);
+            strictEqual(falseMiddlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 2);
         });
 
         it('should runs with dynamic condition', async (): Promise<void> => {
             const branchContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const trueMiddlewareMock = jest.fn(
+            const trueMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(branchContext);
+                    ok(context === branchContext);
 
                     await next();
                 },
             );
 
-            const falseMiddlewareMock = jest.fn(
+            const falseMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(branchContext);
+                    ok(context === branchContext);
 
                     await next();
                 },
             );
 
             const trueMiddleware = getBranchMiddleware(
-                jest.fn().mockReturnValue(true),
+                mock.fn(() => true),
                 trueMiddlewareMock,
                 falseMiddlewareMock,
             );
 
             const falseMiddleware = getBranchMiddleware(
-                jest.fn().mockReturnValue(false),
+                mock.fn(() => false),
                 trueMiddlewareMock,
                 falseMiddlewareMock,
             );
@@ -205,9 +208,9 @@ describe('Snippets', (): void => {
             await trueMiddleware(branchContext, nextMock);
             await falseMiddleware(branchContext, nextMock);
 
-            expect(trueMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(falseMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(2);
+            strictEqual(trueMiddlewareMock.mock.callCount(), 1);
+            strictEqual(falseMiddlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 2);
         });
     });
 
@@ -215,11 +218,11 @@ describe('Snippets', (): void => {
         it('should runs with static condition', async (): Promise<void> => {
             const optionalContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(optionalContext);
+                    ok(context === optionalContext);
 
                     await next();
                 },
@@ -238,38 +241,38 @@ describe('Snippets', (): void => {
             await trueMiddleware(optionalContext, nextMock);
             await falseMiddleware(optionalContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(2);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 2);
         });
 
         it('should runs with dynamic condition', async (): Promise<void> => {
             const optionalContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(optionalContext);
+                    ok(context === optionalContext);
 
                     await next();
                 },
             );
 
             const trueMiddleware = getOptionalMiddleware(
-                jest.fn().mockReturnValue(true),
+                mock.fn(() => true),
                 middlewareMock,
             );
 
             const falseMiddleware = getOptionalMiddleware(
-                jest.fn().mockReturnValue(false),
+                mock.fn(() => false),
                 middlewareMock,
             );
 
             await trueMiddleware(optionalContext, nextMock);
             await falseMiddleware(optionalContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(2);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 2);
         });
     });
 
@@ -277,11 +280,11 @@ describe('Snippets', (): void => {
         it('should runs with static condition', async (): Promise<void> => {
             const filterContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(filterContext);
+                    ok(context === filterContext);
 
                     await next();
                 },
@@ -300,38 +303,38 @@ describe('Snippets', (): void => {
             await trueMiddleware(filterContext, nextMock);
             await falseMiddleware(filterContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
 
         it('should runs with dynamic condition', async (): Promise<void> => {
             const filterContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(filterContext);
+                    ok(context === filterContext);
 
                     await next();
                 },
             );
 
             const trueMiddleware = getFilterMiddleware(
-                jest.fn().mockReturnValue(true),
+                mock.fn(() => true),
                 middlewareMock,
             );
 
             const falseMiddleware = getFilterMiddleware(
-                jest.fn().mockReturnValue(false),
+                mock.fn(() => false),
                 middlewareMock,
             );
 
             await trueMiddleware(filterContext, nextMock);
             await falseMiddleware(filterContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -339,24 +342,24 @@ describe('Snippets', (): void => {
         it('should runs before middleware', async (): Promise<void> => {
             const beforeContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const beforeMiddlewareMock = jest.fn(
+            const beforeMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(beforeContext);
+                    ok(context === beforeContext);
 
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    expect(middlewareMock).toHaveBeenCalledTimes(0);
+                    strictEqual(middlewareMock.mock.callCount(), 0);
 
                     await next();
                 },
             );
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(beforeContext);
+                    ok(context === beforeContext);
 
-                    expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
+                    strictEqual(beforeMiddlewareMock.mock.callCount(), 1);
 
                     await next();
                 },
@@ -369,8 +372,8 @@ describe('Snippets', (): void => {
 
             await beforeMiddleware(beforeContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -378,22 +381,22 @@ describe('Snippets', (): void => {
         it('should runs after middleware', async (): Promise<void> => {
             const afterContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(afterContext);
+                    ok(context === afterContext);
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
+                    strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();
                 },
             );
 
-            const afterMiddlewareMock = jest.fn(
+            const afterMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(afterContext);
-                    expect(middlewareMock).toHaveBeenCalledTimes(1);
+                    ok(context === afterContext);
+                    strictEqual(middlewareMock.mock.callCount(), 1);
 
                     await next();
                 },
@@ -406,8 +409,8 @@ describe('Snippets', (): void => {
 
             await afterMiddleware(afterContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -415,39 +418,39 @@ describe('Snippets', (): void => {
         it('should runs enforce middleware', async (): Promise<void> => {
             const enforceContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const beforeMiddlewareMock = jest.fn(
+            const beforeMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(enforceContext);
+                    ok(context === enforceContext);
 
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    expect(middlewareMock).toHaveBeenCalledTimes(0);
+                    strictEqual(middlewareMock.mock.callCount(), 0);
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
+                    strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();
                 },
             );
 
-            const middlewareMock = jest.fn(
+            const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(enforceContext);
+                    ok(context === enforceContext);
 
-                    expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
+                    strictEqual(beforeMiddlewareMock.mock.callCount(), 1);
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    expect(afterMiddlewareMock).toHaveBeenCalledTimes(0);
+                    strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();
                 },
             );
 
-            const afterMiddlewareMock = jest.fn(
+            const afterMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(enforceContext);
+                    ok(context === enforceContext);
 
-                    expect(middlewareMock).toHaveBeenCalledTimes(1);
-                    expect(beforeMiddlewareMock).toHaveBeenCalledTimes(1);
+                    strictEqual(middlewareMock.mock.callCount(), 1);
+                    strictEqual(beforeMiddlewareMock.mock.callCount(), 1);
 
                     await next();
                 },
@@ -461,8 +464,8 @@ describe('Snippets', (): void => {
 
             await enforceMiddleware(enforceContext, nextMock);
 
-            expect(middlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(middlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -471,14 +474,14 @@ describe('Snippets', (): void => {
             const caughtContext = makeContext();
 
             const caughtError = new Error('Test error');
-            const nextMock = jest.fn(() => {
+            const nextMock = mock.fn(() => {
                 throw caughtError;
             });
 
-            const handlerMock = jest.fn(
+            const handlerMock = mock.fn(
                 (context: ContextType, error: Error): void => {
-                    expect(context).toBe(caughtContext);
-                    expect(error).toBe(caughtError);
+                    ok(context === caughtContext);
+                    strictEqual(error, caughtError);
                 },
             );
 
@@ -486,22 +489,22 @@ describe('Snippets', (): void => {
 
             await caughtMiddleware(caughtContext, nextMock);
 
-            expect(handlerMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(handlerMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
 
         it('should work without error', async (): Promise<void> => {
             const caughtContext = makeContext();
 
-            const nextMock = jest.fn(noopNext);
-            const handlerMock = jest.fn((): void => {});
+            const nextMock = mock.fn(noopNext);
+            const handlerMock = mock.fn((): void => {});
 
             const caughtMiddleware = getCaughtMiddleware(handlerMock);
 
             await caughtMiddleware(caughtContext, nextMock);
 
-            expect(handlerMock).toHaveBeenCalledTimes(0);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(handlerMock.mock.callCount(), 0);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 
@@ -512,48 +515,48 @@ describe('Snippets', (): void => {
             concurrencyContext.shouldTrue = false;
             concurrencyContext.shouldFalse = true;
 
-            expect(concurrencyContext).toMatchObject({
+            deepStrictEqual(concurrencyContext, {
                 shouldTrue: false,
                 shouldFalse: true,
             });
 
-            const nextMock = jest.fn(noopNext);
+            const nextMock = mock.fn(noopNext);
 
-            const firstMiddlewareMock = jest.fn(
+            const firstMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(concurrencyContext);
+                    ok(context === concurrencyContext);
 
                     concurrencyContext.shouldTrue = true;
 
                     await next();
                 },
-            ) as Middleware<ContextType>;
+            );
 
-            const secondMiddlewareMock = jest.fn(
+            const secondMiddlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
-                    expect(context).toBe(concurrencyContext);
+                    ok(context === concurrencyContext);
 
                     concurrencyContext.shouldFalse = false;
 
                     await next();
                 },
-            ) as Middleware<ContextType>;
+            );
 
             const enforceMiddleware = getConcurrencyMiddleware<ContextType>([
-                firstMiddlewareMock,
-                secondMiddlewareMock,
+                firstMiddlewareMock as Middleware<ContextType>,
+                secondMiddlewareMock as Middleware<ContextType>,
             ]);
 
             await enforceMiddleware(concurrencyContext, nextMock);
 
-            expect(concurrencyContext).toMatchObject({
+            deepStrictEqual(concurrencyContext, {
                 shouldTrue: true,
                 shouldFalse: false,
             });
 
-            expect(firstMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(secondMiddlewareMock).toHaveBeenCalledTimes(1);
-            expect(nextMock).toHaveBeenCalledTimes(1);
+            strictEqual(firstMiddlewareMock.mock.callCount(), 1);
+            strictEqual(secondMiddlewareMock.mock.callCount(), 1);
+            strictEqual(nextMock.mock.callCount(), 1);
         });
     });
 });

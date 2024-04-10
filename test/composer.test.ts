@@ -1,3 +1,6 @@
+import { describe, it } from 'node:test';
+import { match, ok, deepStrictEqual, strictEqual } from 'node:assert';
+
 import { Composer, noopNext } from '..';
 
 /**
@@ -53,7 +56,7 @@ describe('Composer', (): void => {
 
         await middleware({}, noopNext);
 
-        expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
+        deepStrictEqual(out, [1, 2, 3, 4, 5, 6]);
     });
 
     it('should keep the context', async (): Promise<void> => {
@@ -64,19 +67,19 @@ describe('Composer', (): void => {
         composer.use(async (ctx, next): Promise<void> => {
             await next();
 
-            expect(ctx).toBe(context);
+            strictEqual(ctx, context);
         });
 
         composer.use(async (ctx, next): Promise<void> => {
             await next();
 
-            expect(ctx).toBe(context);
+            strictEqual(ctx, context);
         });
 
         composer.use(async (ctx, next): Promise<void> => {
             await next();
 
-            expect(ctx).toBe(context);
+            strictEqual(ctx, context);
         });
 
         const middleware = composer.compose();
@@ -110,7 +113,7 @@ describe('Composer', (): void => {
         try {
             await middleware({}, noopNext);
         } catch (error) {
-            expect(error).toBeInstanceOf(Error);
+            ok(error instanceof Error);
 
             return;
         }
@@ -125,7 +128,7 @@ describe('Composer', (): void => {
 
             throw new Error('Middleware must be composed of functions');
         } catch (error) {
-            expect(error).toBeInstanceOf(TypeError);
+            ok(error instanceof TypeError);
         }
     });
 
@@ -166,17 +169,17 @@ describe('Composer', (): void => {
         await firstComposer.compose()(firstContext, noopNext);
         await secondComposer.compose()(secondContext, noopNext);
 
-        expect(baseContext).toMatchObject({
+        deepStrictEqual(baseContext, {
             baseValue: true,
             value: 'default',
         });
 
-        expect(firstContext).toMatchObject({
+        deepStrictEqual(firstContext, {
             baseValue: true,
             value: 'first',
         });
 
-        expect(secondContext).toMatchObject({
+        deepStrictEqual(secondContext, {
             baseValue: true,
             value: 'second',
         });
@@ -185,17 +188,17 @@ describe('Composer', (): void => {
     it('should correctly display the number of middleware', (): void => {
         const composer = new Composer();
 
-        expect(composer.length).toEqual(0);
+        strictEqual(composer.length, 0);
 
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        composer.tap(() => {});
+        composer.tap(() => { });
 
-        expect(composer.length).toEqual(1);
+        strictEqual(composer.length, 1);
 
         // eslint-disable-next-line @typescript-eslint/no-empty-function
-        composer.tap(() => {});
+        composer.tap(() => { });
 
-        expect(composer.length).toEqual(2);
+        strictEqual(composer.length, 2);
     });
 
     it('should create new instance of the Composer class', (): void => {
@@ -207,8 +210,8 @@ describe('Composer', (): void => {
             }
         });
 
-        expect(composer.length).toEqual(1);
-        expect(composer).toBeInstanceOf(Composer);
+        strictEqual(composer.length, 1);
+        ok(composer instanceof Composer);
     });
 
     it('should throw if next() is called multiple times', async (): Promise<void> => {
@@ -233,9 +236,7 @@ describe('Composer', (): void => {
             await middleware({}, noopNext);
             // @ts-expect-error cause test
         } catch ({ message }) {
-            expect(message).toEqual(
-                expect.stringMatching('multiple times'),
-            );
+            match(message, /multiple times/);
 
             return;
         }

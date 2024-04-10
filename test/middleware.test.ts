@@ -1,3 +1,6 @@
+import { describe, it } from 'node:test';
+import { deepStrictEqual, match, ok, strictEqual } from 'node:assert';
+
 import { compose, noopNext } from '..';
 
 /**
@@ -49,7 +52,7 @@ describe('compose', (): void => {
 
         await middleware(out, noopNext);
 
-        expect(out).toEqual(expect.arrayContaining([1, 2, 3, 4, 5, 6]));
+        deepStrictEqual(out, [1, 2, 3, 4, 5, 6]);
     });
 
     it('should keep the context', async (): Promise<void> => {
@@ -59,17 +62,17 @@ describe('compose', (): void => {
             async (ctx, next): Promise<void> => {
                 await next();
 
-                expect(ctx).toBe(context);
+                strictEqual(ctx, context);
             },
             async (ctx, next): Promise<void> => {
                 await next();
 
-                expect(ctx).toBe(context);
+                strictEqual(ctx, context);
             },
             async (ctx, next): Promise<void> => {
                 await next();
 
-                expect(ctx).toBe(context);
+                strictEqual(ctx, context);
             },
         ]);
 
@@ -98,7 +101,7 @@ describe('compose', (): void => {
         try {
             await middleware({}, noopNext);
         } catch (error) {
-            expect(error).toBeInstanceOf(Error);
+            ok(error instanceof Error);
 
             return;
         }
@@ -113,7 +116,7 @@ describe('compose', (): void => {
 
             throw new Error('Middleware must be composed of functions');
         } catch (error) {
-            expect(error).toBeInstanceOf(TypeError);
+            ok(error instanceof TypeError);
         }
     });
 
@@ -135,9 +138,7 @@ describe('compose', (): void => {
             await middleware({}, noopNext);
             // @ts-expect-error cause error
         } catch ({ message }) {
-            expect(message).toEqual(
-                expect.stringMatching('multiple times'),
-            );
+            match(message, /multiple times/);
 
             return;
         }

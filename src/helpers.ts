@@ -1,23 +1,16 @@
-import type { NextMiddleware, Middleware } from './types';
+import type { Middleware, NextMiddleware } from './types';
 
-export function assertMiddleware<T>(
-    middleware: unknown,
-): asserts middleware is Middleware<T> {
+export function assertMiddleware<T>(middleware: unknown): asserts middleware is Middleware<T> {
     if (typeof middleware !== 'function') {
         throw new TypeError('Middleware must be composed of function!');
     }
 }
 
-export function assertMiddlewares<T>(
-    middlewares: unknown[],
-): asserts middlewares is Middleware<T>[] {
+export function assertMiddlewares<T>(middlewares: unknown[]): asserts middlewares is Middleware<T>[] {
     middlewares.forEach(assertMiddleware);
 }
 
-export const wrapMiddlewareNextCall = async <T>(
-    context: T,
-    middleware: Middleware<T>,
-): Promise<boolean> => {
+export const wrapMiddlewareNextCall = async <T>(context: T, middleware: Middleware<T>): Promise<boolean> => {
     let called = false;
 
     // eslint-disable-next-line @typescript-eslint/require-await

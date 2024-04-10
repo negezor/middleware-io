@@ -1,25 +1,24 @@
 import type {
-    UnknownObject,
-    Middleware,
-
-    LazyMiddlewareFactory,
     BranchMiddlewareCondition,
     CaughtMiddlewareHandler,
+    LazyMiddlewareFactory,
+    Middleware,
+    UnknownObject,
 } from './types';
 
 import { compose } from './compose';
 import {
-    getLazyMiddleware,
-    getTapMiddleware,
-    getForkMiddleware,
-    getBranchMiddleware,
-    getOptionalMiddleware,
-    getFilterMiddleware,
-    getBeforeMiddleware,
     getAfterMiddleware,
-    getEnforceMiddleware,
+    getBeforeMiddleware,
+    getBranchMiddleware,
     getCaughtMiddleware,
     getConcurrencyMiddleware,
+    getEnforceMiddleware,
+    getFilterMiddleware,
+    getForkMiddleware,
+    getLazyMiddleware,
+    getOptionalMiddleware,
+    getTapMiddleware,
 } from './snippets';
 
 import { assertMiddleware } from './helpers';
@@ -70,33 +69,21 @@ export class Composer<T extends UnknownObject, R = T> {
      * Lazily asynchronously gets middleware
      */
     public lazy<V = UnknownObject>(factory: LazyMiddlewareFactory<T & V>): Composer<T & V, R> {
-        return this.use(
-            getLazyMiddleware<T & V>(
-                factory,
-            ),
-        );
+        return this.use(getLazyMiddleware<T & V>(factory));
     }
 
     /**
      * Runs the middleware and force call `next()`
      */
     public tap<V = UnknownObject>(middleware: Middleware<T & V>): Composer<T & V, R> {
-        return this.use(
-            getTapMiddleware<T & V>(
-                middleware,
-            ),
-        );
+        return this.use(getTapMiddleware<T & V>(middleware));
     }
 
     /**
      * Runs the middleware at the next event loop and force call `next()`
      */
     public fork<V = UnknownObject>(middleware: Middleware<T & V>): Composer<T & V, R> {
-        return this.use(
-            getForkMiddleware<T & V>(
-                middleware,
-            ),
-        );
+        return this.use(getForkMiddleware<T & V>(middleware));
     }
 
     /**
@@ -125,12 +112,7 @@ export class Composer<T extends UnknownObject, R = T> {
         condition: BranchMiddlewareCondition<T & V>,
         optionalMiddleware: Middleware<T & V>,
     ): Composer<T & V, R> {
-        return this.use(
-            getOptionalMiddleware<T & V>(
-                condition,
-                optionalMiddleware,
-            ),
-        );
+        return this.use(getOptionalMiddleware<T & V>(condition, optionalMiddleware));
     }
 
     /**
@@ -140,12 +122,7 @@ export class Composer<T extends UnknownObject, R = T> {
         condition: BranchMiddlewareCondition<T & V>,
         filterMiddleware: Middleware<T & V>,
     ): Composer<T & V, R> {
-        return this.use(
-            getFilterMiddleware<T & V>(
-                condition,
-                filterMiddleware,
-            ),
-        );
+        return this.use(getFilterMiddleware<T & V>(condition, filterMiddleware));
     }
 
     /**
@@ -155,12 +132,7 @@ export class Composer<T extends UnknownObject, R = T> {
         beforeMiddleware: Middleware<T & V>,
         middleware: Middleware<T & V>,
     ): Composer<T & V, R> {
-        return this.use(
-            getBeforeMiddleware<T & V>(
-                middleware,
-                beforeMiddleware,
-            ),
-        );
+        return this.use(getBeforeMiddleware<T & V>(middleware, beforeMiddleware));
     }
 
     /**
@@ -170,12 +142,7 @@ export class Composer<T extends UnknownObject, R = T> {
         middleware: Middleware<T & V>,
         afterMiddleware: Middleware<T & V>,
     ): Composer<T & V, R> {
-        return this.use(
-            getAfterMiddleware<T & V>(
-                middleware,
-                afterMiddleware,
-            ),
-        );
+        return this.use(getAfterMiddleware<T & V>(middleware, afterMiddleware));
     }
 
     /**
@@ -186,40 +153,22 @@ export class Composer<T extends UnknownObject, R = T> {
         middleware: Middleware<T & V>,
         afterMiddleware: Middleware<T & V>,
     ): Composer<T & V, R> {
-        return this.use(
-            getEnforceMiddleware<T & V>(
-                middleware,
-                beforeMiddleware,
-                afterMiddleware,
-            ),
-        );
+        return this.use(getEnforceMiddleware<T & V>(middleware, beforeMiddleware, afterMiddleware));
     }
 
     /**
      * Catches errors in the middleware chain
      */
-    public caught<V = UnknownObject>(
-        errorHandler: CaughtMiddlewareHandler<T & V>,
-    ): Composer<T & V, R> {
-        return this.use(
-            getCaughtMiddleware<T & V>(
-                errorHandler,
-            ),
-        );
+    public caught<V = UnknownObject>(errorHandler: CaughtMiddlewareHandler<T & V>): Composer<T & V, R> {
+        return this.use(getCaughtMiddleware<T & V>(errorHandler));
     }
 
     /**
      * Concurrently launches middleware,
      * the chain will continue if `next()` is called in all middlewares
      */
-    public concurrency<V = UnknownObject>(
-        middlewares: Middleware<T & V>[],
-    ): Composer<T & V, R> {
-        return this.use(
-            getConcurrencyMiddleware<T & V>(
-                middlewares,
-            ),
-        );
+    public concurrency<V = UnknownObject>(middlewares: Middleware<T & V>[]): Composer<T & V, R> {
+        return this.use(getConcurrencyMiddleware<T & V>(middlewares));
     }
 
     /**

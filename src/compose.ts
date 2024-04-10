@@ -1,9 +1,4 @@
-import type {
-    Middleware,
-    NextMiddleware,
-    MiddlewareReturn,
-    NextMiddlewareReturn,
-} from './types';
+import type { Middleware, MiddlewareReturn, NextMiddleware, NextMiddlewareReturn } from './types';
 
 import { assertMiddlewares } from './helpers';
 
@@ -27,18 +22,16 @@ export function compose<T>(middlewares: Middleware<T>[]): Middleware<T> {
 
             lastIndex = index;
 
-            const middleware = middlewares.length !== index
-                ? middlewares[index]
-                : next;
+            const middleware = middlewares.length !== index ? middlewares[index] : next;
 
             if (!middleware) {
                 return Promise.resolve();
             }
 
             try {
-                return Promise.resolve(middleware(context, (): Promise<NextMiddlewareReturn> => (
-                    nextDispatch(index + 1)
-                )));
+                return Promise.resolve(
+                    middleware(context, (): Promise<NextMiddlewareReturn> => nextDispatch(index + 1)),
+                );
             } catch (error) {
                 return Promise.reject(error);
             }

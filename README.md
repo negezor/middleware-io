@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/negezor/middleware-io/master/logo.svg?sanitize=true"></p>
 <p align="center">
-<a href="https://github.com/negezor/middleware-io/actions/workflows/tests.yml"><img src="https://img.shields.io/github/workflow/status/negezor/middleware-io/Middleware-IO CI?style=flat-square" alt="Build Status"></a>
+<a href="https://github.com/negezor/middleware-io/actions/workflows/tests.yml"><img src="https://img.shields.io/github/actions/workflow/status/negezor/middleware-io/tests.yml?style=flat-square" alt="Build Status"></a>
 <a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/v/middleware-io.svg?style=flat-square" alt="NPM version"></a>
 <a href="https://www.npmjs.com/package/middleware-io"><img src="https://img.shields.io/npm/dt/middleware-io.svg?style=flat-square" alt="NPM downloads"></a>
 </p>

@@ -1,7 +1,0 @@
-{
-    "name": "middleware-io",
-    "verbose": true,
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testMatch": ["<rootDir>/test/*.test.ts"]
-}

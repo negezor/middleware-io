@@ -1,4 +1,4 @@
-import { NextMiddleware, Middleware } from './types';
+import type { NextMiddleware, Middleware } from './types';
 
 export function assertMiddleware<T>(
     middleware: unknown,

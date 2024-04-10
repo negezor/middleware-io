@@ -348,7 +348,6 @@ describe('Snippets', (): void => {
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
                     ok(context === beforeContext);
 
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     strictEqual(middlewareMock.mock.callCount(), 0);
 
                     await next();
@@ -386,7 +385,6 @@ describe('Snippets', (): void => {
             const middlewareMock = mock.fn(
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
                     ok(context === afterContext);
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();
@@ -424,9 +422,7 @@ describe('Snippets', (): void => {
                 async (context: ContextType, next: NextMiddleware): Promise<void> => {
                     ok(context === enforceContext);
 
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     strictEqual(middlewareMock.mock.callCount(), 0);
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();
@@ -438,7 +434,6 @@ describe('Snippets', (): void => {
                     ok(context === enforceContext);
 
                     strictEqual(beforeMiddlewareMock.mock.callCount(), 1);
-                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
                     strictEqual(afterMiddlewareMock.mock.callCount(), 0);
 
                     await next();

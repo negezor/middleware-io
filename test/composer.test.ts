@@ -94,7 +94,6 @@ describe('Composer', (): void => {
     });
 
     it('should reject on errors in middleware', async (): Promise<void> => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const composer = new Composer<Record<string, any>>();
 
         composer.use(async (ctx, next): Promise<void> => {
@@ -103,7 +102,6 @@ describe('Composer', (): void => {
             await next();
         });
 
-        // eslint-disable-next-line @typescript-eslint/require-await
         composer.use(async (): Promise<never> => {
             throw new Error();
         });
@@ -133,7 +131,6 @@ describe('Composer', (): void => {
     });
 
     it('composer should be cloned', async (): Promise<void> => {
-        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         type CloneContext = {
             baseValue?: boolean;
             value: 'first' | 'second' | 'default';
@@ -190,12 +187,10 @@ describe('Composer', (): void => {
 
         strictEqual(composer.length, 0);
 
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         composer.tap(() => { });
 
         strictEqual(composer.length, 1);
 
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         composer.tap(() => { });
 
         strictEqual(composer.length, 2);

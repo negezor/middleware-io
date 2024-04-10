@@ -18,7 +18,6 @@ export const skipMiddleware = <T>(context: T, next: NextMiddleware): Promise<Mid
 /**
  * Does not call `next()` in middleware
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const stopMiddleware = <T>(context: T, next: NextMiddleware): Promise<void> => Promise.resolve();
 
 /**
@@ -169,7 +168,6 @@ export const getFilterMiddleware = <T>(
  */
 export const getBeforeMiddleware =
     <T>(beforeMiddleware: Middleware<T>, middleware: Middleware<T>): Middleware<T> =>
-    // eslint-disable-next-line consistent-return
     async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
         const called = await wrapMiddlewareNextCall(context, beforeMiddleware);
 
@@ -192,7 +190,6 @@ export const getBeforeMiddleware =
  */
 export const getAfterMiddleware =
     <T>(middleware: Middleware<T>, afterMiddleware: Middleware<T>): Middleware<T> =>
-    // eslint-disable-next-line consistent-return
     async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
         const called = await wrapMiddlewareNextCall(context, middleware);
 
@@ -228,7 +225,6 @@ export const getEnforceMiddleware =
             return;
         }
 
-        // eslint-disable-next-line consistent-return
         return afterMiddleware(context, next);
     };
 
@@ -264,7 +260,6 @@ export const getEnforceMiddleware =
  */
 export const getCaughtMiddleware =
     <T>(errorHandler: CaughtMiddlewareHandler<T>): Middleware<T> =>
-    // eslint-disable-next-line consistent-return
     async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
         try {
             await next();
@@ -291,7 +286,6 @@ export const getCaughtMiddleware =
  */
 export const getConcurrencyMiddleware =
     <T>(middlewares: Middleware<T>[]): Middleware<T> =>
-    // eslint-disable-next-line consistent-return
     async (context: T, next: NextMiddleware): Promise<MiddlewareReturn> => {
         const concurrencies = await Promise.all(
             middlewares.map((middleware): Promise<boolean> => wrapMiddlewareNextCall(context, middleware)),

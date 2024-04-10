@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { Bench } = require('tinybench');
 
 const { compose, noopNext } = require('..');

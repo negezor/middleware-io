@@ -1,6 +1,6 @@
 [middleware-io](../README.md) / Composer
 
-# Class: Composer<T, R\>
+# Class: Composer\<T, R\>
 
 A simple middleware compose builder
 
@@ -47,7 +47,7 @@ A simple middleware compose builder
 
 ### constructor
 
-• **new Composer**<`T`, `R`\>()
+• **new Composer**\<`T`, `R`\>(): [`Composer`](Composer.md)\<`T`, `R`\>
 
 #### Type parameters
 
@@ -56,15 +56,19 @@ A simple middleware compose builder
 | `T` | extends [`UnknownObject`](../README.md#unknownobject) |
 | `R` | `T` |
 
+#### Returns
+
+[`Composer`](Composer.md)\<`T`, `R`\>
+
 ## Properties
 
 ### middlewares
 
-• `Protected` **middlewares**: [`Middleware`](../README.md#middleware)<`R`\>[] = `[]`
+• `Protected` **middlewares**: [`Middleware`](../README.md#middleware)\<`R`\>[] = `[]`
 
 #### Defined in
 
-[composer.ts:31](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L31)
+[composer.ts:30](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L30)
 
 ## Accessors
 
@@ -80,13 +84,13 @@ The number of middleware installed in Composer
 
 #### Defined in
 
-[composer.ts:43](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L43)
+[composer.ts:42](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L42)
 
 ## Methods
 
 ### after
 
-▸ **after**<`V`\>(`middleware`, `afterMiddleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **after**\<`V`\>(`middleware`, `afterMiddleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Runs the second middleware after the main
 
@@ -100,22 +104,22 @@ Runs the second middleware after the main
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
-| `afterMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
+| `afterMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:169](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L169)
+[composer.ts:141](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L141)
 
 ___
 
 ### before
 
-▸ **before**<`V`\>(`beforeMiddleware`, `middleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **before**\<`V`\>(`beforeMiddleware`, `middleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Runs the second middleware before the main
 
@@ -129,22 +133,22 @@ Runs the second middleware before the main
 
 | Name | Type |
 | :------ | :------ |
-| `beforeMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `beforeMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:154](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L154)
+[composer.ts:131](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L131)
 
 ___
 
 ### branch
 
-▸ **branch**<`V`\>(`condition`, `trueMiddleware`, `falseMiddleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **branch**\<`V`\>(`condition`, `trueMiddleware`, `falseMiddleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 By condition splits the middleware
 
@@ -158,23 +162,23 @@ By condition splits the middleware
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)<`T` & `V`\> |
-| `trueMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
-| `falseMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)\<`T` & `V`\> |
+| `trueMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
+| `falseMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:105](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L105)
+[composer.ts:92](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L92)
 
 ___
 
 ### caught
 
-▸ **caught**<`V`\>(`errorHandler`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **caught**\<`V`\>(`errorHandler`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Catches errors in the middleware chain
 
@@ -188,53 +192,53 @@ Catches errors in the middleware chain
 
 | Name | Type |
 | :------ | :------ |
-| `errorHandler` | [`CaughtMiddlewareHandler`](../README.md#caughtmiddlewarehandler)<`T` & `V`\> |
+| `errorHandler` | [`CaughtMiddlewareHandler`](../README.md#caughtmiddlewarehandler)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:201](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L201)
+[composer.ts:162](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L162)
 
 ___
 
 ### clone
 
-▸ **clone**(): [`Composer`](Composer.md)<`T`, `R`\>
+▸ **clone**(): [`Composer`](Composer.md)\<`T`, `R`\>
 
 Clones a composer object
 
 #### Returns
 
-[`Composer`](Composer.md)<`T`, `R`\>
+[`Composer`](Composer.md)\<`T`, `R`\>
 
 #### Defined in
 
-[composer.ts:50](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L50)
+[composer.ts:49](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L49)
 
 ___
 
 ### compose
 
-▸ **compose**(): [`Middleware`](../README.md#middleware)<`R`\>
+▸ **compose**(): [`Middleware`](../README.md#middleware)\<`R`\>
 
 Compose middleware handlers into a single handler
 
 #### Returns
 
-[`Middleware`](../README.md#middleware)<`R`\>
+[`Middleware`](../README.md#middleware)\<`R`\>
 
 #### Defined in
 
-[composer.ts:228](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L228)
+[composer.ts:177](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L177)
 
 ___
 
 ### concurrency
 
-▸ **concurrency**<`V`\>(`middlewares`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **concurrency**\<`V`\>(`middlewares`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -249,21 +253,21 @@ the chain will continue if `next()` is called in all middlewares
 
 | Name | Type |
 | :------ | :------ |
-| `middlewares` | [`Middleware`](../README.md#middleware)<`T` & `V`\>[] |
+| `middlewares` | [`Middleware`](../README.md#middleware)\<`T` & `V`\>[] |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:215](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L215)
+[composer.ts:170](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L170)
 
 ___
 
 ### enforce
 
-▸ **enforce**<`V`\>(`beforeMiddleware`, `middleware`, `afterMiddleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **enforce**\<`V`\>(`beforeMiddleware`, `middleware`, `afterMiddleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Runs middleware before and after the main
 
@@ -277,23 +281,23 @@ Runs middleware before and after the main
 
 | Name | Type |
 | :------ | :------ |
-| `beforeMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
-| `afterMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `beforeMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
+| `afterMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:184](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L184)
+[composer.ts:151](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L151)
 
 ___
 
 ### filter
 
-▸ **filter**<`V`\>(`condition`, `filterMiddleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **filter**\<`V`\>(`condition`, `filterMiddleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Conditionally runs middleware or stops the chain
 
@@ -307,22 +311,22 @@ Conditionally runs middleware or stops the chain
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)<`T` & `V`\> |
-| `filterMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)\<`T` & `V`\> |
+| `filterMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:139](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L139)
+[composer.ts:121](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L121)
 
 ___
 
 ### fork
 
-▸ **fork**<`V`\>(`middleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **fork**\<`V`\>(`middleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -336,21 +340,21 @@ Runs the middleware at the next event loop and force call `next()`
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:94](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L94)
+[composer.ts:85](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L85)
 
 ___
 
 ### lazy
 
-▸ **lazy**<`V`\>(`factory`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **lazy**\<`V`\>(`factory`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Lazily asynchronously gets middleware
 
@@ -364,21 +368,21 @@ Lazily asynchronously gets middleware
 
 | Name | Type |
 | :------ | :------ |
-| `factory` | [`LazyMiddlewareFactory`](../README.md#lazymiddlewarefactory)<`T` & `V`\> |
+| `factory` | [`LazyMiddlewareFactory`](../README.md#lazymiddlewarefactory)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:72](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L72)
+[composer.ts:71](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L71)
 
 ___
 
 ### optional
 
-▸ **optional**<`V`\>(`condition`, `optionalMiddleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **optional**\<`V`\>(`condition`, `optionalMiddleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Conditionally runs optional middleware or skips middleware
 
@@ -392,22 +396,22 @@ Conditionally runs optional middleware or skips middleware
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)<`T` & `V`\> |
-| `optionalMiddleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `condition` | [`BranchMiddlewareCondition`](../README.md#branchmiddlewarecondition)\<`T` & `V`\> |
+| `optionalMiddleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:124](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L124)
+[composer.ts:111](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L111)
 
 ___
 
 ### tap
 
-▸ **tap**<`V`\>(`middleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **tap**\<`V`\>(`middleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Runs the middleware and force call `next()`
 
@@ -421,21 +425,21 @@ Runs the middleware and force call `next()`
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:83](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L83)
+[composer.ts:78](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L78)
 
 ___
 
 ### use
 
-▸ **use**<`V`\>(`middleware`): [`Composer`](Composer.md)<`T` & `V`, `R`\>
+▸ **use**\<`V`\>(`middleware`): [`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 Adds middleware to the chain
 
@@ -449,21 +453,21 @@ Adds middleware to the chain
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](../README.md#middleware)<`T` & `V`\> |
+| `middleware` | [`Middleware`](../README.md#middleware)\<`T` & `V`\> |
 
 #### Returns
 
-[`Composer`](Composer.md)<`T` & `V`, `R`\>
+[`Composer`](Composer.md)\<`T` & `V`, `R`\>
 
 #### Defined in
 
-[composer.ts:61](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L61)
+[composer.ts:60](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L60)
 
 ___
 
 ### builder
 
-▸ `Static` **builder**<`Context`\>(): [`Composer`](Composer.md)<`Context`, `Context`\>
+▸ **builder**\<`Context`\>(): [`Composer`](Composer.md)\<`Context`, `Context`\>
 
 Invokes a new instance of the Composer class
 
@@ -475,8 +479,8 @@ Invokes a new instance of the Composer class
 
 #### Returns
 
-[`Composer`](Composer.md)<`Context`, `Context`\>
+[`Composer`](Composer.md)\<`Context`, `Context`\>
 
 #### Defined in
 
-[composer.ts:36](https://github.com/negezor/middleware-io/blob/62c3dac/src/composer.ts#L36)
+[composer.ts:35](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/composer.ts#L35)

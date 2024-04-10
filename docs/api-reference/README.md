@@ -52,7 +52,7 @@ Renames and re-exports [compose](README.md#compose)
 
 ### BranchMiddlewareCondition
 
-Ƭ **BranchMiddlewareCondition**<`T`\>: [`BranchMiddlewareConditionFunction`](README.md#branchmiddlewareconditionfunction)<`T`\> \| `boolean`
+Ƭ **BranchMiddlewareCondition**\<`T`\>: [`BranchMiddlewareConditionFunction`](README.md#branchmiddlewareconditionfunction)\<`T`\> \| `boolean`
 
 Possible types for branch condition
 
@@ -64,13 +64,15 @@ Possible types for branch condition
 
 #### Defined in
 
-[types.ts:34](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L34)
+[types.ts:34](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L34)
 
 ___
 
 ### BranchMiddlewareConditionFunction
 
-Ƭ **BranchMiddlewareConditionFunction**<`T`\>: (`context`: `T`) => `Promise`<`boolean`\> \| `boolean`
+Ƭ **BranchMiddlewareConditionFunction**\<`T`\>: (`context`: `T`) => `Promise`\<`boolean`\> \| `boolean`
+
+Asynchronous function for branch condition
 
 #### Type parameters
 
@@ -80,9 +82,7 @@ ___
 
 #### Type declaration
 
-▸ (`context`): `Promise`<`boolean`\> \| `boolean`
-
-Asynchronous function for branch condition
+▸ (`context`): `Promise`\<`boolean`\> \| `boolean`
 
 ##### Parameters
 
@@ -92,17 +92,19 @@ Asynchronous function for branch condition
 
 ##### Returns
 
-`Promise`<`boolean`\> \| `boolean`
+`Promise`\<`boolean`\> \| `boolean`
 
 #### Defined in
 
-[types.ts:29](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L29)
+[types.ts:29](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L29)
 
 ___
 
 ### CaughtMiddlewareHandler
 
-Ƭ **CaughtMiddlewareHandler**<`T`\>: (`context`: `T`, `error`: `Error`) => [`MiddlewareReturn`](README.md#middlewarereturn)
+Ƭ **CaughtMiddlewareHandler**\<`T`\>: (`context`: `T`, `error`: `Error`) => [`MiddlewareReturn`](README.md#middlewarereturn)
+
+Handler for catching errors in middleware chains
 
 #### Type parameters
 
@@ -113,8 +115,6 @@ ___
 #### Type declaration
 
 ▸ (`context`, `error`): [`MiddlewareReturn`](README.md#middlewarereturn)
-
-Handler for catching errors in middleware chains
 
 ##### Parameters
 
@@ -129,13 +129,15 @@ Handler for catching errors in middleware chains
 
 #### Defined in
 
-[types.ts:44](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L44)
+[types.ts:44](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L44)
 
 ___
 
 ### LazyMiddlewareFactory
 
-Ƭ **LazyMiddlewareFactory**<`T`\>: (`context`: `T`) => `Promise`<[`Middleware`](README.md#middleware)<`T`\>\> \| [`Middleware`](README.md#middleware)<`T`\>
+Ƭ **LazyMiddlewareFactory**\<`T`\>: (`context`: `T`) => `Promise`\<[`Middleware`](README.md#middleware)\<`T`\>\> \| [`Middleware`](README.md#middleware)\<`T`\>
+
+Asynchronous factory to create middleware
 
 #### Type parameters
 
@@ -145,9 +147,7 @@ ___
 
 #### Type declaration
 
-▸ (`context`): `Promise`<[`Middleware`](README.md#middleware)<`T`\>\> \| [`Middleware`](README.md#middleware)<`T`\>
-
-Asynchronous factory to create middleware
+▸ (`context`): `Promise`\<[`Middleware`](README.md#middleware)\<`T`\>\> \| [`Middleware`](README.md#middleware)\<`T`\>
 
 ##### Parameters
 
@@ -157,17 +157,19 @@ Asynchronous factory to create middleware
 
 ##### Returns
 
-`Promise`<[`Middleware`](README.md#middleware)<`T`\>\> \| [`Middleware`](README.md#middleware)<`T`\>
+`Promise`\<[`Middleware`](README.md#middleware)\<`T`\>\> \| [`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[types.ts:39](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L39)
+[types.ts:39](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L39)
 
 ___
 
 ### Middleware
 
-Ƭ **Middleware**<`T`\>: (`context`: `T`, `next`: [`NextMiddleware`](README.md#nextmiddleware)) => [`MiddlewareReturn`](README.md#middlewarereturn)
+Ƭ **Middleware**\<`T`\>: (`context`: `T`, `next`: [`NextMiddleware`](README.md#nextmiddleware)) => [`MiddlewareReturn`](README.md#middlewarereturn)
+
+Basic middleware
 
 #### Type parameters
 
@@ -178,8 +180,6 @@ ___
 #### Type declaration
 
 ▸ (`context`, `next`): [`MiddlewareReturn`](README.md#middlewarereturn)
-
-Basic middleware
 
 ##### Parameters
 
@@ -194,7 +194,7 @@ Basic middleware
 
 #### Defined in
 
-[types.ts:24](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L24)
+[types.ts:24](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L24)
 
 ___
 
@@ -206,27 +206,27 @@ Returns the type of response middleware
 
 #### Defined in
 
-[types.ts:14](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L14)
+[types.ts:14](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L14)
 
 ___
 
 ### NextMiddleware
 
-Ƭ **NextMiddleware**: () => `Promise`<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
-
-#### Type declaration
-
-▸ (): `Promise`<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
+Ƭ **NextMiddleware**: () => `Promise`\<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
 
 Call the next middleware from the chain
 
+#### Type declaration
+
+▸ (): `Promise`\<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
+
 ##### Returns
 
-`Promise`<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
+`Promise`\<[`NextMiddlewareReturn`](README.md#nextmiddlewarereturn)\>
 
 #### Defined in
 
-[types.ts:9](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L9)
+[types.ts:9](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L9)
 
 ___
 
@@ -238,25 +238,25 @@ Returns the type of response middleware
 
 #### Defined in
 
-[types.ts:4](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L4)
+[types.ts:4](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L4)
 
 ___
 
 ### UnknownObject
 
-Ƭ **UnknownObject**: `Record`<`string`, `unknown`\>
+Ƭ **UnknownObject**: `Record`\<`string`, `unknown`\>
 
 Instead of object
 
 #### Defined in
 
-[types.ts:19](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L19)
+[types.ts:19](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/types.ts#L19)
 
 ## Functions
 
 ### compose
 
-▸ **compose**<`T`\>(`middlewares`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **compose**\<`T`\>(`middlewares`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Compose an array of middleware handlers into a single handler
 
@@ -270,23 +270,23 @@ Compose an array of middleware handlers into a single handler
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `middlewares` | [`Middleware`](README.md#middleware)<`T`\>[] | The array of middleware |
+| `middlewares` | [`Middleware`](README.md#middleware)\<`T`\>[] | The array of middleware |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 Composed middleware
 
 #### Defined in
 
-[compose.ts:17](https://github.com/negezor/middleware-io/blob/62c3dac/src/compose.ts#L17)
+[compose.ts:12](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/compose.ts#L12)
 
 ___
 
 ### getAfterMiddleware
 
-▸ **getAfterMiddleware**<`T`\>(`middleware`, `afterMiddleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getAfterMiddleware**\<`T`\>(`middleware`, `afterMiddleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Runs the second middleware after the main
 
@@ -309,22 +309,22 @@ getAfterMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](README.md#middleware)<`T`\> |
-| `afterMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `middleware` | [`Middleware`](README.md#middleware)\<`T`\> |
+| `afterMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:219](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L219)
+[snippets.ts:192](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L192)
 
 ___
 
 ### getBeforeMiddleware
 
-▸ **getBeforeMiddleware**<`T`\>(`beforeMiddleware`, `middleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getBeforeMiddleware**\<`T`\>(`beforeMiddleware`, `middleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Runs the second middleware before the main
 
@@ -347,22 +347,22 @@ getBeforeMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `beforeMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
-| `middleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `beforeMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
+| `middleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:193](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L193)
+[snippets.ts:170](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L170)
 
 ___
 
 ### getBranchMiddleware
 
-▸ **getBranchMiddleware**<`T`\>(`condition`, `trueMiddleware`, `falseMiddleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getBranchMiddleware**\<`T`\>(`condition`, `trueMiddleware`, `falseMiddleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 By condition splits the middleware
 
@@ -396,23 +396,23 @@ getBranchMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)<`T`\> |
-| `trueMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
-| `falseMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)\<`T`\> |
+| `trueMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
+| `falseMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:116](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L116)
+[snippets.ts:109](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L109)
 
 ___
 
 ### getCaughtMiddleware
 
-▸ **getCaughtMiddleware**<`T`\>(`errorHandler`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getCaughtMiddleware**\<`T`\>(`errorHandler`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Catches errors in the middleware chain
 
@@ -453,21 +453,21 @@ async (context, next) => {
 
 | Name | Type |
 | :------ | :------ |
-| `errorHandler` | [`CaughtMiddlewareHandler`](README.md#caughtmiddlewarehandler)<`T`\> |
+| `errorHandler` | [`CaughtMiddlewareHandler`](README.md#caughtmiddlewarehandler)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:298](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L298)
+[snippets.ts:262](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L262)
 
 ___
 
 ### getConcurrencyMiddleware
 
-▸ **getConcurrencyMiddleware**<`T`\>(`middlewares`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getConcurrencyMiddleware**\<`T`\>(`middlewares`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Concurrently launches middleware,
 the chain will continue if `next()` is called in all middlewares
@@ -494,21 +494,21 @@ getConcurrencyMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `middlewares` | [`Middleware`](README.md#middleware)<`T`\>[] |
+| `middlewares` | [`Middleware`](README.md#middleware)\<`T`\>[] |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:327](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L327)
+[snippets.ts:288](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L288)
 
 ___
 
 ### getEnforceMiddleware
 
-▸ **getEnforceMiddleware**<`T`\>(`beforeMiddleware`, `middleware`, `afterMiddleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getEnforceMiddleware**\<`T`\>(`beforeMiddleware`, `middleware`, `afterMiddleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Runs middleware before and after the main
 
@@ -531,23 +531,23 @@ getEnforceMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `beforeMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
-| `middleware` | [`Middleware`](README.md#middleware)<`T`\> |
-| `afterMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `beforeMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
+| `middleware` | [`Middleware`](README.md#middleware)\<`T`\> |
+| `afterMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:245](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L245)
+[snippets.ts:214](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L214)
 
 ___
 
 ### getFilterMiddleware
 
-▸ **getFilterMiddleware**<`T`\>(`condition`, `filterMiddleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getFilterMiddleware**\<`T`\>(`condition`, `filterMiddleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Conditionally runs middleware or stops the chain
 
@@ -570,22 +570,22 @@ getFilterMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)<`T`\> |
-| `filterMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)\<`T`\> |
+| `filterMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:170](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L170)
+[snippets.ts:152](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L152)
 
 ___
 
 ### getForkMiddleware
 
-▸ **getForkMiddleware**<`T`\>(`middleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getForkMiddleware**\<`T`\>(`middleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Runs the middleware at the next event loop and force call `next()`
 
@@ -607,21 +607,21 @@ getForkMiddleware((context) => {
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `middleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:85](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L85)
+[snippets.ts:79](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L79)
 
 ___
 
 ### getLazyMiddleware
 
-▸ **getLazyMiddleware**<`T`\>(`factory`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getLazyMiddleware**\<`T`\>(`factory`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Lazily asynchronously gets middleware
 
@@ -645,21 +645,21 @@ getLazyMiddleware(async (context) => {
 
 | Name | Type |
 | :------ | :------ |
-| `factory` | [`LazyMiddlewareFactory`](README.md#lazymiddlewarefactory)<`T`\> |
+| `factory` | [`LazyMiddlewareFactory`](README.md#lazymiddlewarefactory)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:43](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L43)
+[snippets.ts:36](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L36)
 
 ___
 
 ### getOptionalMiddleware
 
-▸ **getOptionalMiddleware**<`T`\>(`condition`, `optionalMiddleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getOptionalMiddleware**\<`T`\>(`condition`, `optionalMiddleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Conditionally runs optional middleware or skips middleware
 
@@ -682,22 +682,22 @@ getOptionalMiddleware(
 
 | Name | Type |
 | :------ | :------ |
-| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)<`T`\> |
-| `optionalMiddleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `condition` | [`BranchMiddlewareCondition`](README.md#branchmiddlewarecondition)\<`T`\> |
+| `optionalMiddleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:147](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L147)
+[snippets.ts:135](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L135)
 
 ___
 
 ### getTapMiddleware
 
-▸ **getTapMiddleware**<`T`\>(`middleware`): [`Middleware`](README.md#middleware)<`T`\>
+▸ **getTapMiddleware**\<`T`\>(`middleware`): [`Middleware`](README.md#middleware)\<`T`\>
 
 Runs the middleware and force call `next()`
 
@@ -719,37 +719,37 @@ getTapMiddleware((context) => {
 
 | Name | Type |
 | :------ | :------ |
-| `middleware` | [`Middleware`](README.md#middleware)<`T`\> |
+| `middleware` | [`Middleware`](README.md#middleware)\<`T`\> |
 
 #### Returns
 
-[`Middleware`](README.md#middleware)<`T`\>
+[`Middleware`](README.md#middleware)\<`T`\>
 
 #### Defined in
 
-[snippets.ts:66](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L66)
+[snippets.ts:60](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L60)
 
 ___
 
 ### noopNext
 
-▸ **noopNext**(): `Promise`<`unknown`\>
+▸ **noopNext**(): `Promise`\<`unknown`\>
 
 Noop for call `next()` in middleware
 
 #### Returns
 
-`Promise`<`unknown`\>
+`Promise`\<`unknown`\>
 
 #### Defined in
 
-[types.ts:9](https://github.com/negezor/middleware-io/blob/62c3dac/src/types.ts#L9)
+[helpers.ts:30](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/helpers.ts#L30)
 
 ___
 
 ### skipMiddleware
 
-▸ **skipMiddleware**<`T`\>(`context`, `next`): `Promise`<`unknown`\>
+▸ **skipMiddleware**\<`T`\>(`context`, `next`): `Promise`\<`unknown`\>
 
 Call `next()` in middleware
 
@@ -768,17 +768,17 @@ Call `next()` in middleware
 
 #### Returns
 
-`Promise`<`unknown`\>
+`Promise`\<`unknown`\>
 
 #### Defined in
 
-[snippets.ts:17](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L17)
+[snippets.ts:16](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L16)
 
 ___
 
 ### stopMiddleware
 
-▸ **stopMiddleware**<`T`\>(`context`, `next`): `Promise`<`void`\>
+▸ **stopMiddleware**\<`T`\>(`context`, `next`): `Promise`\<`void`\>
 
 Does not call `next()` in middleware
 
@@ -797,8 +797,8 @@ Does not call `next()` in middleware
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[snippets.ts:26](https://github.com/negezor/middleware-io/blob/62c3dac/src/snippets.ts#L26)
+[snippets.ts:21](https://github.com/negezor/middleware-io/blob/cfc102d315382709d9f9d43771812ee5ab488e62/src/snippets.ts#L21)
